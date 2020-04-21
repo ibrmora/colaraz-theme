@@ -1,0 +1,156 @@
+// ====================
+// Open edX: CMS Header
+// ====================
+
+.wrapper-header {
+
+    .branding {
+        padding-top: 16px;
+    }
+
+    .nav-account {
+        @include padding(9px, 2px, 0, 0);
+    }
+
+    nav {
+
+        > ol {
+
+            > .nav-item {
+                @include margin-left(4px);
+            }
+        }
+
+        .nav-item {
+
+            a {
+                color: $gray-dark;
+
+                &:hover,
+                &:focus {
+                    color: $primary;
+                }
+            }
+        }
+    }
+
+    .nav-pitch {
+        @include padding(9px, 10px, 0, 0);
+
+        .not-signedin & {
+
+            .nav-item {
+                text-transform: uppercase;
+                font-weight: 400;
+                @include margin-left(20px);
+                @include margin-right(0);
+
+                a {
+                    padding: 10px 10px 9px;
+                    box-shadow: none;
+                    background: none;
+                    border: 0;
+                    font-weight: 400;
+                }
+            }
+
+            .action-signin {
+                color: $gray-dark;
+
+                &:hover,
+                &:focus {
+                    color: $primary;
+                    background: none;
+                    box-shadow: none;
+                }
+            }
+
+            .nav-not-signedin-signup {
+                float: right;
+                @include margin-left(25px);
+
+                a {
+                    background: $primary;
+                    padding: 10px 20px;
+                    min-width: 62px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .nav-dd {
+
+        .title {
+            text-transform: uppercase;
+            font-weight: normal;
+            border-color: transparent;
+            font-size: $baseline * .7;
+            line-height: 21px;
+            color: $gray-dark;
+            padding: 5px 7px;
+
+            &:hover {
+                border-color: transparent;
+                color: $primary;
+            }
+
+            &.is-selected {
+                box-shadow: none;
+                border-color: transparent;
+
+                .ui-toggle-dd {
+                    @include transform(rotate(0deg));
+                }
+            }
+
+            .fa-caret-down {
+                opacity: 1;
+                @include padding(1px, 0, 0, 6px);
+            }
+        }
+
+        &.ui-right {
+
+            .wrapper-nav-sub {
+                @include right(8px);
+                top: 100%;
+                margin-top: 2px;
+                min-width: 200px;
+            }
+        }
+
+        .nav-sub {
+            border: 0;
+            padding: 0;
+            box-shadow: $dropdown-shadow;
+
+            .nav-item {
+                margin: 0;
+                padding: 0;
+
+                a {
+                    padding: 10px 15px;
+
+                    &:hover,
+                    &:active {
+                        color: $gray-dark2;
+                        background: $gray-lightest;
+                    }
+                }
+            }
+
+            &:after,
+            &:before {
+                display: none;
+            }
+        }
+    }
+
+    header {
+
+        &.primary {
+            max-width: none;
+        }
+    }
+}

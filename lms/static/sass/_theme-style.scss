@@ -1,0 +1,42 @@
+// ------------------------------
+// THEME SASS FILES
+// ------------------------------
+
+// Bootstrap Styles
+@import './bootstrap/scss/mixins';
+@import './bootstrap/scss/progress';
+
+// base - utilities
+@import 'base/mixins';
+@import 'base/mixins-breakpoints';
+@import 'base/reset';
+
+// Components
+@import 'shared-v2/header';
+@import 'shared-v2/footer';
+@import 'shared-v2/page-hero-banners';
+@import 'shared-v2/modal';
+@import 'views/login-register';
+@import 'views/account-settings';
+@import 'shared-v2/form-elements';
+
+// Elements
+@import 'elements/banners';
+@import 'elements/custom-tabs';
+
+// Course
+@import 'course/dashboard';
+@import 'course/course-about';
+@import 'course/courseware_header';
+@import 'course/layout/courseware_preview';
+@import 'course/layout/course-instructor-tab';
+@import 'course/wiki/wiki';
+
+// Discussion
+@import 'discussion/layouts';
+
+// Features
+@import 'features/learner-profile';
+
+// Views
+@import 'views/error';

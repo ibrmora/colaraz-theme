@@ -1,0 +1,39 @@
+// lms - Form elements
+// ====================================
+
+// * +Input fields
+// * +Select dropdowns
+input,
+textarea,
+select {
+    background: $white;
+    max-width: 100%;
+
+    &:focus {
+        border-color: $primary;
+        outline: none;
+    }
+}
+
+button {
+    overflow: hidden !important;
+
+    &.search-button {
+        min-width: 70px;
+    }
+}
+
+.action-primary {
+    text-shadow: none;
+
+    &:focus {
+        box-shadow: none !important;
+    }
+}
+
+.btn-link {
+
+     &:hover {
+        border-color: transparent;
+    }
+}
