@@ -1,15 +1,1 @@
-### Static assets pipeline artifacts
-*.scssc
-lms/static/css/
-lms/static/certificates/css/
-cms/static/css/
 node_modules
-
-### Styling generated from templates
-*/lms/static/sass/*.css
-*/lms/static/sass/*.css.map
-*/lms/static/certificates/sass/*.css
-*/lms/static/css/*
-*/cms/static/css/*
-*/cms/static/sass/*.css
-*/cms/static/sass/*.css.map
