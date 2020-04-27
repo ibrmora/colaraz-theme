@@ -37,3 +37,20 @@ button {
         border-color: transparent;
     }
 }
+
+.select-box {
+    overflow: hidden;
+    border: 1px solid #E1E1E1;
+    border-radius: $baseline;
+    @include margin-right(10px);
+
+    .cz-custom-select {
+        background: #F8F8F8;
+        border: 0;
+        border-radius: $baseline;
+        font-size: 12px;
+        height: 27px;
+        display: block;
+        width: 100%;
+    }
+}

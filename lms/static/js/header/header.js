@@ -108,10 +108,8 @@ function makeAnimatedHeader() {
      */
     'use strict';
     let documentWindow = $(window);
-    let scroll = documentWindow.scrollTop();
     let headerHeight = $('.main-header').outerHeight();
     let headerNavigationHeight = $('.header-navigations').outerHeight();
-    
 
     documentWindow.scroll(function() {
         let scrolled = documentWindow.scrollTop();
@@ -123,7 +121,6 @@ function makeAnimatedHeader() {
             $('.global-header').removeClass('fixed');
             $('.global-header').css('padding-bottom', '');
         }
-        scroll = documentWindow.scrollTop();
     });
 }
 
