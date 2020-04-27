@@ -1,0 +1,425 @@
+// discussion - responses
+// ====================
+
+.discussion {
+
+    .post-btn-count-wrapper {
+        @include clearfix;
+        font-size: 12px;
+        color: #676767;
+        border-top: 1px solid #D3D3D3;
+        padding-top: 10px;
+        margin-top: 15px;
+
+        .post {
+
+            &-info-list {
+                @include list;
+                @include float(left);
+
+                li {
+                    display: inline-block;
+                    vertical-align: top;
+                    position: relative;
+                    margin: 0;
+                    padding-left: 15px;
+
+                    &:first-child {
+                        padding-left: 0;
+
+                        &:before {
+                            display: none;
+                        }
+                    }
+
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        background: $gray-mid-border;
+                        top: 0;
+                        left: 7px;
+                        bottom: 0;
+                        width: 1px;
+                    }
+                }
+            }
+
+            &-actions-list {
+                @include float(right);
+
+                li {
+                    display: inline-block;
+                    vertical-align: top;
+                    @include margin(0, 0, 0, 5px);
+
+                    .action-button {
+                        border: 0;
+                        padding: 0;
+
+                        .action-label {
+                            display: block;
+                            float: right;
+                            @include padding-left(5px);
+                        }
+
+                        .action-icon {
+                            background: $gray-mid-border;
+                            border-radius: $baseline;
+                            font-size: 13px;
+                            color: $text-color;
+                            @include box(20px);
+                        }
+
+                        &:hover,
+                        &.is-checked {
+
+                            .action-icon {
+                                border-color: $gray-mid-border;
+                                background: $white;
+                                color: #FFB600;
+                            }
+                        }
+                    }
+                }
+
+                .is-public {
+                    background: $gray-mid-border;
+                    border-radius: $border-radius;
+                    padding: 2px 6px 0;
+                }
+            }
+        }
+    }
+
+    .response-btn-count-wrapper {
+        @include clearfix;
+        font-size: 12px;
+        color: #676767;
+
+        .response {
+
+            &-info-list {
+                @include list;
+                @include float(left);
+
+                li {
+                    display: inline-block;
+                    vertical-align: top;
+                    position: relative;
+                    margin: 0;
+                    padding-left: 15px;
+
+                    &:first-child {
+                        padding-left: 0;
+
+                        &:before {
+                            display: none;
+                        }
+                    }
+
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        background: $gray-mid-border;
+                        top: 0;
+                        left: 7px;
+                        bottom: 0;
+                        width: 1px;
+                    }
+                }
+            }
+
+            &-actions-list {
+                @include float(right);
+
+                li {
+                    display: inline-block;
+                    vertical-align: top;
+                    @include margin(0, 0, 0, 5px);
+
+                    .action-button {
+                        border: 0;
+                        padding: 0;
+
+                        .action-label {
+                            display: block;
+                            float: right;
+                            @include padding-left(5px);
+                        }
+
+                        .action-icon {
+                            background: $gray-mid-border;
+                            border-radius: $baseline;
+                            font-size: 13px;
+                            color: $text-color;
+                            @include box(20px);
+                        }
+
+                        &:hover,
+                        &.is-checked {
+
+                            .action-icon {
+                                border-color: $gray-mid-border;
+                                background: $white;
+                                color: #FFB600;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .post-header-actions,
+    .comment-actions-list,
+    .response-header-actions {
+
+        .action-follow,
+        .action-vote {
+            display: none !important;
+        }
+
+        .action-button {
+
+            &.action-more {
+                padding: 0;
+                border: 0;
+
+                .action-label {
+                    display: none;
+                }
+
+                .action-icon {
+                    padding: 0;
+                    border: 0;
+                    font-size: 16px;
+                    color: $text-color;
+                }
+
+                &:hover {
+
+                    .action-icon {
+                        background: transparent;
+                        color: $primary;
+                        border: 0;
+                    }
+                }
+
+                &:focus {
+                    background: transparent;
+                }
+            }
+        }
+    }
+
+    .discussion-post {
+        margin-bottom: 10px;
+    }
+
+    #main {
+
+        &.discussion-column {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    .forum-nav {
+        display: none;
+    }
+
+    .responses {
+
+        li {
+
+            .discussion-response {
+                background-color: #F5F5F5;
+            }
+        }
+    }
+
+    .action-button {
+        // specific button styles
+        &.action-follow {
+
+            &.is-checked,
+            &:hover,
+            &:focus {
+
+                .action-icon {
+                    color: $orange-color;
+                }
+            }
+
+            &:hover,
+            &:focus {
+                border-color: $gray-lighter;
+            }
+        }
+    }
+
+    .add-response {
+        @include padding-left(0 !important);
+    }
+
+    .search-box {
+        float: right;
+        position: relative;
+        @include margin-left(10px);
+
+        .search-opener {
+            background: none;
+            border: 0;
+            padding: 2px 8px 0;
+        }
+
+        &.active {
+            background: $gray-lightest;
+            border-radius: $border-radius $border-radius 0 0;
+            z-index: 1;
+
+            .forum-search {
+                display: block;
+            }
+        }
+
+        .forum-search {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            padding: 10px;
+            border-radius: $border-radius 0 $border-radius $border-radius;
+            background: $gray-lightest;
+            display: none;
+        }
+    }
+
+
+    .forum-search {
+
+        .field-label {
+            display: none;
+        }
+
+        .search-input {
+            border-radius: $baseline;
+            color: $text-color;
+            @include box(21px, 200px);
+            @include padding(3px, 35px, 3px, 9px);
+            @include placeholder($text-color);
+        }
+
+        .search-button {
+            font-size: 0;
+            min-width: 0;
+            padding: 0;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: 0;
+            @include box(29px);
+
+            &:before {
+                content: "\f002";
+                font-size: 15px;
+                font: normal normal normal 14px/1 FontAwesome;
+            }
+        }
+    }
+}
+
+.btn {
+
+    .discussion & {
+
+        background: $gray-lightest;
+        border-color: $gray-lightest;
+        border-radius: $baseline;
+        color: $text-color;
+
+        &:hover {
+            background: $primary;
+            border-color: $primary;
+            color: $white;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 2px rgba($primary, 10%);
+        }
+    }
+
+    .forum-search &,
+    .add-response &,
+    .forum-actions & {
+        color: $text-color;
+        background: $primary;
+        padding: 7px 10px 4px;
+        font-size: 13px;
+
+        &:hover {
+            background: $secondary;
+            border-color: $secondary;
+        }
+
+        &:focus {
+            border-color: $primary;
+            box-shadow: 0 0 0 2px rgba($primary, 10%);
+        }
+    }
+
+    &-outline-primary,
+    .page-header-search & {
+        color: $primary;
+        border-color: $primary;
+        background: $white;
+
+        &:hover {
+            background: $primary-dark;
+            border-color: $primary-dark;
+            color: $white;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 2px $primary !important;
+        }
+    }
+
+    .reply-post-control & {
+        color: $text-color;
+        background: $gray-mid-border;
+        padding: 7px 10px 4px;
+        font-size: 13px;
+
+        &:hover {
+            background: $gray-lighter;
+            border-color: $gray-lighter;
+        }
+
+        &:focus {
+            border-color: $gray-lighter;
+            box-shadow: 0 0 0 2px rgba($gray, 10%);
+        }
+
+        &:disabled {
+            color: $text-color;
+        }
+    }
+}
+
+.response-count {
+
+    &:before {
+        content: "\f075";
+        font: normal normal normal 14px/1 FontAwesome;
+        text-align: center;
+        line-height: 20px;
+        background: $gray-mid-border;
+        border-radius: $baseline;
+        font-size: 12px;
+        display: inline-block;
+        vertical-align: middle;
+        @include box(20px);
+        @include margin-right(5px);
+    }
+}
