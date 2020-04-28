@@ -24,9 +24,16 @@
     from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
     from openedx.core.djangolib.js_utils import dump_js_escaped_json, js_escaped_string
     from openedx.core.release import RELEASE_LINE
+    from openedx.features.colaraz_features.models import ColarazUserProfile
     from pipeline_mako import render_require_js_path_overrides
-
 %>
+
+<%
+    colaraz_profile = ColarazUserProfile.objects.get(user=user)
+    level_percentage = colaraz_profile.level_percentage
+    level_text = colaraz_profile.level_text
+%>
+
 <!DOCTYPE html>
 <!--[if lte IE 9]><html class="ie ie9 lte9" lang="${LANGUAGE_CODE}"><![endif]-->
 <!--[if !IE]><!-->
@@ -339,25 +346,31 @@
           <div class="side-widget side-profile">
             <div class="side-profile-row">
               <div class="avatar">
-                <img src="http://polymath.colaraz.net/cvsocial/_graphics/icons/user/defaultsmall.gif" alt="asif rana" title="asif rana">
+                <img src="http://polymath.colaraz.net/cvsocial/_graphics/icons/user/defaultsmall.gif" alt="${user.profile.name}" title="${user.profile.name}">
               </div>
-              <span class="user-name">asif rana</span>
-              <span class="designation">Student</span>
+              <span class="user-name">${user.profile.name}</span>
+              % if user.is_staff:
+                <span class="designation">Staff</span>
+              % else:
+                <span class="designation">Student</span>
+              % endif
             </div>
             <div id="progress" class="profile-progress-bar">
               <div class="progress progress-striped">
-                <div class="progress-bar progress-bar-striped" style="width:20%;background-color:#eb7d3c;" id="progressbar">
-                  <span class="sr-only">Beginner</span>
+                <div class="progress-bar progress-bar-striped" style="width:${level_percentage}%;background-color:#eb7d3c;" id="progressbar">
+                  <span class="sr-only">${level_text}</span>
                 </div>
               </div>
-              <span class="progress-result">Beginner</span>
+              <span class="progress-result">${level_text}</span>
             </div>
           </div>
           <div class="side-widget side-nav">
             <ul>
-              <li class="active"><a href="#">Courses</a></li>
-              <li><a href="#">Discover New</a></li>
-              <li><a href="#">Studio</a></li>
+              <li ${'class="active"' if request.path == reverse('dashboard') else ''}><a href="${reverse('dashboard')}">Courses</a></li>
+              <li  ${'class="active"' if request.path == marketing_link('COURSES') else ''}><a href="${marketing_link('COURSES')}">Discover New</a></li>
+              % if user.is_staff:
+                <li><a href="${configuration_helpers.get_value('CMS_BASE')}">Studio</a></li>
+              % endif
             </ul>
           </div>
 
