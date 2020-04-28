@@ -12,6 +12,13 @@
     box-shadow: none;
     @include media-down(md) { height: auto; }
 
+    .container {
+        padding-top: 0;
+        padding-bottom: 0;
+        max-width: $container-default; // Override mehtod couldn't find to update through bootstrap for discussion
+        @include clearfix;
+    }
+
     .main-header {
         background: $secondary;
         color: white;
@@ -558,11 +565,6 @@
 .header-navigations {
     background: $body-bg;
 
-    .container {
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-
     .navmenu-toggle {
         position: relative;
         float: right;
@@ -621,7 +623,8 @@
     }
 
     ul {
-        @extend %clearfix;
+        @include clearfix;
+        @include list;
         overflow: hidden;
         display: none;
         @include media-up(md) {
@@ -717,7 +720,8 @@
     font-size: 14px;
 
     ul {
-        @extend %clearfix;
+        @include clearfix;
+        @include list;
         overflow: hidden;
         display: none;
         @include media-up(md) {
@@ -758,7 +762,7 @@
             &.active {
 
                 a {
-                    @include gradient(right, #c9d35f 0%, #7da144 100%);
+                    @include gradient(right, #C9D35F 0%, #7DA144 100%);
                     border-radius: $baseline;
                     &:not(.btn),
                     &:visited:not(.btn) {

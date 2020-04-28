@@ -4,7 +4,6 @@
 
 // Bootstrap Styles
 @import './bootstrap/scss/mixins';
-@import './bootstrap/scss/progress';
 
 // base - utilities
 @import 'base/mixins';
@@ -34,6 +33,8 @@
 
 // Discussion
 @import 'discussion/layouts';
+@import 'discussion/views/response';
+@import 'discussion/views/thread';
 
 // Features
 @import 'features/learner-profile';

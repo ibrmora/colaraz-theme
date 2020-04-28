@@ -295,11 +295,6 @@
             height: 14px;
         }
     </style>
-
-    <!-- Font Candara -->
-    <!-- https://www.onlinewebfonts.com/download/e662339992c4abf5b43f537391bd3169 -->
-    <link href="//db.onlinewebfonts.com/c/9251858194f4539f65c2c3bab3d8e9e7?family=Candara" rel="stylesheet" type="text/css"/>
-
 </head>
 
 <body class="${static.dir_rtl()} <%block name='bodyclass'/> lang_${LANGUAGE_CODE}" data-nav-menu-url="${marketing_link('NAV_MENU')}" data-zendesk-widget-url="${marketing_link('ZENDESK-WIDGET')}">
@@ -328,11 +323,75 @@
     <%include file="/page_banner.html" />
 
     <div class="marketing-hero"><%block name="marketing_hero"></%block></div>
+    % if user.is_authenticated:
+        <div class="main-wrapper container">
+    % else:
+        <div class="container">
+    % endif
+        % if user.is_authenticated:
+        <div class="side-container">
+          %if display_sidebar_account_activation_message:
+            <div class="sidebar-notification">
+              <%include file="${static.get_template_path('registration/account_activation_sidebar_notice.html')}" />
+            </div>
+          %endif
 
-    <div class="content-wrapper main-container" id="content">
-        ${self.body()}
-      <%block name="bodyextra"/>
-    </div>
+          <div class="side-widget side-profile">
+            <div class="side-profile-row">
+              <div class="avatar">
+                <img src="http://polymath.colaraz.net/cvsocial/_graphics/icons/user/defaultsmall.gif" alt="asif rana" title="asif rana">
+              </div>
+              <span class="user-name">asif rana</span>
+              <span class="designation">Student</span>
+            </div>
+            <div id="progress" class="profile-progress-bar">
+              <div class="progress progress-striped">
+                <div class="progress-bar progress-bar-striped" style="width:20%;background-color:#eb7d3c;" id="progressbar">
+                  <span class="sr-only">Beginner</span>
+                </div>
+              </div>
+              <span class="progress-result">Beginner</span>
+            </div>
+          </div>
+          <div class="side-widget side-nav">
+            <ul>
+              <li class="active"><a href="#">Courses</a></li>
+              <li><a href="#">Discover New</a></li>
+              <li><a href="#">Studio</a></li>
+            </ul>
+          </div>
+
+          % if display_sidebar_on_dashboard:
+            <div class="profile-sidebar" id="profile-sidebar" role="region" aria-label="Account Status Info">
+              <header class="profile">
+                <h2 class="account-status-title sr">${_("Account Status Info")}: </h2>
+              </header>
+              <div class="user-info">
+                <ul>
+
+                  % if len(order_history_list):
+                  <li class="order-history">
+                    <span class="title">${_("Order History")}</span>
+                    % for order_history_item in order_history_list:
+                      <span><a href="${order_history_item['receipt_url']}" target="_blank" class="edit-name">${order_history_item['order_date']}</a></span>
+                    % endfor
+                  </li>
+                  % endif
+
+                  <%include file="${static.get_template_path('dashboard/_dashboard_status_verification.html')}" />
+
+                </ul>
+              </div>
+            </div>
+          % endif
+        </div>
+        % endif
+
+        <div class="content-wrapper main-container" id="content">
+            ${self.body()}
+          <%block name="bodyextra"/>
+        </div>
+      </div>
 
     % if not disable_footer:
         <%include file="${static.get_template_path('footer.html')}" />

@@ -38,3 +38,11 @@ if ($('.custom-tabs-container').length) {
         $(this).addClass('active');
     });
 }
+
+/**
+* Show hide colaraz course discussion search
+*/
+
+$('.search-opener').on('click', function () {
+    $(this).parent('.search-box').toggleClass('active');
+});

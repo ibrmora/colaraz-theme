@@ -4,6 +4,20 @@
     box-shadow: none;
 }
 
+.content-wrapper {
+
+    .course-tabs {
+        margin-top: 0;
+        background: $gray-mid-border;
+    }
+
+    .page-content,
+    .page-header {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
 .wrapper-preview-menu {
 
     .preview-menu {
@@ -51,8 +65,8 @@
 
             .nav-link,
             a {
-                border-bottom: 3px solid transparent;
-                color: $gray-mid;
+                border-bottom: 0;
+                color: $gray;
                 font-size: 14px;
                 line-height: normal;
                 @include media-up(md) {
@@ -60,13 +74,12 @@
                 }
 
                 &:hover {
-                    border-color: transparent;
-                    color: $primary;
+                    color: $text-color;
                 }
 
                 &.active {
-                    border-color: $primary;
-                    color: $primary;
+                    font-weight: 700;
+                    color: $text-color;
                     pointer-events: none;
                 }
             }
@@ -74,8 +87,7 @@
             &.active {
 
                 .nav-link {
-                    border-color: $primary;
-                    color: $primary;
+                    color: $text-color;
                     pointer-events: none;
                 }
             }
@@ -91,6 +103,8 @@
         background: $gray-lightest;
         border: none;
         margin-bottom: $baseline*0.5;
+        padding-left: 15px;
+        padding-right: 15px;
 
         .page-title {
             margin: 0;
@@ -108,12 +122,14 @@
         #expand-collapse-outline-all-button {
             background-color: $white;
             border-color: $primary;
-            border-radius: $border-radius;
+            border-radius: $baseline;
             color: $primary;
-            font-size: 14px;
+            font-size: 13px;
             position: relative;
             z-index: 10;
+            height: 29px;
             @include float(right);
+            padding: 5px 10px 3px;
 
             &:hover {
                 background: $primary;
@@ -188,28 +204,14 @@
     .btn-primary {
         background: $primary !important;
         border-color: $primary !important;
+        border-radius: $baseline;
         color: $white !important;
+        height: 29px;
+        padding: 5px 10px 3px;
 
         &:hover {
             background: $uxpl-blue-hover-active !important;
             border-color: $uxpl-blue-hover-active !important;
-        }
-    }
-}
-
-.btn {
-
-    &-outline-primary,
-    .discussion &,
-    .page-header-search & {
-        color: $primary;
-        border-color: $primary;
-        background: $white;
-
-        &:hover {
-            background: $primary-dark;
-            border-color: $primary-dark;
-            color: $white;
         }
     }
 }

@@ -8,6 +8,11 @@
 
 .container {
 
+    &.main-wrapper {
+        padding-top: 28px;
+        max-width: $container-default; // Override mehtod couldn't find to update through bootstrap for discussion
+    }
+
     &.about {
         line-height: 1.5;
         font-size: 15px;
@@ -26,10 +31,11 @@
 }
 
 .side-widget {
-    padding: $baseline;
-    margin-bottom: $baseline / 2;
+    @import './bootstrap/scss/progress';
+    padding: $baseline*.75 $baseline;
+    margin-bottom: $baseline*0.5;
     background: $gray-darker;
-    border-radius: $baseline / 2;
+    border-radius: $baseline*0.25;
 
     &.side-nav {
         padding: 0;
@@ -37,6 +43,7 @@
 }
 
 .side-profile {
+    font-size: 12px;
 
     .side-profile-row {
         @include clearfix;
@@ -47,20 +54,18 @@
     }
 
     .user-name {
-        font-size: 16px;
         color: white;
         padding: $baseline*.15 0;
     }
 
     .progress-result,
     .designation {
-        font-size: 12px;
         color: $secondary;
     }
 
     .avatar {
-        border-radius: $border-radius*2;
-        border: 1px solid #ebebeb;
+        border-radius: $baseline;
+        border: 1px solid #EBEBEB;
         overflow: hidden;
         @include float(left);
         @include margin(0, 15px, 10px, 0);
@@ -89,7 +94,7 @@
 
             a {
                 display: block;
-                padding: $baseline;
+                padding: $baseline*.75 $baseline;
 
                 &:not(.btn),
                 &:visited:not(.btn) {
@@ -148,10 +153,9 @@
     }
 }
 
-.dashboard {
-    display: block;
+.main-wrapper {
 
-    .side-container { //This sections has been moved to top of the main container, didn't change its class name because of update purpose.
+    .side-container {
         margin: 0;
         min-width: 0;
         max-width: none;
@@ -159,339 +163,347 @@
         float: none;
         @include media-up(sm) {
             @include float(left);
-            float: left;
-            width: 25%;
+            width: 17.545%;
         }
+    }
 
-        .profile-sidebar {
-            margin-bottom: $baseline*1.5;
+    .content-wrapper {
+        padding: 0 25px;
+        border-radius: $border-radius * 3;
+        background: $main-content-bg;
+        margin: 0 auto $baseline*2;
+        float: none;
+        overflow: hidden;
+        @include media-up(sm) {
+            @include float(right);
+            width: 81.5%;
+        }
+    }
+}
 
-            ul {
-                border: none;
-                margin: 0;
-                padding: 0;
+.dashboard {
+    display: block;
 
-                .status-verification {
-                    background: $gray-lightest;
-                    border-top: 2px solid $warning-color;
-                    padding: $baseline;
+    .main-container {
+        padding: 0;
+    }
+
+    .profile-sidebar {
+        margin-bottom: $baseline*1.5;
+
+        ul {
+            border: none;
+            margin: 0;
+            padding: 0;
+
+            .status-verification {
+                background: $gray-lightest;
+                border-top: 2px solid $warning-color;
+                padding: $baseline;
+                @include media-up(md) {
+                    display: flex;
+                    align-items: center;
+                    padding: $baseline $baseline*1.5;
+                }
+
+                .status-title {
+                    font-family: $heading-font;
+                    font-weight: bold !important;
                     @include media-up(md) {
-                        display: flex;
-                        align-items: center;
-                        padding: $baseline $baseline*1.5;
+                        width: 350px;
                     }
 
-                    .status-title {
-                        font-family: $heading-font;
-                        font-weight: bold !important;
-                        @include media-up(md) {
-                            width: 350px;
-                        }
+                    .fa {
+                        color: $warning-color;
+                        font-size: 20px;
+                        @include margin-right($baseline*0.25);
+                    }
+                }
 
-                        .fa {
-                            color: $warning-color;
-                            font-size: 20px;
-                            @include margin-right($baseline*0.25);
-                        }
+                .status-note {
+                    flex-grow: 1;
+                    line-height: 1.6;
+                    margin: 0;
+                    padding: 0;
+                    @include media-up(md) {
+                        font-size: 14px;
                     }
 
-                    .status-note {
-                        flex-grow: 1;
-                        line-height: 1.6;
-                        margin: 0;
-                        padding: 0;
-                        @include media-up(md) {
-                            font-size: 14px;
-                        }
-
-                        strong {
-                            font-weight: 600;
-                        }
+                    strong {
+                        font-weight: 600;
                     }
                 }
             }
         }
     }
 
-    .main-container {
-        padding: 0 25px;
-        border-radius: $border-radius * 3;
-        background: $main-content-bg;
-        margin: 0 auto $baseline*2;
-        float: none;
-        @include media-up(sm) {
-            @include float(right);
-            width: calc(75% - 30px);
-        }
+    .my-courses {
 
-        .my-courses {
+        .empty-dashboard-message {
+            background: $gray-lightest;
+            border: none;
 
-            .empty-dashboard-message {
-                background: $gray-lightest;
-                border: none;
-
-                p {
-                    font-size: 20px;
-                }
-
-                .btn {
-                    background: $primary;
-                    box-shadow: none;
-
-                    &:hover {
-                        background: darken($primary, 5%);
-                    }
-                }
+            p {
+                font-size: 20px;
             }
 
-            .listing-courses {
+            .btn {
+                background: $primary;
+                box-shadow: none;
 
-                .course-item {
-                    margin-bottom: $baseline*0.75;
-                    padding-bottom: $baseline*0.75;
+                &:hover {
+                    background: darken($primary, 5%);
+                }
+            }
+        }
 
-                    .course-container {
-                        border-color: $gray-mid-border;
-                        border-radius: $baseline/2;
-                        overflow: hidden;
+        .listing-courses {
 
-                        .course {
+            .course-item {
+                margin-bottom: $baseline*0.75;
+                padding-bottom: $baseline*0.75;
 
-                            .details {
-                                @include padding-left($baseline*0.75);
-                                @include padding-right($baseline*0.75);
-                                position: relative;
+                .course-container {
+                    border-color: $gray-mid-border;
+                    border-radius: $baseline/2;
+                    overflow: hidden;
+
+                    .course {
+
+                        .details {
+                            @include padding-left($baseline*0.75);
+                            @include padding-right($baseline*0.75);
+                            position: relative;
+                            @include media-up(sm) {
+                                @include padding-left(220px);
+                                @include padding-right(0);
+                            }
+                            @include media-up(md) {
+                                @include padding-left(240px);
+                            }
+
+                            .wrapper-course-image {
+                                background: $gray-lightest;
+                                display: block;
+                                float: none;
+                                margin: 0;
+                                height: 130px;
+                                max-height: none;
+                                width: calc(100% + #{$baseline*1.5} );
+                                @include margin-left(-$baseline*0.75);
+                                @include margin-right(-$baseline*0.75);
                                 @include media-up(sm) {
-                                    @include padding-left(220px);
-                                    @include padding-right(0);
+                                    height: 100%;
+                                    margin: 0 auto;
+                                    width: 200px;
+                                    position: absolute;
+                                    @include left(0);
+                                    top: 0;
                                 }
                                 @include media-up(md) {
-                                    @include padding-left(240px);
+                                    width: 220px;
                                 }
 
-                                .wrapper-course-image {
-                                    background: $gray-lightest;
-                                    display: block;
-                                    float: none;
-                                    margin: 0;
-                                    height: 130px;
-                                    max-height: none;
-                                    width: calc(100% + #{$baseline*1.5} );
-                                    @include margin-left(-$baseline*0.75);
-                                    @include margin-right(-$baseline*0.75);
-                                    @include media-up(sm) {
+                                a {
+                                    height: 100%;
+                                    width: 100%;
+                                    font-size: 12px;
+
+                                    img {
                                         height: 100%;
-                                        margin: 0 auto;
-                                        width: 200px;
-                                        position: absolute;
-                                        @include left(0);
-                                        top: 0;
+                                        object-fit: cover;
+                                        width: 100%;
+                                    }
+                                }
+                            }
+
+                            .wrapper-course-details {
+                                display: block;
+                                margin-bottom: $baseline*0.75;
+                                @include media-up(sm) {
+                                    display: flex;
+                                    @include media-up(md) {
+                                        margin-bottom: $baseline;
+                                    }
+                                }
+
+                                .course-title {
+                                    @include padding-right($baseline*0.75);
+                                    @include media-up(sm) {
+                                        margin-bottom: $baseline*1.5;
+                                        padding-top: $baseline*0.75;
                                     }
                                     @include media-up(md) {
-                                        width: 220px;
+                                        @include padding-right($baseline);
                                     }
 
                                     a {
-                                        height: 100%;
-                                        width: 100%;
-                                        font-size: 12px;
+                                        color: $gray-mid;
+                                        font-size: 16px;
+                                        @include media-up(sm) {
+                                            font-size: 18px;
+                                        }
+                                        @include media-up(md) {
+                                            font-size: 20px;
+                                        }
 
-                                        img {
-                                            height: 100%;
-                                            object-fit: cover;
-                                            width: 100%;
+                                        &:hover {
+                                            color: $primary;
                                         }
                                     }
                                 }
 
-                                .wrapper-course-details {
-                                    display: block;
-                                    margin-bottom: $baseline*0.75;
-                                    @include media-up(sm) {
-                                        display: flex;
+                                .course-info {
+                                    align-self: center;
+
+                                    .info-university,
+                                    .info-course-id,
+                                    .info-date-block-container .info-date-block {
+                                        color: $gray-mid;
+                                        font-size: 13px;
+                                    }
+
+                                    .info-university,
+                                    .info-course-id,
+                                    .info-date-block-container {
+                                        display: block;
+                                        position: relative;
+                                        margin-bottom: $baseline*0.25;
+                                        @include media-up(xs) {
+                                            display: inline-block;
+                                            @include padding-left($baseline*0.7);
+                                            @include margin-left($baseline*0.5);
+                                            margin-bottom: 0;
+                                        }
                                         @include media-up(md) {
-                                            margin-bottom: $baseline;
+                                            @include padding-left($baseline*0.9);
+                                            @include margin-left($baseline*0.75);
+                                        }
+
+                                        .fa {
+                                            color: $gray-light;
+                                            @include margin-right($baseline*0.25);
+
+                                            &.fa-book {
+                                                font-size: 115%;
+                                            }
                                         }
                                     }
 
-                                    .course-title {
-                                        @include padding-right($baseline*0.75);
-                                        @include media-up(sm) {
-                                            margin-bottom: $baseline*1.5;
-                                            padding-top: $baseline*0.75;
-                                        }
-                                        @include media-up(md) {
-                                            @include padding-right($baseline);
-                                        }
+                                    .info-course-id,
+                                    .info-date-block-container .info-date-block {
 
-                                        a {
-                                            color: $gray-mid;
-                                            font-size: 16px;
-                                            @include media-up(sm) {
-                                                font-size: 18px;
+                                        &:after {
+                                            @include media-up(xs) {
+                                                content:'';
+                                                width: 1px;
+                                                height: 22px;
+                                                background: $gray-lighter;
+                                                position: absolute;
+                                                @include left(0);
+                                                top: 0;
+                                                bottom: 0;
+                                                margin: auto;
                                             }
-                                            @include media-up(md) {
-                                                font-size: 20px;
+                                        }
+                                    }
+
+                                    .info-university {
+                                        @include margin-left(0);
+                                        @include padding-left(0);
+                                    }
+
+                                    .info-date-block-container {
+
+                                        .info-date-block {
+
+                                            &:before {
+                                                content: "\f073";
+                                                color: $gray-light;
+                                                display: inline-block;
+                                                font-family: 'FontAwesome';
+                                                @include margin-right($baseline*0.5);
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .wrapper-course-actions {
+                                    margin-top: $baseline*0.75;
+                                    margin-bottom: 0;
+                                    @include media-up(sm) {
+                                        margin-top: 0;
+                                        @include margin-right($baseline*0.75);
+                                    }
+                                    @include media-up(md) {
+                                        margin-top: 0;
+                                        @include margin-right($baseline);
+                                    }
+
+                                    .course-actions {
+                                        @include clearfix();
+
+                                        .course-target-link,
+                                        .enter-course {
+                                            border-color: $gray-lighter;
+                                            border-radius: $border-radius*5;
+                                            color: $gray-darker;
+                                            background: $primary;
+                                            font-size: 14px;
+                                            padding: 5px 15px 2px;
+                                            line-height: $baseline;
+                                            @include float(left);
+                                            @include media-down(xs) {
+                                                @include margin-right($baseline*0.5);
+                                            }
+                                            @include media-up(sm) {
+                                                @include float(right);
                                             }
 
                                             &:hover {
-                                                color: $primary;
-                                            }
-                                        }
-                                    }
-
-                                    .course-info {
-                                        align-self: center;
-
-                                        .info-university,
-                                        .info-course-id,
-                                        .info-date-block-container .info-date-block {
-                                            color: $gray-mid;
-                                            font-size: 13px;
-                                        }
-
-                                        .info-university,
-                                        .info-course-id,
-                                        .info-date-block-container {
-                                            display: block;
-                                            position: relative;
-                                            margin-bottom: $baseline*0.25;
-                                            @include media-up(xs) {
-                                                display: inline-block;
-                                                @include padding-left($baseline*0.7);
-                                                @include margin-left($baseline*0.5);
-                                                margin-bottom: 0;
-                                            }
-                                            @include media-up(md) {
-                                                @include padding-left($baseline*0.9);
-                                                @include margin-left($baseline*0.75);
+                                                background: $secondary;
                                             }
 
-                                            .fa {
-                                                color: $gray-light;
-                                                @include margin-right($baseline*0.25);
-
-                                                &.fa-book {
-                                                    font-size: 115%;
-                                                }
+                                            &:focus {
+                                                background: $secondary;
+                                                outline: none;
                                             }
                                         }
 
-                                        .info-course-id,
-                                        .info-date-block-container .info-date-block {
-
-                                            &:after {
-                                                @include media-up(xs) {
-                                                    content:'';
-                                                    width: 1px;
-                                                    height: 22px;
-                                                    background: $gray-lighter;
-                                                    position: absolute;
-                                                    @include left(0);
-                                                    top: 0;
-                                                    bottom: 0;
-                                                    margin: auto;
-                                                }
+                                        .wrapper-action-more {
+                                            padding: 0;
+                                            @include float(left);
+                                            @include media-up(sm) {
+                                                @include float(right);
                                             }
-                                        }
 
-                                        .info-university {
-                                            @include margin-left(0);
-                                            @include padding-left(0);
-                                        }
-
-                                        .info-date-block-container {
-
-                                            .info-date-block {
-
-                                                &:before {
-                                                    content: "\f073";
-                                                    color: $gray-light;
-                                                    display: inline-block;
-                                                    font-family: 'FontAwesome';
-                                                    @include margin-right($baseline*0.5);
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    .wrapper-course-actions {
-                                        margin-top: $baseline*0.75;
-                                        margin-bottom: 0;
-                                        @include media-up(sm) {
-                                            margin-top: 0;
-                                            @include margin-right($baseline*0.75);
-                                        }
-                                        @include media-up(md) {
-                                            margin-top: 0;
-                                            @include margin-right($baseline);
-                                        }
-
-                                        .course-actions {
-                                            @include clearfix();
-
-                                            .course-target-link,
-                                            .enter-course {
-                                                border-color: $gray-lighter;
-                                                border-radius: $border-radius*5;
-                                                color: $gray-darker;
-                                                background: $primary;
-                                                font-size: 14px;
-                                                padding: 5px 15px 2px;
-                                                line-height: $baseline;
-                                                @include float(left);
-                                                @include media-down(xs) {
-                                                    @include margin-right($baseline*0.5);
-                                                }
+                                            .action {
+                                                padding: $baseline*0.35 $baseline*0.25 $baseline*0.15;
                                                 @include media-up(sm) {
-                                                    @include float(right);
+                                                    @include margin-right($baseline*0.25);
                                                 }
-
-                                                &:hover {
-                                                    background: $secondary;
+                                                @include media-up(md) {
+                                                    @include margin-right($baseline*0.5);
                                                 }
 
                                                 &:focus {
-                                                    background: $secondary;
                                                     outline: none;
                                                 }
                                             }
 
-                                            .wrapper-action-more {
-                                                padding: 0;
-                                                @include float(left);
-                                                @include media-up(sm) {
-                                                    @include float(right);
-                                                }
+                                            .actions-dropdown {
+                                                min-width: 0;
 
-                                                .action {
-                                                    padding: $baseline*0.35 $baseline*0.25 $baseline*0.15;
-                                                    @include media-up(sm) {
-                                                        @include margin-right($baseline*0.25);
-                                                    }
-                                                    @include media-up(md) {
-                                                        @include margin-right($baseline*0.5);
-                                                    }
+                                                .actions-item {
 
-                                                    &:focus {
-                                                        outline: none;
-                                                    }
-                                                }
+                                                    .action-unenroll {
+                                                        padding: $baseline*0.25;
+                                                        white-space: nowrap;
+                                                        margin: 0;
 
-                                                .actions-dropdown {
-                                                    min-width: 0;
-
-                                                    .actions-item {
-
-                                                        .action-unenroll {
-                                                            padding: $baseline*0.25;
-                                                            white-space: nowrap;
-                                                            margin: 0;
-
-                                                            &:hover {
-                                                                color: $primary;
-                                                                text-decoration: none;
-                                                            }
+                                                        &:hover {
+                                                            color: $primary;
+                                                            text-decoration: none;
                                                         }
                                                     }
                                                 }
@@ -500,41 +512,41 @@
                                     }
                                 }
                             }
+                        }
 
-                            footer.wrapper-messages-primary {
+                        footer.wrapper-messages-primary {
 
-                                .messages-list {
+                            .messages-list {
 
-                                    .message {
+                                .message {
 
-                                        .action-upgrade-container {
-                                            @include float(left);
-                                            @include media-up(md) {
-                                                @include float(right);
-                                            }
+                                    .action-upgrade-container {
+                                        @include float(left);
+                                        @include media-up(md) {
+                                            @include float(right);
+                                        }
 
-                                            .action {
+                                        .action {
 
-                                                &.action-upgrade {
-                                                    background: $success-color;
-                                                    border-radius: $border-radius;
-                                                    box-shadow: none;
+                                            &.action-upgrade {
+                                                background: $success-color;
+                                                border-radius: $border-radius;
+                                                box-shadow: none;
 
-                                                    &:hover {
-                                                        background: darken($success-color, 5%);
-                                                    }
+                                                &:hover {
+                                                    background: darken($success-color, 5%);
                                                 }
                                             }
                                         }
                                     }
                                 }
                             }
+                        }
 
-                            &:hover {
-                                box-shadow: 0 0 10px rgba(207, 216, 220, .8);
-                                -webkit-box-shadow: 0 0 10px rgba(207, 216, 220, .8);
-                                -moz-box-shadow: 0 0 10px rgba(207, 216, 220, .8);
-                            }
+                        &:hover {
+                            box-shadow: 0 0 10px rgba(207, 216, 220, .8);
+                            -webkit-box-shadow: 0 0 10px rgba(207, 216, 220, .8);
+                            -moz-box-shadow: 0 0 10px rgba(207, 216, 220, .8);
                         }
                     }
                 }
