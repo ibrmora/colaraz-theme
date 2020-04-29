@@ -369,7 +369,7 @@
               <li ${'class="active"' if request.path == reverse('dashboard') else ''}><a href="${reverse('dashboard')}">Courses</a></li>
               <li  ${'class="active"' if request.path == marketing_link('COURSES') else ''}><a href="${marketing_link('COURSES')}">Discover New</a></li>
               % if user.is_staff:
-                <li><a href="${configuration_helpers.get_value('CMS_BASE')}">Studio</a></li>
+                <li><a href="//${configuration_helpers.get_value('CMS_BASE')}">Studio</a></li>
               % endif
             </ul>
           </div>
