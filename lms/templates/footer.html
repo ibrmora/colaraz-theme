@@ -15,8 +15,18 @@ from openedx.core.djangoapps.lang_pref.api import footer_language_selector_is_en
 
   <footer>
 
-    <div class="copyright-area grid-container">
-      <p class="copyright">&copy; ${datetime.now(pytz.timezone(settings.TIME_ZONE)).year} ${_("Colaraz. All Rights Reserved")}</p>
+    <div class="grid-container">
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="#">Settings</a></li>
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+      </nav>
+      <div class="copyright-area">
+        <a href="#">www.colaraz.com</a>
+        <p class="copyright">&copy; ${datetime.now(pytz.timezone(settings.TIME_ZONE)).year} ${_("Colaraz. All Rights Reserved")}</p>
+      </div>
 
       ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
       <!-- <p class="copyright">
