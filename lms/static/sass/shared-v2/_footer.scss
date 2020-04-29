@@ -2,8 +2,6 @@
 // Open edX: LMS footer
 // ====================
 .wrapper-footer {
-
-    // footer variables
     $padding-footer: 15px;
     border-color: $primary;
     padding: 0 $padding-footer !important;
@@ -17,31 +15,88 @@
     footer {
         width: auto !important;
 
-        .copyright-area {
+        .grid-container {
             display: block;
-            font-size: 14px;
             padding: 20px 0 24px;
-            color: $color__gray-light;
-            @include text-align(center);
+            font-size: 14px;
+            @include clearfix;
             @include media-up(sm) {
                 padding: 40px 0;
+            }
+        }
+
+        .footer-nav {
+            text-align: center;
+            padding-bottom: 15px;
+            @include media-up(sm) {
+                @include float(left);
+                @include text-align(left);
+                width: 50%;
+                padding-top: 7px;
+                padding-bottom: 0;
+            }
+
+            ul {
+                @include list;
+
+                li {
+                    display: inline-block;
+                    vertical-align: top;
+                    position: relative;
+                    padding-left: 20px;
+
+                    &:before {
+                        content: '.';
+                        position: absolute;
+                        top: 0;
+                        left: 10px;
+                        color: $primary;
+                    }
+
+                    &:first-child {
+
+                        &:before {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        .copyright-area {
+            color: $graphite;
+            text-align: center;
+            @include media-up(sm) {
+                width: 50%;
+                @include float(right);
+                @include text-align(right);
+            }
+
+            a {
+                font-size: 13px;
+                color: $white !important;
+
+                &:hover,
+                &:focus {
+                    color: $primary !important;
+                }
             }
 
             p {
                 margin: 0;
-                color: $color__gray-light;
+                color: $graphite;
             }
         }
 
         a {
-            color: $color__gray-light;
+            color: $graphite;
 
-            &:visited { color: $color__gray-light; }
+            &:visited { color: $graphite; }
 
             &:focus,
             &:hover {
                 text-decoration: none !important;
-                color: $white !important;
+                color: $primary !important;
             }
         }
     }

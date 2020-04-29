@@ -19,9 +19,9 @@
 
                 li {
                     display: inline-block;
+                    margin: 0;
                     vertical-align: top;
                     position: relative;
-                    margin: 0;
                     padding-left: 15px;
 
                     &:first-child {
@@ -33,7 +33,7 @@
                     }
 
                     &:before {
-                        content: "";
+                        content: '';
                         position: absolute;
                         background: $gray-mid-border;
                         top: 0;
@@ -104,9 +104,9 @@
 
                 li {
                     display: inline-block;
+                    margin: 0;
                     vertical-align: top;
                     position: relative;
-                    margin: 0;
                     padding-left: 15px;
 
                     &:first-child {
@@ -118,7 +118,7 @@
                     }
 
                     &:before {
-                        content: "";
+                        content: '';
                         position: absolute;
                         background: $gray-mid-border;
                         top: 0;
@@ -284,13 +284,13 @@
         }
 
         .forum-search {
+            display: none;
             position: absolute;
             right: 0;
             top: 100%;
             padding: 10px;
             border-radius: $border-radius 0 $border-radius $border-radius;
             background: $gray-lightest;
-            display: none;
         }
     }
 
@@ -321,7 +321,7 @@
             @include box(29px);
 
             &:before {
-                content: "\f002";
+                content: '\f002';
                 font-size: 15px;
                 font: normal normal normal 14px/1 FontAwesome;
             }
@@ -410,15 +410,15 @@
 .response-count {
 
     &:before {
-        content: "\f075";
+        display: inline-block;
+        vertical-align: middle;
+        content: '\f075';
         font: normal normal normal 14px/1 FontAwesome;
         text-align: center;
         line-height: 20px;
         background: $gray-mid-border;
         border-radius: $baseline;
         font-size: 12px;
-        display: inline-block;
-        vertical-align: middle;
         @include box(20px);
         @include margin-right(5px);
     }

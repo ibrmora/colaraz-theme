@@ -2,23 +2,179 @@
 // Course About Page
 // ====================
 .content-wrapper {
+    color: $text-color;
 
     .course-info {
 
+        .details {
+            width: auto;
+            float: none;
+            @include margin-right(0);
+
+            h2 {
+                font-weight: 700;
+                margin-bottom: 0;
+                color: $text-color;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+
+        .course-about-content {
+            @include media-up(md) {
+                @include float(left);
+            }
+        }
+
+        .course-sidebar {
+            display: none;
+        }
+
         header.course-profile {
             padding: 0;
+            height: auto;
+            border: 0;
+            overflow: visible;
 
             .intro-inner-wrapper {
+                border: 0;
+                min-width: 0;
+                box-shadow: none;
+
+                .table {
+                    display: flex;
+                    padding: $baseline 0;
+                    position: relative;
+                }
+
+                .media {
+                    order: 1;
+                    padding: 0;
+                    max-width: 150px;
+                    flex: 0 0 150px;
+
+                    .hero {
+                        border: 0;
+                        border-radius: $baseline*0.25;
+                        height: auto;
+                    }
+                }
 
                 .intro {
+                    display: block;
+                    order: 2;
+                    width: auto;
+                    padding: 0 0 0 $baseline;
+                    flex-grow: 1;
+                    align-self: flex-end;
+                    position: static;
+
+                    > .heading-group {
+                        margin: 0;
+                        border-bottom: 0;
+                        padding: 0;
+
+                        .course-org {
+                            padding-bottom: 5px;
+                        }
+
+                        .course-info {
+                            border-top: 1px solid $gray-lighter;
+                            color: $graphite;
+                            font-size: 12px;
+                            position: relative;
+                        }
+
+                        h1 {
+                            font-size: 25px;
+                            font-weight: 700;
+                            line-height: 1;
+                            color: $text-color;
+                            @include padding-right(80px);
+                        }
+
+                        .btn-group {
+                            position: absolute;
+                            top: 6px;
+                            right: 2px;
+                        }
+
+                        .menu-btn {
+                            display: block;
+                            padding: 0 $baseline*0.5;
+                            color: $text-color;
+                            line-height: 1;
+                            @include margin-right(-$baseline*0.6);
+
+                            &:hover,
+                            &:focus {
+                                color: $primary;
+                            }
+                        }
+
+                        .dropdown-menu {
+                            display: none;
+                            margin: 0.125rem 0 0;
+                            position: absolute;
+                            top: 100%;
+                            right: 0;
+                            z-index: 10;
+                            min-width: 125px;
+                            padding: 0.5rem 0;
+                            font-size: 12px;
+                            color: $text-color;
+                            text-align: left;
+                            background-color: $white;
+                            border: 1px solid $gray-lighter;
+                            border-radius: $border-radius;
+
+                            &.show {
+                                display: block;
+                            }
+                        }
+
+                        ul {
+                            @include list;
+
+                            li {
+
+                                a {
+                                    display: block;
+                                    padding: 2px 10px;
+                                    text-decoration: none;
+
+                                    &:hover {
+                                        background: $gray-lightest;
+                                    }
+                                }
+                            }
+                        }
+                    }
 
                     .main-cta {
+                        position: absolute;
+                        top: $baseline;
+                        right: 0;
+                        width: auto;
+                        margin-right: 0;
 
-                        a.register {
+                        span.register {
+                            display: none;
+                        }
+
+                        a.register,
+                        .view-course {
                             background: $primary;
                             border-color: $primary;
                             box-shadow: none;
                             text-shadow: none;
+                            font-size: 13px;
+                            line-height: 1;
+                            padding: 6px 15px 4px;
+                            border-radius: $baseline;
+                            width: auto;
 
                             &:hover {
                                 background: darken($primary, 10%);

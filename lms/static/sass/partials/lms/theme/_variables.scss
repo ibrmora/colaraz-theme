@@ -10,7 +10,7 @@ $primary-dark:          darken($primary, 10%);
 
 // Overrides variables
 $body-bg:               #282828;
-$black:                 #000000;
+$black:                 #000;
 $text-color:            #4C4C4C;
 $footer-bg:             #121212;
 
@@ -27,9 +27,11 @@ $gray-lighter:          #CCC;
 $gray-lightest:         #F2F2F2;
 $blue-dark:             #126F9A;
 $orange-color:          #FFB600;
+$graphite:              #676767;
 
 $warning-color:         #E6BC49;
 $success-color:         #28A745;
+$alert-color:           #F00;
 
 // Social media
 $facebook-color:        #3B5998;
@@ -40,8 +42,8 @@ $dribbble-color:        #EA4C89;
 $pinterest-color:       #CB2027;
 $google-plus-color:     #DD4B39;
 $youtube-color:         #B00;
-$color__gray-smoke:     #F3F4F6;
-$color__gray-light:     #AAA;
+$color__gray-smoke:      #F3F4F6;
+$color__gray-light:      #AAA;
 
 // These variable names are being used in some buttons, so just replace the value not variable name
 $uxpl-blue-hover-active: $primary-dark; //Dashboard links
@@ -56,7 +58,7 @@ $m-blue-l1:             $primary-dark;
 
 $link-color:            $primary;
 
-$main-content-bg:       white;
+$main-content-bg:       #FFF;
 
 // Font family
 $font-family-serif: Candara, 'Open Sans', sans-serif;
@@ -69,6 +71,6 @@ $font-family-sans-serif: Candara, 'Open Sans', sans-serif;
 $heading-font:          $font-family-serif;
 
 // Misc.
-$path-to-s3-assets:     "https://edly-edx-theme-files.s3.amazonaws.com";
+$path-to-s3-assets:     'https://edly-edx-theme-files.s3.amazonaws.com';
 $border-radius:         3px;
 $container-default:     1170px;
