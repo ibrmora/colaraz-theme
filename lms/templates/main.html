@@ -30,8 +30,11 @@
 
 <%
     colaraz_profile = ColarazUserProfile.objects.get(user=user)
-    level_percentage = colaraz_profile.level_percentage
-    level_text = colaraz_profile.level_text
+    job_title = colaraz_profile.job_title
+    profile_image_url = colaraz_profile.profile_image_url or "http://polymath.colaraz.net/cvsocial/_graphics/icons/user/defaultsmall.gif"
+    profile_strength_color = colaraz_profile.profile_strength_color
+    profile_strength_title = colaraz_profile.profile_strength_title
+    profile_strength_width = colaraz_profile.profile_strength_width
 %>
 
 <!DOCTYPE html>
@@ -342,22 +345,18 @@
           <div class="side-widget side-profile">
             <div class="side-profile-row">
               <div class="avatar">
-                <img src="http://polymath.colaraz.net/cvsocial/_graphics/icons/user/defaultsmall.gif" alt="${user.profile.name}" title="${user.profile.name}">
+                <img src="${profile_image_url}" alt="${user.profile.name}" title="${user.profile.name}">
               </div>
               <span class="user-name">${user.profile.name}</span>
-              % if user.is_staff:
-                <span class="designation">Staff</span>
-              % else:
-                <span class="designation">Student</span>
-              % endif
+                <span class="designation">${job_title}</span>
             </div>
             <div id="progress" class="profile-progress-bar">
               <div class="progress progress-striped">
-                <div class="progress-bar progress-bar-striped" style="width:${level_percentage}%;background-color:#eb7d3c;" id="progressbar">
-                  <span class="sr-only">${level_text}</span>
+              <div class="progress-bar progress-bar-striped" style="width:${profile_strength_width};background-color:${profile_strength_color}" id="progressbar">
+                  <span class="sr-only">${profile_strength_title}</span>
                 </div>
               </div>
-              <span class="progress-result">${level_text}</span>
+              <span class="progress-result">${profile_strength_title}</span>
             </div>
           </div>
           <div class="side-widget side-nav">
