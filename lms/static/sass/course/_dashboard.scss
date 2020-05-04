@@ -9,8 +9,12 @@
 .container {
 
     &.main-wrapper {
-        padding-top: 28px;
-        max-width: $container-default; // Override mehtod couldn't find to update through bootstrap for discussion
+
+        &,
+        .view-in-course & {
+            padding-top: 28px;
+            max-width: $container-default; // Override mehtod couldn't find to update through bootstrap for discussion
+        }
     }
 
     &.about {
@@ -64,11 +68,17 @@
     }
 
     .avatar {
-        border-radius: $baseline;
+        border-radius: $border-radius*2;
         border: 1px solid #EBEBEB;
         overflow: hidden;
+        @include box(42px);
         @include float(left);
         @include margin(0, 15px, 10px, 0);
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
     }
 
     .progress {
@@ -161,6 +171,10 @@
         max-width: none;
         padding: 0;
         float: none;
+        border: 0;
+        background: transparent;
+        display: block;
+        box-shadow: none;
         @include media-up(sm) {
             @include float(left);
             width: 17.545%;

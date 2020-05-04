@@ -187,7 +187,38 @@
     }
 }
 
+.courses-container {
+
+    .courses {
+
+        .course {
+            background: $white;
+
+            .course-image {
+
+                .cover-image {
+
+                    .learn-more {
+                        border-radius: $border-radius;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .find-courses {
+
+    .courses {
+        padding: 0;
+    }
+
+    .no-course-discovery {
+
+        .journal-list {
+            margin: 0;
+        }
+    }
 
     .search-facets {
 
