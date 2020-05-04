@@ -10,6 +10,7 @@ from six import text_type
 from edxmako.shortcuts import marketing_link
 from openedx.core.djangolib.markup import HTML, Text
 from openedx.core.lib.courses import course_image_url
+from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
 from six import string_types
 %>
 
@@ -110,7 +111,7 @@ from six import string_types
 
 <section class="course-info cz-discussion-container">
   <div class="course-about-content">
-    
+
     <%block name="course_about_header">
     <header class="course-profile">
       <div class="intro-inner-wrapper">
@@ -123,7 +124,22 @@ from six import string_types
             <br />
             <div class="course-org">${course.display_org_with_default}</div>
             <div class="course-info">
-              <span class="course-start-date">Starts on April 19, 2020 </span>
+              <span class="course-start-date">Starts on </span>
+              % if not course.start_date_is_still_default:
+              <%
+                  course_start_date = course.advertised_start or course.start
+              %>
+                % if isinstance(course_start_date, string_types):
+                    <span class="important-dates-item-text start-date">${course_start_date}</span>
+                % else:
+                    <%
+                      course_date_string = course_start_date.strftime('%Y-%m-%d')
+                    %>
+                    <span class="course-start-date important-dates-item-text start-date localized_datetime" data-format="shortDate" data-datetime="${course_date_string}" data-language="${LANGUAGE_CODE}"></span>
+                % endif
+              </li>
+              % endif
+
               <div class="btn-group">
                 <a href="#" class="menu-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="fa fa-cog"></span>
@@ -194,7 +210,7 @@ from six import string_types
               </a>
             %endif
           %else:
-            <% 
+            <%
               if ecommerce_checkout:
                 reg_href = ecommerce_checkout_link
               else:
@@ -237,7 +253,10 @@ from six import string_types
       <div class="details">
         % if staff_access and studio_url is not None:
           <div class="wrap-instructor-info studio-view">
-            <a class="instructor-info-action" href="${studio_url}">${_("View About Page in studio")}</a>
+            <%
+              studio_settings_url = '{}/{}'.format(configuration_helpers.get_value('CMS_BASE'), studio_url.split('/', 3)[3])
+            %>
+            <a class="instructor-info-action" href="//${studio_settings_url}">${_("View About Page in studio")}</a>
           </div>
         % endif
 
@@ -364,56 +383,8 @@ from six import string_types
   </div>
   </div>
 
-  <div class="discussion-sidebar">
-    <section class="discussion-widget">
-        <h3>Course Specifics</h3>
-        <ul class="course-specifics-list">
-            <li>
-                <strong class="title">Starts</strong>
-                <p>April 19, 2020 09:00 AM EST</p>
-            </li>
-            <li>
-                <strong class="title">Duration</strong>
-                <p>2 hours</p>
-            </li>
-            <li>
-                <strong class="title">Language</strong>
-                <p>English</p>
-            </li>
-        </ul>
-    </section>
-    <nav class="discussion-widget">
-        <ul class="discussion-share-list">
-            <li>
-                <a href="#"><span class="fa fa-tag"></span></a>
-            </li>
-            <li>
-                <a href="#"><span class="fa fa-share-alt"></span></a>
-            </li>
-            <li>
-                <a href="#"><span class="fa fa-calendar"></span></a>
-            </li>
-        </ul>
-    </nav>
-    <section class="discussion-widget instructor-widget">
-        <h3>Instructor</h3>
-        <div class="btn-group">
-          <a href="#" class="menu-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="fa fa-ellipsis-v"></span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right">
-            <ul>
-              <li><a href="#"><span class="fa fa-pencil"></span> Edit</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="image-frame">
-            <img src="${static.url('images/instructor.jpg')}" alt="Name Placeholder">
-        </div>
-        <h4 class="instructor-name">Name Placeholder</h4>
-        <span class="instructor-title">Title Placehodler</span>
-    </section>
-  </div>
+  <%include file="../course_details_sidebar.html" />
+
 </div>
 
 ## Need to put this hidden form on the page so that the registration button works.
