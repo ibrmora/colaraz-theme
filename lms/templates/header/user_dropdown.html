@@ -9,12 +9,14 @@
 
   from openedx.core.djangoapps.user_api.accounts.image_helpers import get_profile_image_urls_for_user
   from openedx.core.djangoapps.user_api.accounts.utils import retrieve_last_sitewide_block_completed
+  from openedx.features.colaraz_features.models import ColarazUserProfile
 %>
 
 <%
   ## This template should not use the target student's details when masquerading, see TNL-4895
+  colaraz_profile = ColarazUserProfile.objects.get(user=user)
   self.real_user = getattr(user, 'real_user', user)
-  profile_image_url = get_profile_image_urls_for_user(self.real_user)['medium']
+  profile_image_url = colaraz_profile.profile_image_url or "http://polymath.colaraz.net/cvsocial/_graphics/icons/user/defaultsmall.gif"
   username = self.real_user.username
   resume_block = retrieve_last_sitewide_block_completed(username)
   displayname = self.real_user.profile.name
@@ -34,6 +36,7 @@
   <div class="toggle-user-dropdown" role="button" aria-label=${_("Options Menu")} aria-expanded="false" tabindex="0" aria-controls="user-menu">
   <div class="profile-block">
     <div class="img-frame">
+      <img src="${profile_image_url}" alt="${user.profile.name}" title="${user.profile.name}">
     </div>
     <strong class="username">${displayname}</strong>
   </div>
