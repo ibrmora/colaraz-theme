@@ -185,6 +185,20 @@ from student.models import CourseEnrollment
         <div class="my-courses" id="my-courses">
           <div class="dashboard-header">
               <h1>Courses</h1>
+              <div class="select-box hidden">
+                <select name="" id="" class="cz-custom-select">
+                  <option value="">All</option>
+                  <option value="">Organization</option>
+                </select>
+              </div>
+              <div class="search-box hidden">
+                <button type="button" class="search-opener"><span class="fa fa-search"></span></button>
+                <div class="forum-search">
+                  <input class="field-input form-control input-text search-input" type="search" name="search" placeholder="Search">
+                  <label class="field-label" for="search" id="search-hint" aria-label="Search all posts">Search</label>
+                  <button class="btn btn-outline-primary btn-small search-button" type="button">Search</button>
+                </div>
+              </div>
             % if settings.FEATURES.get('ENABLE_DASHBOARD_SEARCH'):
               <div id="dashboard-search-bar" class="search-bar dashboard-search-bar" role="search" aria-label="Dashboard">
                 <form class="search-form">

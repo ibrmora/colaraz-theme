@@ -48,26 +48,23 @@
             box-shadow: none;
 
             .dropdown-user-menu {
+                position: absolute;
+                top: 100%;
+                @include right(7px);
+                min-width: 160px;
+                border-color: $gray-lightest;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+                background: $white;
                 @include rtl {
                     text-align: left;
                 }
-                @include media-down(md) {
-                    display: block !important;
-                    visibility: visible;
-                }
-                @include media-up(md) {
-                    position: absolute;
-                    top: 100%;
-                    @include right(7px);
-                    min-width: 160px;
-                    margin-top: 8px;
-                    border-color: $gray-lightest;
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-                    background: $white;
-                }
 
                 .dropdown-nav-item {
-                    @include media-up(md) { border-bottom: 1px solid $gray-lighter; }
+                    padding: 0;
+
+                    &.nav-item-logout {
+                        border-top: 1px solid $gray-lighter;
+                    }
 
                     a {
 
@@ -112,10 +109,8 @@
                     padding: 0;
                     font-size: 14px;
                     position: relative;
-                    @include media-up(md) {
-                        display: inline-block;
-                        vertical-align: top;
-                    }
+                    display: inline-block;
+                    vertical-align: top;
 
                     a {
                         &.nav-item {
@@ -128,14 +123,11 @@
                 }
 
                 .nav-item {
-                    display: block;
-                    text-transform: uppercase;
+                    display: inline-block;
                     text-decoration: none;
                     color: $white;
-                    @include media-up(md) {
-                        padding: 9px 12px 7px;
-                        margin: 0;
-                    }
+                    padding: 9px 12px 7px;
+                    margin: 0;
 
                     &:hover {
 
@@ -144,6 +136,88 @@
                         }
                     }
                 }
+            }
+        }
+
+        .header-dropdown {
+            display: none;
+            margin: 0;
+            position: absolute;
+            background: $white;
+            top: 100%;
+            left: 0;
+            width: 320px;
+            border-radius: 0;
+            border: 0;
+            padding: 0;
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+
+            &.show {
+                display: block;
+            }
+
+            .notifications-list {
+                font-size: 11px;
+
+                li {
+                    padding: $baseline*.5;
+                    font-size: 11px;
+                    display: block;
+
+                    .media {
+                        @include float(left);
+                        @include box(40px);
+                        margin: 0 $baseline*0.5 $baseline*0.5 0;
+                        border: 1px solid $gray-mid-border;
+                    }
+
+                    .description {
+                        overflow: hidden;
+                    }
+
+                    .title {
+                        font-size: 12px;
+                        font-weight: 400;
+                        color: $gray-dark;
+                    }
+
+                    p {
+                        margin: 0;
+                    }
+
+                    a {
+                        color: $primary;
+                    }
+                }
+            }
+        }
+
+        .notifications-heading {
+            margin: 0;
+            font: italic 700 12px/1 $heading-font;
+            padding: $baseline*.5;
+            border-bottom: 1px solid $gray-mid-border;
+        }
+
+        .button-box {
+            padding: 5px;
+        }
+
+        .btn-see-all {
+            background: $btn-bg;
+            border-color: $btn-bg;
+            border-radius: $baseline;
+            color: $black;
+            font-size: 14px;
+            font-weight: 400;
+            height: 29px;
+            padding: 5px 10px 3px;
+            display: block;
+            text-align: center;
+
+            &:hover {
+                background: $btn-hover-bg;
+                border-color: $btn-hover-bg;
             }
         }
     }
@@ -197,6 +271,7 @@
     }
 
     .hamburger-menu {
+        display: none;
         top: 16px;
         @include left(18px);
         outline: none;
@@ -229,22 +304,19 @@
 }
 
 .main-navigation {
+    display: block;
+    white-space: nowrap;
+    padding: 5px 3px 0 0;
     @include transition;
-    @include media-down(md) {
-        display: block;
-        max-height: 0;
-        overflow: hidden;
-    }
-    @include media-up(md) {
-        display: block;
-        white-space: nowrap;
-        padding: 5px 3px 0 0;
-        @include float(right);
-        @include margin-right(-10px);
-    }
+    @include float(right);
+    @include margin-right(-10px);
 
     .fa {
-        font-size: 18px;
+        font-size: 16px;
+
+        &.fa-globe {
+            font-size: 20px;
+        }
     }
 
     .menu-edly-menu-container {
@@ -316,19 +388,11 @@
         }
     }
 
-    div {
-
-        &.nav-item {
-            @include media-down(md) {
-                border-top: 0;
-                max-height: 0;
-                overflow: hidden;
-                @include transition(all 0.2s linear);
-            }
-        }
-    }
-
     .nav-item {
+        display: inline-block;
+        vertical-align: middle;
+        white-space: normal;
+        border: 0;
 
         li {
             border-top: 1px solid $gray-lighter;
@@ -337,13 +401,6 @@
             &:first-child {
                 @include media-down(md) { margin-top: 12px !important; }
             }
-        }
-
-        @include media-up(md) {
-            display: inline-block;
-            vertical-align: middle;
-            white-space: normal;
-            border: 0;
         }
 
         .global-header & {
@@ -537,6 +594,10 @@
             vertical-align: top;
         }
     }
+
+    .username {
+        display: none;
+    }
 }
 
 .header-navigations {
@@ -599,6 +660,16 @@
         background: $gray-darker;
     }
 
+    .cz-logo {
+        @include float(right);
+        width: 150px;
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
     ul {
         @include clearfix;
         @include list;
@@ -644,8 +715,8 @@
                 background: url('../images/development.png');
             }
 
-            .setting-link {
-                background: url('../images/setting.png');
+            .settings-link {
+                background: url('../images/settings.png');
             }
 
             &:first-child {
