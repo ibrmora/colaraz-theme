@@ -166,18 +166,21 @@
 
                         a.register,
                         .view-course {
-                            background: $primary;
-                            border-color: $primary;
+                            background: $btn-bg;
+                            border-color: $btn-bg;
                             box-shadow: none;
                             text-shadow: none;
                             font-size: 13px;
                             line-height: 1;
-                            padding: 6px 15px 4px;
+                            padding: 7px 15px 3px;
                             border-radius: $baseline;
+                            color: $black;
                             width: auto;
 
                             &:hover {
-                                background: darken($primary, 10%);
+                                color: $black;
+                                background: $btn-hover-bg;
+                                border-color: $btn-hover-bg;
                             }
                         }
                     }

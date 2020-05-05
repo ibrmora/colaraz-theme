@@ -233,16 +233,18 @@
     }
 
     .btn-primary {
-        background: $primary !important;
-        border-color: $primary !important;
+        background: $btn-bg !important;
+        border-color: $btn-bg !important;
         border-radius: $baseline;
-        color: $white !important;
+        color: $black !important;
+        font-size: 14px;
+        font-weight: 400;
         height: 29px;
-        padding: 5px 10px 3px;
+        padding: 7px 15px 3px;
 
         &:hover {
-            background: $uxpl-blue-hover-active !important;
-            border-color: $uxpl-blue-hover-active !important;
+            background: $btn-hover-bg !important;
+            border-color: $btn-hover-bg !important;
         }
     }
 }

@@ -51,15 +51,44 @@
     </%doc>
   </div>
   <div id="edly-nav-menu" class="main-navigation">
-    <ul class="custom-nav mobile-nav-item">
-      <li>
-        <a class="nav-item" href="#"><span class="fa fa-search" aria-hidden="true"></span></a>
+    <ul class="custom-nav mobile-nav-item">\
+      <li class="dropdown">
+        <a class="nav-item" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="fa fa-globe" aria-hidden="true"></span>
+        </a>
+        <div class="header-dropdown dropdown-menu dropdown-menu-right all-notifications">
+          <h4 class="notifications-heading">Notifications</h4>
+          <ul class="notifications-list">
+            <li>
+              <div class="media">
+                <a href="#"><img src="" alt=""></a>
+              </div>
+              <div class="description">
+                <strong class="title">has sent you a <a href="#">contact request</a>.</strong>
+                <p>10 days ago</p>
+              </div>
+            </li>
+          </ul>
+          <div class="button-box">
+            <a href="#" class="btn btn-primary btn-see-all">See All</a>
+          </div>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a class="nav-item" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="fa fa-bell" aria-hidden="true"></span><span class="count">13</span>
+        </a>
+        <div class="header-dropdown dropdown-menu dropdown-menu-right all-notifications">
+          <h4 class="notifications-heading">Job Alerts</h4>
+          <ul class="notifications-list">
+            <li>
+              <p>No new job alerts</p>
+            </li>
+          </ul>
+        </div>
       </li>
       <li>
-        <a class="nav-item" href="#"><span class="fa fa-bell" aria-hidden="true"></span><span class="count">13</span></a>
-      </li>
-      <li>
-        <a class="nav-item" href="#"><span class="fa fa-user-plus" aria-hidden="true"></span></a>
+        <a class="nav-item" href="#"><img src="${static.url('images/friend-request-icon.png')}" alt=""></a>
       </li>
       % if should_display_shopping_cart_func() and not (course and static.is_request_in_themed_site()): # see shoppingcart.context_processor.user_has_cart_context_processor
       <li>

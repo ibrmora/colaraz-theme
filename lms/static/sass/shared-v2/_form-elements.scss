@@ -40,17 +40,27 @@ button {
 
 .select-box {
     overflow: hidden;
-    border: 1px solid #E1E1E1;
-    border-radius: $baseline;
     @include margin-right(10px);
+
+    .dashboard-header & {
+        width: 150px;
+        float: left;
+        @include margin-left(15px);
+    }
 
     .cz-custom-select {
         background: #F8F8F8;
-        border: 0;
+        border: 1px solid #E1E1E1;
         border-radius: $baseline;
         font-size: 12px;
-        height: 27px;
+        height: 34px;
         display: block;
         width: 100%;
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='gray' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>") !important;
+        background-position: 99% 6px;
+        background-repeat: no-repeat;
+        @include padding(5px, 25px, 5px, 10px);
     }
 }

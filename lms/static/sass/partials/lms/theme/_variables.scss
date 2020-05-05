@@ -18,7 +18,7 @@ $footer-bg:             #121212;
 // THEME's variables
 // ------------------------------
 $gray-darker:           #151515;
-$gray-dark:             #333A3F;
+$gray-dark:             #333333;
 $gray-mid:              #454545;
 $gray-mid-border:       #E4E4E4;
 $gray:                  #717171;
@@ -42,8 +42,11 @@ $dribbble-color:        #EA4C89;
 $pinterest-color:       #CB2027;
 $google-plus-color:     #DD4B39;
 $youtube-color:         #B00;
-$color__gray-smoke:      #F3F4F6;
-$color__gray-light:      #AAA;
+$color__gray-smoke:     #F3F4F6;
+$color__gray-light:     #AAA;
+
+$btn-bg:                #BCCB5A;
+$btn-hover-bg:          #A6C854;
 
 // These variable names are being used in some buttons, so just replace the value not variable name
 $uxpl-blue-hover-active: $primary-dark; //Dashboard links

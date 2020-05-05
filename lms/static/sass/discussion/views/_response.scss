@@ -261,6 +261,10 @@
     .add-response {
         @include padding-left(0 !important);
     }
+}
+
+.discussion,
+.dashboard-header {
 
     .search-box {
         float: right;
@@ -268,13 +272,15 @@
         @include margin-left(10px);
 
         .search-opener {
-            background: none;
+            background: none !important;
             border: 0;
             padding: 2px 8px 0;
+            box-shadow: none;
+            text-shadow: none;
         }
 
         &.active {
-            background: $gray-lightest;
+            background: $gray-lightest !important;
             border-radius: $border-radius $border-radius 0 0;
             z-index: 1;
 
@@ -293,7 +299,6 @@
             background: $gray-lightest;
         }
     }
-
 
     .forum-search {
 
@@ -318,6 +323,8 @@
             right: 10px;
             background: none;
             border: 0;
+            box-shadow: none;
+            text-shadow: none;
             @include box(29px);
 
             &:before {
@@ -352,19 +359,21 @@
     .forum-search &,
     .add-response &,
     .forum-actions & {
-        color: $text-color;
-        background: $primary;
+        color: $black;
+        background: $btn-bg;
+        border-color: $btn-bg;
         padding: 7px 10px 4px;
         font-size: 13px;
 
         &:hover {
-            background: $secondary;
-            border-color: $secondary;
+            background: $btn-hover-bg;
+            border-color: $btn-hover-bg;
         }
 
         &:focus {
-            border-color: $primary;
-            box-shadow: 0 0 0 2px rgba($primary, 10%);
+            background: $btn-hover-bg;
+            border-color: $btn-hover-bg;
+            box-shadow: 0 0 0 2px rgba($btn-hover-bg, 10%);
         }
     }
 
