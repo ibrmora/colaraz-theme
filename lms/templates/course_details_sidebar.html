@@ -1,0 +1,78 @@
+<%namespace name='static' file='static_content.html'/>
+<%!
+from six import string_types
+from student.models import CourseAccessRole
+%>
+
+<%
+    instructors = CourseAccessRole.objects.filter(org=course.id.org, course_id=course.id, role='instructor')
+%>
+<div class="discussion-sidebar">
+    <section class="discussion-widget">
+        <h3>Course Specifics</h3>
+        <ul class="course-specifics-list">
+            <li>
+                % if not course.start_date_is_still_default:
+                    <%
+                        course_start_date = course.advertised_start or course.start
+                    %>
+                    <strong class="title">Starts</strong>
+                    % if isinstance(course_start_date, string_types):
+                        <span class="important-dates-item-text start-date">${course_start_date}</span>
+                    % else:
+                        <%
+                        course_date_string = course_start_date.strftime('%Y-%m-%d')
+                        course_time_string = course_start_date.strftime('%I:%M %p %Z')
+                        %>
+                        <p class="important-dates-item-text start-date localized_datetime" data-format="shortDate" data-datetime="${course_date_string}" data-language="${LANGUAGE_CODE}">${course_time_string}</p>
+                        <p style="margin-top:-20px">${course_time_string}</p>
+                    % endif
+                % endif
+            </li>
+            <li>
+                <strong class="title">Duration</strong>
+                <p>2 hours</p>
+            </li>
+            <li>
+                <strong class="title">Language</strong>
+                % for language in settings.LANGUAGES:
+                    % if course.language == language[0]:
+                        <p>${language[1]}</p>
+                    % endif
+                % endfor
+            </li>
+        </ul>
+    </section>
+    <nav class="discussion-widget">
+        <ul class="discussion-share-list">
+            <li>
+                <a href="#"><span class="fa fa-tag"></span></a>
+            </li>
+            <li>
+                <a href="#"><span class="fa fa-share-alt"></span></a>
+            </li>
+            <li>
+                <a href="#"><span class="fa fa-calendar"></span></a>
+            </li>
+        </ul>
+    </nav>
+    % for instructor in instructors:
+        <%
+            profile_image_url = instructor.user.colaraz_profile.profile_image_url
+            job_title = instructor.user.colaraz_profile.job_title
+            instructor_name = instructor.user.profile.name
+        %>
+        <section class="discussion-widget instructor-widget">
+            <h3>Instructor</h3>
+            <div class="image-frame">
+                <img src="${profile_image_url or static.url('images/instructor.jpg')}" alt="${instructor_name}">
+            </div>
+            <h4 class="instructor-name">${instructor_name}</h4>
+            <span class="instructor-title">${job_title}</span>
+        </section>
+    % endfor
+  </div>
+
+<%static:require_module_async module_name="js/dateutil_factory" class_name="DateUtilFactory">
+  DateUtilFactory.transform(iterationKey=".localized_datetime");
+</%static:require_module_async>
