@@ -34,7 +34,7 @@ from branding import api as branding_api
     </div>
   % endif
 </h1>
-<div class="company-name">Polymath Institute of Science and Technology</div>
+<div class="company-name">${configuration_helpers.get_value('PLATFORM_NAME', settings.PLATFORM_NAME)}</div>
 
 % if enable_enterprise_sidebar:
   <div class="enterprise-tagline">
