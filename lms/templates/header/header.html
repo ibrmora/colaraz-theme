@@ -81,12 +81,15 @@ from openedx.features.colaraz_features.models import ColarazUserProfile
     <div class="header-navigations">
         <nav class="primary-navigation">
             <div class="container">
+                <strong class="cz-logo">
+                    <img src="${static.url('images/colaraz-logo.svg')}" alt="${_("{platform_name}").format(platform_name=static.get_platform_name())}"/>
+                </strong>
                 <button type="button" class="navmenu-toggle">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar top-bar"></span>
                     <span class="icon-bar middle-bar"></span>
                     <span class="icon-bar bottom-bar"></span>
-                </button>  
+                </button>
                 <ul>
                     <li><a href="#"><span class="ecosystem-link"></span>Ecosystem</a></li>
                     <li><a href="//${'{}.{}'.format(site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('RECRUITMENT_URL'))}"><span class="recruiting-link"></span>Recruitement</a></li>

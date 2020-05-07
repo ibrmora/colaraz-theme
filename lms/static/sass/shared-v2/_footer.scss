@@ -2,6 +2,7 @@
 // Open edX: LMS footer
 // ====================
 .wrapper-footer {
+    margin-top: 0;
     $padding-footer: 15px;
     border-color: $primary;
     padding: 0 $padding-footer !important;
@@ -21,57 +22,13 @@
             font-size: 14px;
             @include clearfix;
             @include media-up(sm) {
-                padding: 40px 0;
-            }
-        }
-
-        .footer-nav {
-            text-align: center;
-            padding-bottom: 15px;
-            @include media-up(sm) {
-                @include float(left);
-                @include text-align(left);
-                width: 50%;
-                padding-top: 7px;
-                padding-bottom: 0;
-            }
-
-            ul {
-                @include list;
-
-                li {
-                    display: inline-block;
-                    vertical-align: top;
-                    position: relative;
-                    @include padding-left(20px);
-
-                    &:before {
-                        content: '.';
-                        position: absolute;
-                        top: 0;
-                        left: 10px;
-                        color: $primary;
-                    }
-
-                    &:first-child {
-                        @include padding-left(0);
-
-                        &:before {
-                            display: none;
-                        }
-                    }
-                }
+                padding: 42px 0;
             }
         }
 
         .copyright-area {
-            color: $graphite;
+            color: $color__gray-light;
             text-align: center;
-            @include media-up(sm) {
-                width: 50%;
-                @include float(right);
-                @include text-align(right);
-            }
 
             a {
                 font-size: 13px;
@@ -85,18 +42,15 @@
 
             p {
                 margin: 0;
-                color: $graphite;
+                color: $color__gray-light;
                 text-align: center;
-                @include media-up(sm) {
-                    @include text-align(right);
-                }
             }
         }
 
         a {
-            color: $graphite;
+            color: $color__gray-light;
 
-            &:visited { color: $graphite; }
+            &:visited { color: $color__gray-light; }
 
             &:focus,
             &:hover {

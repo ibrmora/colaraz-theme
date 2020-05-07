@@ -202,7 +202,16 @@
                 .cover-image {
 
                     .learn-more {
-                        border-radius: $border-radius;
+                        border-radius: $baseline;
+                        left: calc(50% - 62px);
+                        width: 124px;
+                        height: auto;
+                        border-color: $btn-bg;
+                        background: $btn-bg;
+                        color: $black;
+                        line-height: 1;
+                        padding: 7px 15px 5px;
+                        z-index: 10;
                     }
                 }
             }

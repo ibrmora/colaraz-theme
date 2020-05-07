@@ -29,12 +29,14 @@
 %>
 
 <%
-    colaraz_profile = ColarazUserProfile.objects.get(user=user)
-    job_title = colaraz_profile.job_title
-    profile_image_url = colaraz_profile.profile_image_url or "http://polymath.colaraz.net/cvsocial/_graphics/icons/user/defaultsmall.gif"
-    profile_strength_color = colaraz_profile.profile_strength_color
-    profile_strength_title = colaraz_profile.profile_strength_title
-    profile_strength_width = colaraz_profile.profile_strength_width
+    if user.is_authenticated:
+        colaraz_profile = ColarazUserProfile.objects.get(user=user)
+        job_title = colaraz_profile.job_title
+        profile_image_url = colaraz_profile.profile_image_url or "http://polymath.colaraz.net/cvsocial/_graphics/icons/user/defaultsmall.gif"
+        profile_strength_color = colaraz_profile.profile_strength_color
+        profile_strength_title = colaraz_profile.profile_strength_title
+        profile_strength_width = colaraz_profile.profile_strength_width
+    endif
 %>
 
 <!DOCTYPE html>
