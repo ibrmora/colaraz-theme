@@ -52,8 +52,8 @@
                 .media {
                     order: 1;
                     padding: 0;
-                    max-width: 150px;
-                    flex: 0 0 150px;
+                    max-width: 170px;
+                    flex: 0 0 170px;
 
                     .hero {
                         border: 0;
@@ -92,7 +92,7 @@
                             font-weight: 700;
                             line-height: 1;
                             color: $text-color;
-                            @include padding-right(80px);
+                            @include padding-right(115px);
                         }
 
                         .btn-group {
@@ -270,6 +270,26 @@ body {
             &:hover {
                 border-color: darken($primary, 10%) !important;
                 background-color: darken($primary, 10%) !important;
+            }
+        }
+    }
+
+    .wrap-instructor-info {
+
+        .instructor-info-action {
+            background: $btn-bg !important;
+            border-color: $btn-bg !important;
+            border-radius: $baseline !important;
+            color: $black !important;
+            font-size: 13px !important;
+            font-weight: 400 !important;
+            padding: 7px 15px 3px !important;
+            text-decoration: none;
+
+            &:hover {
+                background: $btn-hover-bg !important;
+                border-color: $btn-hover-bg !important;
+                color: $black !important;
             }
         }
     }

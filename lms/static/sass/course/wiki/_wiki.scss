@@ -235,21 +235,21 @@
 
         .btn {
             box-shadow: none !important;
-            font-weight: 600 !important;
             vertical-align: top;
             border-radius: $baseline !important;
             font-size: 13px !important;
             font-weight: 400 !important;
             padding: 7px 10px 3px !important;
             color: $black;
-            text-shadow: none;
+            text-shadow: none !important;
 
             &.btn-primary {
                 background: $btn-bg;
                 border-color: $btn-bg;
+                color: $black;
 
                 &:hover {
-                    background: $btn-hover-bg;
+                    background: $btn-hover-bg !important;
                     border-color: $btn-hover-bg;
                 }
             }

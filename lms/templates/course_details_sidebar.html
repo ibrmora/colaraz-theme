@@ -43,19 +43,6 @@ from student.models import CourseAccessRole
             </li>
         </ul>
     </section>
-    <nav class="discussion-widget share-widget">
-        <ul class="discussion-share-list">
-            <li>
-                <a href="#"><span class="fa fa-tag"></span></a>
-            </li>
-            <li>
-                <a href="#"><span class="fa fa-share-alt"></span></a>
-            </li>
-            <li>
-                <a href="#"><span class="fa fa-calendar"></span></a>
-            </li>
-        </ul>
-    </nav>
     % for instructor in instructors:
         <%
             profile_image_url = instructor.user.colaraz_profile.profile_image_url

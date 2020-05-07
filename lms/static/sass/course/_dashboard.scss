@@ -58,7 +58,8 @@
     }
 
     .user-name {
-        color: white;
+        color: $white;
+        font-size: 16px;
         padding: $baseline*.15 0;
     }
 
