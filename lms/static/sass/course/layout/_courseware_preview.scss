@@ -9,6 +9,7 @@
     .course-tabs {
         margin-top: 0;
         background: $gray-mid-border;
+        border-radius: $baseline*0.5 $baseline*0.5 0 0;
     }
 
     .page-content,
@@ -123,6 +124,13 @@
                 }
             }
         }
+    }
+}
+
+.courseware {
+
+    .wrapper-course-material {
+        margin-top: 0 !important;
     }
 }
 

@@ -353,6 +353,7 @@
         .username {
             @include margin-left(6px);
             color: $text-color;
+            display: none !important;
 
             @include media-up(sm) {
                 @include ellipsis(120px);
@@ -594,10 +595,6 @@
             vertical-align: top;
         }
     }
-
-    .username {
-        display: none;
-    }
 }
 
 .header-navigations {
@@ -662,7 +659,8 @@
 
     .cz-logo {
         @include float(right);
-        width: 150px;
+        width: 120px;
+        padding-top: 8px;
 
         img {
             max-width: 100%;
@@ -691,7 +689,7 @@
                 background-repeat: no-repeat;
                 height: 19px;
                 margin-right: 2px;
-                vertical-align: middle;
+                vertical-align: text-top;
                 width: 24px;
                 text-align: center;
                 @include media-up(md) {

@@ -39,7 +39,7 @@
     padding: $baseline*.75 $baseline;
     margin-bottom: $baseline*0.5;
     background: $gray-darker;
-    border-radius: $baseline*0.25;
+    border-radius: $baseline*0.5;
 
     &.side-nav {
         padding: 0;
@@ -164,6 +164,7 @@
 }
 
 .main-wrapper {
+    padding-bottom: 40px;
 
     .side-container {
         margin: 0;
@@ -177,7 +178,7 @@
         box-shadow: none;
         @include media-up(sm) {
             @include float(left);
-            width: 17.545%;
+            width: 25%;
         }
     }
 
@@ -187,10 +188,9 @@
         background: $main-content-bg;
         margin: 0 auto $baseline*2;
         float: none;
-        overflow: hidden;
         @include media-up(sm) {
             @include float(right);
-            width: 81.5%;
+            width: 72.369%;
         }
     }
 }

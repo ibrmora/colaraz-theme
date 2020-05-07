@@ -344,6 +344,8 @@
         border-color: $gray-lightest;
         border-radius: $baseline;
         color: $text-color;
+        font-size: 13px;
+        padding: 7px 10px 2px;
 
         &:hover {
             background: $primary;
