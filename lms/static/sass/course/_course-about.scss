@@ -52,8 +52,8 @@
                 .media {
                     order: 1;
                     padding: 0;
-                    max-width: 170px;
-                    flex: 0 0 170px;
+                    max-width: 150px;
+                    flex: 0 0 150px;
 
                     .hero {
                         border: 0;
@@ -285,6 +285,7 @@ body {
             font-weight: 400 !important;
             padding: 7px 15px 3px !important;
             text-decoration: none;
+            text-transform: none;
 
             &:hover {
                 background: $btn-hover-bg !important;

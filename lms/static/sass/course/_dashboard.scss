@@ -89,7 +89,8 @@
 }
 
 .side-nav {
-    font-size: 14px;
+    font-size: 16px;
+    padding-top: 30px;
 
     ul {
         @extend %list;
@@ -97,15 +98,15 @@
 
         li {
             color: $gray;
-            border-top: 1px solid #282729;
+            border-bottom: 1px solid #282729;
 
             &:first-child {
-                border-top: 0;
+                border-top: 1px solid #282729;
             }
 
             a {
                 display: block;
-                padding: $baseline*.75 $baseline;
+                padding: $baseline*.5 $baseline*.5 $baseline*.5 1px;
 
                 &:not(.btn),
                 &:visited:not(.btn) {
@@ -121,6 +122,23 @@
             &.active {
 
                 a {
+                    cursor: default;
+                    position: relative;
+
+                    &:after {
+                        content: '\f0da';
+                        font-family: FontAwesome;
+                        font-size: 16px;
+                        color: #a6c854;
+                        width: 10px;
+                        height: 14px;
+                        line-height: 14px;
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        bottom: 1px;
+                        margin: auto;
+                    }
 
                     &:not(.btn),
                     &:visited:not(.btn) {

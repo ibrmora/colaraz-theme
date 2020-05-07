@@ -22,7 +22,7 @@
 
         .image-frame {
             @include float(left);
-            width: 11.5%;
+            width: 16%;
             border-radius: $baseline*0.25;
             overflow: hidden;
 
@@ -35,7 +35,7 @@
             @include float(right);
             @include padding-right(15px);
             position: relative;
-            width: 85%;
+            width: 80%;
         }
 
         .control-block {
@@ -186,7 +186,7 @@
 
     .image-frame {
         margin: 0 auto $baseline*0.5;
-        max-width: 75px;
+        @include box(75px)
         border-radius: $baseline*2;
         overflow: hidden;
         background: $white;
