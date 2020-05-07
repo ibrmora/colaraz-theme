@@ -16,6 +16,7 @@
                     &:hover {
                         color: $primary;
                         border-color: transparent;
+                        border-width: 2px;
                         text-decoration: none !important;
                     }
 
@@ -47,17 +48,20 @@
                 }
             }
 
+            .action-primary,
             input[type="button"] {
-                background: $white;
-                border-color: $primary;
-                color: $primary;
-                box-shadow: none;
+                background: $btn-bg !important;
+                border-color: $btn-bg !important;
+                color: $black !important;
+                border-radius: $baseline !important;
+                padding: 7px 10px 3px !important;
+                font-weight: 400 !important;
+                box-shadow: none !important;
                 text-shadow: none;
 
                 &:hover {
-                    background: $primary;
-                    border-color: $primary;
-                    color: $white;
+                    background: $btn-hover-bg !important;
+                    border-color: $btn-hover-bg !important;
                 }
 
                 &:active,
@@ -127,6 +131,25 @@
                 label {
                     color: $text-color;
                 }
+            }
+        }
+    }
+
+    .problem-browser {
+
+        .btn {
+            border-color: $btn-bg;
+            color: $black;
+            border-radius: $baseline;
+            padding: 7px 10px 3px;
+            font-weight: 400;
+            box-shadow: none;
+            text-shadow: none;
+
+            &:hover,
+            &:focus {
+                background: $btn-hover-bg;
+                border-color: $btn-hover-bg;
             }
         }
     }

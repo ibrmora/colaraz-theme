@@ -274,14 +274,12 @@
         .search-opener {
             background: none !important;
             border: 0;
-            padding: 2px 8px 0;
+            padding: 2px 2px 0;
             box-shadow: none;
             text-shadow: none;
         }
 
         &.active {
-            background: $gray-lightest !important;
-            border-radius: $border-radius $border-radius 0 0;
             z-index: 1;
 
             .forum-search {
