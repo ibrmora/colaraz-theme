@@ -274,7 +274,7 @@
         .search-opener {
             background: none !important;
             border: 0;
-            padding: 2px 2px 0;
+            padding: 6px 2px 0;
             box-shadow: none;
             text-shadow: none;
         }
@@ -362,15 +362,18 @@
         color: $black;
         background: $btn-bg;
         border-color: $btn-bg;
-        padding: 7px 10px 4px;
+        padding: 9px 10px 4px;
         font-size: 13px;
+        height: 34px;
 
         &:hover {
+            color: $black;
             background: $btn-hover-bg;
             border-color: $btn-hover-bg;
         }
 
         &:focus {
+            color: $black;
             background: $btn-hover-bg;
             border-color: $btn-hover-bg;
             box-shadow: 0 0 0 2px rgba($btn-hover-bg, 10%);

@@ -360,15 +360,15 @@
               </div>
               <span class="progress-result">${profile_strength_title}</span>
             </div>
-          </div>
-          <div class="side-widget side-nav">
-            <ul>
-              <li ${'class="active"' if request.path == reverse('dashboard') else ''}><a href="${reverse('dashboard')}">Courses</a></li>
-              <li  ${'class="active"' if request.path == marketing_link('COURSES') else ''}><a href="${marketing_link('COURSES')}">Discover New</a></li>
-              % if user.is_staff:
-                <li><a href="//${configuration_helpers.get_value('CMS_BASE')}">Studio</a></li>
-              % endif
-            </ul>
+            <div class="side-nav">
+                <ul>
+                  <li ${'class="active"' if request.path == reverse('dashboard') else ''}><a href="${reverse('dashboard')}">Courses</a></li>
+                  <li  ${'class="active"' if request.path == marketing_link('COURSES') else ''}><a href="${marketing_link('COURSES')}">Discover New</a></li>
+                  % if user.is_staff:
+                    <li><a href="//${configuration_helpers.get_value('CMS_BASE')}">Studio</a></li>
+                  % endif
+                </ul>
+            </div>
           </div>
 
           % if display_sidebar_on_dashboard:

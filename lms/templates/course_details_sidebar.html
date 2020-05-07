@@ -30,10 +30,6 @@ from student.models import CourseAccessRole
                 % endif
             </li>
             <li>
-                <strong class="title">Duration</strong>
-                <p>2 hours</p>
-            </li>
-            <li>
                 <strong class="title">Language</strong>
                 % for language in settings.LANGUAGES:
                     % if course.language == language[0]:
