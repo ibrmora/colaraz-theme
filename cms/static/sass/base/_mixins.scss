@@ -93,3 +93,17 @@
         color: $color;
     }
 }
+
+// box @include box(20px);
+@mixin box($height, $width: $height) {
+    height: $height;
+    width: $width;
+}
+
+// gradient @include gradient(right, $blue 0%, $orange 100%);
+@mixin gradient($direction, $list...) { 
+    background: -webkit-linear-gradient($direction, $list);
+    background: -moz-linear-gradient($direction, $list);
+    background: -o-linear-gradient($direction, $list);
+    background: linear-gradient($direction, $list);  
+}
