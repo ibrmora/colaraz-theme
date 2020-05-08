@@ -369,7 +369,7 @@
                   % endif
 
                   % if user.is_staff or user.courseaccessrole_set.filter(role='role_manager').exists():
-                    <li><a href="//${reverse('colaraz_features:course-access-roles-list')}">Course Access Roles</a></li>
+                    <li><a href="${reverse('colaraz_features:course-access-roles-list')}">Course Access Roles</a></li>
                   % endif
                 </ul>
             </div>
