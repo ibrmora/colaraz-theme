@@ -1,0 +1,62 @@
+// ====================
+// Open edX: CMS footer
+// ====================
+.wrapper-footer {
+    // footer variables
+    $padding-footer: 15px;
+    padding: 0 $padding-footer;
+    box-shadow: none;
+    border: 0;
+    margin: 0;
+    background: $footer-bg;
+    border-top: 1px solid $primary;
+
+    footer {
+        width: auto;
+
+        &.primary {
+            max-width: none;
+            color: $color__gray-light;
+
+            .colophon {
+                width: auto;
+                float: none;
+                margin: 0;
+            }
+        }
+
+        .copyright-area,
+        .footer-content-primary {
+            max-width: $container-default;
+            margin: 0 auto;
+        }
+
+        .copyright-area {
+            border-top: 1px solid rgba(255, 255, 255, .15);
+            display: flex;
+            flex-wrap: wrap;
+            padding: 34px 0 41px;
+            @include text-align(left);
+
+            .copyright {
+                text-align: center;
+                display: inline-block;
+                padding-top: 7px;
+                font-size: 14px;
+                flex: 1 1 auto;
+                color: $color__gray-light;
+                line-height: normal;
+                margin: 0;
+            }
+        }
+    }
+}
+
+.wrapper-sock {
+    margin-top: auto;
+    border: 0;
+
+    .wrapper-inner {
+        background: $gray-lightest;
+    }
+}

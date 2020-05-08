@@ -1,0 +1,30 @@
+.wrapper {
+
+    #content,
+    .primary,
+    .header-navigations .container {
+        max-width: $container-default;
+        box-sizing: border-box;
+        margin: 0 auto;
+    }
+
+    &-mast,
+    &-content {
+        background: $white;
+    }
+
+    #content {
+        padding: 0 $baseline*.75;
+    }
+
+    &-mast {
+        margin: 0;
+        padding-top: $baseline;
+        border-radius: $baseline*.5 $baseline*.5 0 0;
+    }
+
+    &-content {
+        padding-bottom: $baseline;
+        border-radius: 0 0 $baseline*.5 $baseline*.5;
+    }
+}

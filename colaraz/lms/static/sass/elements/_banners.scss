@@ -1,0 +1,23 @@
+.page-banner {
+    max-width: none;
+    width: 100%;
+
+    .user-messages {
+        margin: 0;
+
+        .user-messages-ul {
+            margin: 0;
+
+            li {
+                margin: 0;
+
+                .alert {
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0;
+                    position: $baseline*0.75;
+                }
+            }
+        }
+    }
+}

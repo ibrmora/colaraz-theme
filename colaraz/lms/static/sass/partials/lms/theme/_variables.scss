@@ -1,0 +1,79 @@
+//
+// Theme colors
+//
+// Note: define colors needed by your theme first
+
+// Make your theme's base color as primary color
+$secondary:             #A6C854;
+$primary:               #91B845;
+$primary-dark:          darken($primary, 10%);
+
+// Overrides variables
+$body-bg:               #282828;
+$black:                 #000;
+$text-color:            #4C4C4C;
+$footer-bg:             #121212;
+
+// ------------------------------
+// THEME's variables
+// ------------------------------
+$gray-darker:           #151515;
+$gray-dark:             #333333;
+$gray-mid:              #454545;
+$gray-mid-border:       #E4E4E4;
+$gray:                  #717171;
+$gray-light:            #848484;
+$gray-lighter:          #CCC;
+$gray-lightest:         #F2F2F2;
+$blue-dark:             #126F9A;
+$orange-color:          #FFB600;
+$graphite:              #676767;
+
+$warning-color:         #E6BC49;
+$success-color:         #28A745;
+$alert-color:           #F00;
+
+// Social media
+$facebook-color:        #3B5998;
+$twitter-color:         #00ACED;
+$linkedin-color:        #007BB5;
+$instagram-color:       #517FA4;
+$dribbble-color:        #EA4C89;
+$pinterest-color:       #CB2027;
+$google-plus-color:     #DD4B39;
+$youtube-color:         #B00;
+$color__gray-smoke:     #F3F4F6;
+$color__gray-light:     #AAA;
+
+$btn-bg:                #BCCB5A;
+$btn-hover-bg:          #A6C854;
+
+// These variable names are being used in some buttons, so just replace the value not variable name
+$uxpl-blue-hover-active: $primary-dark; //Dashboard links
+
+
+$blue:                  $primary;
+$m-blue-d1:             $primary;
+$m-blue-d3:             $primary;
+$m-blue-d5:             $primary;
+$m-blue-d6:             $primary-dark;
+$m-blue-l1:             $primary-dark;
+
+$link-color:            $primary;
+
+$main-content-bg:       #FFF;
+
+// Font family
+$font-family-serif: Candara, 'Open Sans', sans-serif;
+$font-family-sans-serif: Candara, 'Open Sans', sans-serif;
+
+// Initialize the Open edX Bootstrap theme
+@import 'edx-bootstrap/sass/open-edx/theme';
+
+// Fonts
+$heading-font:          $font-family-serif;
+
+// Misc.
+$path-to-s3-assets:     'https://edly-edx-theme-files.s3.amazonaws.com';
+$border-radius:         3px;
+$container-default:     1170px;

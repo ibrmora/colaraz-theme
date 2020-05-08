@@ -1,0 +1,303 @@
+.discussion-board,
+.content-wrapper .container > div {
+    border-color: $gray-mid-border !important;
+    box-shadow: none;
+}
+
+.content-wrapper {
+
+    .course-tabs {
+        margin-top: 0;
+        background: $gray-mid-border;
+        border-radius: $baseline*0.5 $baseline*0.5 0 0;
+    }
+
+    .page-content,
+    .page-header {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .staff-modal {
+        margin-left: -40% !important;
+    }
+}
+
+.view-in-course {
+
+    .container {
+        max-width: $container-default;
+    }
+}
+
+.course-message {
+    @include padding-left(15px);
+}
+
+.wrapper-preview-menu {
+
+    .preview-menu {
+
+        label,
+        .action-preview-select {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: normal;
+            @include margin-right(5px);
+            @include media-up(md) {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+.navbar,
+.wiki,
+.progress,
+.wrapper-course-material,
+.courseware.wrapper-course-material,
+.instructor {
+    max-width: $container-default;
+    @include margin($baseline, auto, 0, auto);
+
+    &.course-tabs {
+        overflow-x: scroll !important;
+        @include media-up(sm) {
+            overflow-x: hidden !important;
+        }
+    }
+
+    .navbar-nav,
+    .course-tabs {
+        @include margin-left(0);
+
+        .nav-item,
+        .tab {
+            margin-bottom: 0;
+
+            a,
+            .nav-link {
+                border-bottom: 0;
+                font-size: 13px !important;
+                color: $gray !important;
+                position: relative;
+                padding: 13px 15px;
+                border-bottom: 0 !important;
+                @include media-up(md) {
+                    font-size: 16px !important;
+                }
+
+                &:before {
+                    position: absolute;
+                    content: ".";
+                    left: -2px;
+                    top: 13px;
+                    color: $gray-mid;
+                }
+
+                &:hover {
+                    color: $gray-mid !important;
+                }
+
+                &.active {
+                    font-weight: 700;
+                    color: $gray-mid !important;
+                    pointer-events: none;
+                }
+            }
+
+            &.active {
+
+                a,
+                .nav-link {
+                    font-weight: 700;
+                    color: $gray-mid !important;
+                    pointer-events: none;
+                }
+            }
+
+            &:first-child {
+
+                a,
+                .nav-link {
+
+                    &:before {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.courseware {
+
+    .wrapper-course-material {
+        margin-top: 0 !important;
+    }
+}
+
+.course-view {
+    padding: 0 !important;
+    margin-bottom: $baseline*3 !important;
+
+    .page-header {
+        background: $gray-lightest;
+        border: none;
+        margin-bottom: $baseline*0.5;
+        padding-left: 15px;
+        padding-right: 15px;
+
+        .page-title {
+            margin: 0;
+        }
+    }
+
+    .course-outline {
+
+        &#main {
+            @include media-down(sm) {
+                padding: 0;
+            }
+        }
+
+        #expand-collapse-outline-all-button {
+            background-color: $white;
+            border-color: $primary;
+            border-radius: $baseline;
+            color: $primary;
+            font-size: 13px;
+            position: relative;
+            z-index: 10;
+            height: 29px;
+            @include float(right);
+            padding: 5px 10px 3px;
+
+            &:hover {
+                background: $primary;
+                color: $white;
+            }
+        }
+
+        .block-tree {
+
+            button.accordion-trigger, button.prerequisite-button {
+                @include text-align(left);
+                @include padding-left(2px);
+
+                .fa {
+                    @include rtl {
+
+                        &:before { content: "\f053"; }
+                    }
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            .section {
+                margin: 0;
+
+                ol.outline-item {
+                    margin-bottom: 0;
+
+                    .subsection {
+                        @include margin(0, 0, 0, 35px);
+
+                        .subsection-title {
+                            @include margin-left($baseline - 2);
+                        }
+
+                        .subsection-text {
+
+                            .details {
+                                @include margin-left(34px);
+                            }
+                        }
+
+                        .vertical {
+                            margin-bottom: 0;
+                            @include margin-left(16px);
+
+                            a.outline-item {
+                                @include margin(0, 0, 0, $baseline);
+
+                                &:hover {
+                                    text-decoration: none !important;
+                                }
+                            }
+
+                            .vertical-details {
+                                @include float(left);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    a:not(.btn) {
+        color: $primary;
+    }
+
+    .btn-primary {
+        background: $btn-bg !important;
+        border-color: $btn-bg !important;
+        border-radius: $baseline;
+        color: $black !important;
+        font-size: 13px;
+        font-weight: 400;
+        height: auto;
+        padding: 7px 15px 3px;
+
+        &:hover {
+            background: $btn-hover-bg !important;
+            border-color: $btn-hover-bg !important;
+        }
+    }
+}
+
+.sequence-nav {
+
+    .sequence-list-wrapper {
+
+        ol,
+        ul {
+
+            li {
+                margin: 0;
+            }
+        }
+    }
+}
+
+.wrapper-problem-response {
+
+    .base_image_container {
+
+        > div {
+            width: auto !important;
+        }
+    }
+}
+
+#headerDiv {
+
+    #titleText {
+        line-height: 2.4;
+    }
+
+    a {
+        @include float(right);
+
+        &:hover {
+            color: darken($primary, 5%) !important;
+        }
+    }
+}

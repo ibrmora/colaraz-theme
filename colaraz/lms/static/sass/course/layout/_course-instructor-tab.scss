@@ -1,0 +1,156 @@
+.instructor-dashboard-wrapper-2 {
+
+    .instructor-dashboard-content-2 {
+
+        .instructor-nav {
+            border-bottom: 2px solid $gray-lightest;
+
+            .nav-item {
+                margin-bottom: -2px;
+
+                .btn-link {
+                    color: $gray-mid;
+                    font-weight: normal;
+                    border-bottom: 2px solid transparent;
+
+                    &:hover {
+                        color: $primary;
+                        border-color: transparent;
+                        border-width: 2px;
+                        text-decoration: none !important;
+                    }
+
+                    &:focus {
+                        outline: none;
+                        text-decoration: none !important;
+                    }
+
+                    &.active-section {
+                        border-width: 2px;
+                        border-color: $primary;
+                        color: $primary;
+                        pointer-events: none;
+                    }
+                }
+            }
+        }
+
+        .idash-section {
+
+            h3 {
+                margin-bottom: $baseline;
+            }
+
+            select {
+                @include media-up(sm) {
+                    min-width: 200px;
+                    height: 34px;
+                }
+            }
+
+            .action-primary,
+            input[type="button"] {
+                background: $btn-bg !important;
+                border-color: $btn-bg !important;
+                color: $black !important;
+                border-radius: $baseline !important;
+                padding: 7px 10px 3px !important;
+                font-weight: 400 !important;
+                box-shadow: none !important;
+                text-shadow: none;
+
+                &:hover {
+                    background: $btn-hover-bg !important;
+                    border-color: $btn-hover-bg !important;
+                }
+
+                &:active,
+                &:focus {
+                    outline: none;
+                    box-shadow: none !important;
+                }
+            }
+
+            &#course_info {
+
+                .enrollment-wrapper {
+
+                    table {
+                        @include media-up(sm) {
+                            min-width: 400px;
+                        }
+
+                        caption {
+                            border-bottom: 1px solid $gray-light;
+                            padding: $baseline*0.5 0;
+                            @include text-align(left);
+                        }
+
+                        tr {
+
+                            th,
+                            td {
+                                padding: $baseline*0.5 0;
+                            }
+
+                            th {
+                                font-weight: 600;
+                            }
+
+                            &:last-child {
+                                border-top: 1px solid $gray-mid !important;
+                                border-bottom: 1px solid $gray-mid !important;
+                            }
+                        }
+                    }
+                }
+
+                .basic-wrapper {
+
+                    .list-input {
+
+                        li {
+
+                            label {
+                                display: inline-block;
+                                @include media-up(sm) {
+                                    min-width: 200px;
+                                }
+                            }
+
+                            b {
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+            }
+
+            fieldset {
+
+                label {
+                    color: $text-color;
+                }
+            }
+        }
+    }
+
+    .problem-browser {
+
+        .btn {
+            border-color: $btn-bg;
+            color: $black;
+            border-radius: $baseline;
+            padding: 7px 10px 3px;
+            font-weight: 400;
+            box-shadow: none;
+            text-shadow: none;
+
+            &:hover,
+            &:focus {
+                background: $btn-hover-bg;
+                border-color: $btn-hover-bg;
+            }
+        }
+    }
+}

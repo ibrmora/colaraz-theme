@@ -1,0 +1,34 @@
+## mako
+<%namespace name='static' file='static_content.html'/>
+<%!
+from django.urls import reverse
+from django.utils.translation import ugettext as _
+from django.conf import settings
+
+from datetime import datetime
+import pytz
+
+from openedx.core.djangoapps.lang_pref.api import footer_language_selector_is_enabled
+%>
+
+<div class="wrapper wrapper-footer">
+
+  <footer>
+
+    <div class="grid-container">
+      <div class="copyright-area">
+        <p class="copyright">&copy; ${datetime.now(pytz.timezone(settings.TIME_ZONE)).year} ${_("Colaraz. All Rights Reserved")}</p>
+      </div>
+
+      ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
+      <!-- <p class="copyright">
+        ## Translators: 'EdX', 'edX', and 'Open edX' are trademarks of 'edX Inc.'. Please do not translate any of these trademarks and company names.
+        ${_("EdX, Open edX, and the edX and Open edX logos are registered trademarks or trademarks of {link_start}edX Inc.{link_end}").format(
+            link_start=u"<a href='https://www.edx.org/'>",
+            link_end=u"</a>"
+        )}
+      </p> -->
+    </div>
+  </footer>
+
+</div>

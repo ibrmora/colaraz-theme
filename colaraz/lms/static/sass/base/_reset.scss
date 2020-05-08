@@ -1,0 +1,168 @@
+// ====================
+// LMS - Base
+// LMS - Fonts
+// ====================
+
+// ====================
+// Candara Fonts from https://www.onlinewebfonts.com
+// https://www.onlinewebfonts.com/download/e662339992c4abf5b43f537391bd3169
+// ====================
+
+@font-face {
+    font-family: "Candara";
+    src: url("//db.onlinewebfonts.com/t/9251858194f4539f65c2c3bab3d8e9e7.eot");
+    src: url("//db.onlinewebfonts.com/t/9251858194f4539f65c2c3bab3d8e9e7.eot?#iefix") format("embedded-opentype"),
+         url("//db.onlinewebfonts.com/t/9251858194f4539f65c2c3bab3d8e9e7.woff2") format("woff2"),
+         url("//db.onlinewebfonts.com/t/9251858194f4539f65c2c3bab3d8e9e7.woff") format("woff"),
+         url("//db.onlinewebfonts.com/t/9251858194f4539f65c2c3bab3d8e9e7.ttf") format("truetype"),
+         url("//db.onlinewebfonts.com/t/9251858194f4539f65c2c3bab3d8e9e7.svg#Candara") format("svg");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Candara";
+    src: url("//db.onlinewebfonts.com/t/702d8433e65d57e2612d01f1db078242.eot");
+    src: url("//db.onlinewebfonts.com/t/702d8433e65d57e2612d01f1db078242.eot?#iefix") format("embedded-opentype"),
+         url("//db.onlinewebfonts.com/t/702d8433e65d57e2612d01f1db078242.woff2") format("woff2"),
+         url("//db.onlinewebfonts.com/t/702d8433e65d57e2612d01f1db078242.woff") format("woff"),
+         url("//db.onlinewebfonts.com/t/702d8433e65d57e2612d01f1db078242.ttf") format("truetype"),
+         url("//db.onlinewebfonts.com/t/702d8433e65d57e2612d01f1db078242.svg#Candara") format("svg");
+    font-style: normal;
+    font-weight: 700;
+}
+
+html,
+body {
+    overflow: auto;
+    height: 100%;
+    -webkit-font-smoothing: unset;
+    -moz-osx-font-smoothing: unset;
+
+    // Sticky footer rules
+    .window-wrap {
+        display: flex;
+        min-height: 100%;
+        flex-direction: column;
+
+        .content-wrapper {
+            flex: 1;
+            margin: 0 auto;
+            @include padding-left(0);
+            @include padding-right(0);
+        }
+    }
+}
+
+html {
+    overflow: auto !important;
+}
+
+#main,
+.container,
+.course-tabs,
+.wrapper-preview-menu .preview-menu,
+.content-wrapper .page-content-container {
+    @include margin-left(auto);
+    @include margin-right(auto);
+    @include padding-left( ($baseline*0.75) );
+    @include padding-right( ($baseline*0.75) );
+    max-width: $container-default;
+    width: 100%;
+}
+
+body {
+    overflow: initial !important;
+    background: $body-bg;
+    min-width: 320px;
+    font-family: $font-family-sans-serif !important;
+
+    &.view-passwordreset,
+    &.login-register-view {
+        background: $gray-lightest;
+
+        &:before { // Hack, background appear
+            margin: auto;
+            z-index: -111;
+            top: 0;
+            @include right(0);
+            position: fixed;
+            @include left(0);
+            content: '';
+            bottom: 0;
+            background: $gray-lightest;
+        }
+    }
+
+    &.view-in-course {
+
+        .content-wrapper {
+            max-width: $container-default;
+            padding: 0;
+
+            .container {
+                @include padding-left(0);
+                @include padding-right(0);
+                max-width: $container-default;
+            }
+        }
+    }
+
+    &.view-wiki,
+    &.view-progress {
+
+        .container {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        #main {
+            @include padding-left(0);
+            @include padding-right(0);
+        }
+    }
+}
+
+.content-wrapper {
+    padding: 0;
+    margin: 0 auto;
+
+    .page-content {
+        padding-bottom: $baseline*1.5;
+    }
+
+    .page-content-container {
+        background: $white;
+        border-top: 0;
+    }
+
+    .error-page &,
+    .view-passwordreset &,
+    .login-register-view & {
+        background: transparent !important;
+    }
+
+    .page-header {
+        border-top: 0;
+    }
+}
+
+#main {
+
+    .view-profile & {
+        max-width: none;
+        padding: 0;
+    }
+}
+
+// Change auto complete styles in WebKit
+input,
+select,
+textarea {
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+        transition: background-color 5000s ease-in-out 0s;
+    }
+}

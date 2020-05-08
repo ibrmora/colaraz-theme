@@ -1,0 +1,62 @@
+// ====================
+// Open edX: LMS footer
+// ====================
+.wrapper-footer {
+    margin-top: 0;
+    $padding-footer: 15px;
+    border-color: $primary;
+    padding: 0 $padding-footer !important;
+    box-shadow: none !important;
+    background: $footer-bg !important;
+
+    div & {
+        border-color: $primary;
+    }
+
+    footer {
+        width: auto !important;
+
+        .grid-container {
+            display: block;
+            padding: 20px 0 24px;
+            font-size: 14px;
+            @include clearfix;
+            @include media-up(sm) {
+                padding: 42px 0;
+            }
+        }
+
+        .copyright-area {
+            color: $color__gray-light;
+            text-align: center;
+
+            a {
+                font-size: 13px;
+                color: $white !important;
+
+                &:hover,
+                &:focus {
+                    color: $primary !important;
+                }
+            }
+
+            p {
+                margin: 0;
+                color: $color__gray-light;
+                text-align: center;
+            }
+        }
+
+        a {
+            color: $color__gray-light;
+
+            &:visited { color: $color__gray-light; }
+
+            &:focus,
+            &:hover {
+                text-decoration: none !important;
+                color: $primary !important;
+            }
+        }
+    }
+}
