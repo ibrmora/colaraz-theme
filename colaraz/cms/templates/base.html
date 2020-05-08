@@ -72,6 +72,7 @@ from openedx.core.release import RELEASE_LINE
     <%static:css group='style-vendor'/>
     <%static:css group='style-vendor-tinymce-content'/>
     <%static:css group='style-vendor-tinymce-skin'/>
+    <link rel="shortcut icon" type="image/x-icon" href="${static.url('images/favicon.ico')}">
 
     % if '/' in self.attr.main_css:
         % if get_language_bidi():
