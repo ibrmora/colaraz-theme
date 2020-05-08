@@ -13,11 +13,11 @@ $primary:               $theme-green;
 $body-bg:               transparent;
 $black:                 #000;
 $white:                 #FFF;
-$text-color:            #121212;
+$text-color:            #4C4C4C;
 
 // Font family
-$font-family-serif: 'Open Sans', sans-serif;
-$font-family-sans-serif: 'Open Sans', sans-serif;
+$font-family-serif: Candara, 'Open Sans', sans-serif;
+$font-family-sans-serif: Candara, 'Open Sans', sans-serif;
 
 // ------------------------------
 // THEME's variables
@@ -25,10 +25,15 @@ $font-family-sans-serif: 'Open Sans', sans-serif;
 $gray-darker:           #2D3235;
 $gray-dark:             #333A3F;
 $gray-dark2:            #222;
+$gray-dark3:            #121212;
 $gray-mid:              #454545;
+$gray-mid-border:       #E4E4E4;
+$gray-light:            #CCC;
 $gray-lighter:          #CCC;
 $gray-lightest:         #F2F2F2;
 $blue-dark:             #126F9A;
+$body-bg:               #282828;
+$alert-color:           #F00;
 
 // Social media
 $facebook-color:        #3B5998;
@@ -41,9 +46,12 @@ $google-plus-color:     #DD4B39;
 $youtube-color:         #B00;
 $color__gray-smoke:     #F3F4F6;
 $color__gray-light:     #A3A3A3;
+$footer-bg:             $gray-dark3;
+$btn-bg:                #BCCB5A;
+$btn-hover-bg:          #A6C854;
 
 // Fonts
-$heading-font:          'Roboto Slab', serif;
+$heading-font:          $font-family-serif;
 
 // Make your theme's base color as primary color
 $baseline:              20px;

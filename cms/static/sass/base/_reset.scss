@@ -1,6 +1,37 @@
 // ====================
-// LMS - Base
+// CMS - Base
+// CMS - Fonts
 // ====================
+
+// ====================
+// Candara Fonts from https://www.onlinewebfonts.com
+// https://www.onlinewebfonts.com/download/e662339992c4abf5b43f537391bd3169
+// ====================
+
+@font-face {
+    font-family: "Candara";
+    src: url("//db.onlinewebfonts.com/t/9251858194f4539f65c2c3bab3d8e9e7.eot");
+    src: url("//db.onlinewebfonts.com/t/9251858194f4539f65c2c3bab3d8e9e7.eot?#iefix") format("embedded-opentype"),
+         url("//db.onlinewebfonts.com/t/9251858194f4539f65c2c3bab3d8e9e7.woff2") format("woff2"),
+         url("//db.onlinewebfonts.com/t/9251858194f4539f65c2c3bab3d8e9e7.woff") format("woff"),
+         url("//db.onlinewebfonts.com/t/9251858194f4539f65c2c3bab3d8e9e7.ttf") format("truetype"),
+         url("//db.onlinewebfonts.com/t/9251858194f4539f65c2c3bab3d8e9e7.svg#Candara") format("svg");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Candara";
+    src: url("//db.onlinewebfonts.com/t/702d8433e65d57e2612d01f1db078242.eot");
+    src: url("//db.onlinewebfonts.com/t/702d8433e65d57e2612d01f1db078242.eot?#iefix") format("embedded-opentype"),
+         url("//db.onlinewebfonts.com/t/702d8433e65d57e2612d01f1db078242.woff2") format("woff2"),
+         url("//db.onlinewebfonts.com/t/702d8433e65d57e2612d01f1db078242.woff") format("woff"),
+         url("//db.onlinewebfonts.com/t/702d8433e65d57e2612d01f1db078242.ttf") format("truetype"),
+         url("//db.onlinewebfonts.com/t/702d8433e65d57e2612d01f1db078242.svg#Candara") format("svg");
+    font-style: normal;
+    font-weight: 700;
+}
+
 html,
 body {
     overflow: auto;
@@ -10,8 +41,8 @@ body {
     -moz-osx-font-smoothing: unset;
 }
 
-.wrapper-content {
-    padding-bottom: $baseline * 3;
+#main {
+    padding: $baseline * 2 0;
 }
 
 .wrapper-view {
