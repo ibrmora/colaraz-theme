@@ -49,7 +49,7 @@
     }
 
     .company-name {
-        @include ellipsis(400px);
+        @include ellipsis(calc(100% - 220px));
         font-size: 30px;
         vertical-align: top;
         line-height: 1;
@@ -577,6 +577,39 @@
 
 .secondary-navigation {
     font-size: 14px;
+    @include clearfix;
+
+    .nav-course {
+        float: right;
+        width: auto !important;
+
+        &.nav-dd {
+
+            .wrapper-nav-sub {
+                left: auto;
+                right: 0;
+            }
+
+            .nav-item {
+                margin-left: 10px;
+
+                .nav-item {
+                    margin-left: 0;
+                }
+            }
+        }
+
+        ul {
+
+            li {
+                float: none;
+            }
+        }
+    }
+
+    > ul {
+        float: left;
+    }
 
     ul {
         @include clearfix;

@@ -23,6 +23,8 @@
             padding-bottom: 0;
             max-width: $container-default; // Override mehtod couldn't find to update through bootstrap for discussion
             @include clearfix;
+            padding-left: $baseline * .75;
+            padding-right: $baseline * .75;
         }
     }
 
