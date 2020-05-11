@@ -198,7 +198,10 @@
     </div>
   </header>
     % if user.is_authenticated:
-    <% site_identifier = user.colaraz_profile.site_identifier %>
+      <% 
+        site_identifier = user.colaraz_profile.site_identifier 
+        role_based_urls = user.colaraz_profile.role_based_urls
+      %>
     <div class="header-navigations">
         <nav class="primary-navigation">
             <div class="container">
@@ -212,12 +215,14 @@
                     <span class="icon-bar bottom-bar"></span>
                 </button>
                 <ul>
-                    <li><a href="#"><span class="ecosystem-link"></span>Ecosystem</a></li>
-                    <li><a href="//${'{}.{}'.format(site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('RECRUITMENT_URL'))}"><span class="recruiting-link"></span>Recruiting</a></li>
-                    <li><a href="//${'{}.{}'.format(site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('MANAGEMENT_URL'))}"><span class="projects-link"></span>Management</a></li>
-                    <li><a href="#"><span class="talent-link"></span>Performance</a></li>
-                    <li class="active"><a href="//${'{}.{}'.format(site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('DEVELOPMENT_URL'))}"><span class="development-link"></span>Development</a></li>
-                    <li><a href="//${'{}.{}'.format(site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('SETTINGS_URL'))}"><span class="settings-link"></span>Settings</a></li>
+                  <li><a href="//${'{}.{}/cvsocial/activity?{}'.format(site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('ecosystem'))}"><span class="ecosystem-link"></span>Ecosystem</a></li>
+                    <li><a href="//${'{}.{}/{}'.format(site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('recruiting'))}"><span class="recruiting-link"></span>Recruiting</a></li>
+                    <li><a href="//${'{}.{}/{}'.format(site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('management'))}"><span class="projects-link"></span>Management</a></li>
+                    
+                    % if configuration_helpers.get_value('COMPANY_TYPE') == 'enterprise plus':
+                        <li><a href="//${'{}.{}/{}'.format(site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('performance'))}"><span class="talent-link"></span>Performance</a></li>
+                    % endif
+                    <li class="active"><a href="//${'{}.{}/{}'.format(site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('development'))}"><span class="development-link"></span>Development</a></li>
                 </ul>
             </div>
         </nav>

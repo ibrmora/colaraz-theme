@@ -49,7 +49,7 @@
     <div class="mobile-nav-item dropdown-item dropdown-nav-item hidden"><a href="${reverse('learner_profile', kwargs={'username': username})}" role="menuitem">${_("Profile")}</a></div>
     <div class="mobile-nav-item dropdown-item dropdown-nav-item hidden"><a href="${reverse('account_settings')}" role="menuitem">${_("Account")}</a></div>
     <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="${help_link}">${_("Help")}</a></div>
-    <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="#">${_("Settings")}</a></div>
+    <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="//${'{}.{}/{}'.format(colaraz_profile.site_identifier, settings.COLARAZ_SUB_DOMAIN, colaraz_profile.role_based_urls.get('settings'))}">${_("Settings")}</a></div>
     <div class="mobile-nav-item dropdown-item dropdown-nav-item nav-item-logout"><a href="${reverse('colaraz_features:auth_logout_redirect')}" role="menuitem"><span class="fa fa-sign-out"></span>${_("Logout")}</a></div>
   </div>
 </div>
