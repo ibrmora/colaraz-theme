@@ -10,6 +10,15 @@
   lms_logout_url = configuration_helpers.get_value('LMS_BASE') + reverse('colaraz_features:auth_logout_redirect')
 %>
 
+<% 
+  protocol = getattr(settings, 'COLARAZ_DOMAIN_PROTOCOL', 'http')
+  identifier = user.colaraz_profile.site_identifier 
+  domain = settings.COLARAZ_SUB_DOMAIN
+  user_urls = user.colaraz_profile.role_based_urls
+
+  colaraz_settings_url = '{}://{}.{}/{}'.format(protocol, identifier, domain, user_urls.get('settings')) if user_urls.has_key('settings') else '#'
+%>
+
 % if uses_pattern_library:
 <div class="wrapper-user-menu dropdown-menu-container logged-in js-header-user-menu">
     <h3 class="title menu-title">
@@ -29,6 +38,9 @@
                 <a href="/">${_("{studio_name} Home").format(studio_name=settings.STUDIO_SHORT_NAME)}</a>
               </li>
           </%block>
+          <li class="nav-item item has-block-link">
+            <a class="action" href="${colaraz_settings_url}">${_("Settings")}</a>
+          </li>
           <li class="dropdown-item item has-block-link">
             <a class="action action-signout" href="//${lms_logout_url}">${_("Sign Out")}</a>
           </li>
@@ -53,6 +65,9 @@
           <a href="${reverse('maintenance:maintenance_index')}">${_("Maintenance")}</a>
         </li>
         % endif
+        <li class="nav-item item has-block-link">
+          <a class="action" href="${colaraz_settings_url}">${_("Settings")}</a>
+        </li>
         <li class="nav-item nav-account-signout">
           <a class="action action-signout" href="//${lms_logout_url}">${_("Sign Out")}</a>
         </li>
