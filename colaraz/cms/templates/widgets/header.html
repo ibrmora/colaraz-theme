@@ -201,6 +201,7 @@
       <% 
         site_identifier = user.colaraz_profile.site_identifier 
         role_based_urls = user.colaraz_profile.role_based_urls
+        protocol = getattr(settings, 'COLARAZ_DOMAIN_PROTOCOL', 'http')
       %>
     <div class="header-navigations">
         <nav class="primary-navigation">
@@ -215,14 +216,14 @@
                     <span class="icon-bar bottom-bar"></span>
                 </button>
                 <ul>
-                  <li><a href="//${'{}.{}/cvsocial/activity?{}'.format(site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('ecosystem'))}"><span class="ecosystem-link"></span>Ecosystem</a></li>
-                    <li><a href="//${'{}.{}/{}'.format(site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('recruiting'))}"><span class="recruiting-link"></span>Recruiting</a></li>
-                    <li><a href="//${'{}.{}/{}'.format(site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('management'))}"><span class="projects-link"></span>Management</a></li>
+                  <li><a href="${'{}://{}.{}/cvsocial/activity?{}'.format(protocol, site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('ecosystem'))}"><span class="ecosystem-link"></span>Ecosystem</a></li>
+                    <li><a href="${'{}://{}.{}/{}'.format(protocol, site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('recruiting'))}"><span class="recruiting-link"></span>Recruiting</a></li>
+                    <li><a href="${'{}://{}.{}/{}'.format(protocol, site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('management'))}"><span class="projects-link"></span>Management</a></li>
                     
                     % if configuration_helpers.get_value('COMPANY_TYPE') == 'enterprise plus':
-                        <li><a href="//${'{}.{}/{}'.format(site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('performance'))}"><span class="talent-link"></span>Performance</a></li>
+                        <li><a href="${'{}://{}.{}/{}'.format(protocol, site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('performance'))}"><span class="talent-link"></span>Performance</a></li>
                     % endif
-                    <li class="active"><a href="//${'{}.{}/{}'.format(site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('development'))}"><span class="development-link"></span>Development</a></li>
+                    <li class="active"><a href="${'{}://{}.{}/{}'.format(protocol, site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('development'))}"><span class="development-link"></span>Development</a></li>
                 </ul>
             </div>
         </nav>
@@ -328,9 +329,9 @@
                   % endif
 
                 <ul>
-                    <li><a href="//${'{}.{}'.format(site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('RECOMMENDATIONS_URL'))}">Recommendations</a></li>
-                    <li><a href="//${'{}.{}'.format(site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('MENTORING_URL'))}">Mentoring</a></li>
-                    <li><a href="//${'{}.{}'.format(site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('SCHOLARSHIP_URL'))}">Scholarship</a></li>
+                    <li><a href="${'{}://{}.{}'.format(protocol, site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('RECOMMENDATIONS_URL'))}">Recommendations</a></li>
+                    <li><a href="${'{}://{}.{}'.format(protocol, site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('MENTORING_URL'))}">Mentoring</a></li>
+                    <li><a href="${'{}://{}.{}'.format(protocol, site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('SCHOLARSHIP_URL'))}">Scholarship</a></li>
                     <li class="active"><a href="//${'{}'.format(configuration_helpers.get_value('LMS_BASE'))}">e-Learning</a></li>
                 </ul>
             </div>
