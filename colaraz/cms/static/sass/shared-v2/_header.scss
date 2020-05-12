@@ -14,6 +14,14 @@
         }
     }
 
+    .wrapper-l {
+        width: 80% !important;
+    }
+
+    .wrapper-r {
+        width: 20% !important;
+    }
+
     .branding {
         padding-top: 16px;
         display: none;
@@ -49,7 +57,7 @@
     }
 
     .company-name {
-        @include ellipsis(calc(100% - 220px));
+        @include ellipsis(100%);
         font-size: 30px;
         vertical-align: top;
         line-height: 1;
