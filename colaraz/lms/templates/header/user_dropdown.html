@@ -20,6 +20,7 @@
   username = self.real_user.username
   resume_block = retrieve_last_sitewide_block_completed(username)
   displayname = self.real_user.profile.name
+  protocol = getattr(settings, 'COLARAZ_DOMAIN_PROTOCOL', 'http')
 
   support_link = configuration_helpers.get_value('SUPPORT_SITE_LINK', settings.SUPPORT_SITE_LINK)
   doc_link = get_online_help_info(online_help_token)['doc_url']
@@ -49,7 +50,7 @@
     <div class="mobile-nav-item dropdown-item dropdown-nav-item hidden"><a href="${reverse('learner_profile', kwargs={'username': username})}" role="menuitem">${_("Profile")}</a></div>
     <div class="mobile-nav-item dropdown-item dropdown-nav-item hidden"><a href="${reverse('account_settings')}" role="menuitem">${_("Account")}</a></div>
     <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="${help_link}">${_("Help")}</a></div>
-    <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="//${'{}.{}/{}'.format(colaraz_profile.site_identifier, settings.COLARAZ_SUB_DOMAIN, colaraz_profile.role_based_urls.get('settings'))}">${_("Settings")}</a></div>
+    <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="${'{}://{}.{}/{}'.format(protocol, colaraz_profile.site_identifier, settings.COLARAZ_SUB_DOMAIN, colaraz_profile.role_based_urls.get('settings'))}">${_("Settings")}</a></div>
     <div class="mobile-nav-item dropdown-item dropdown-nav-item nav-item-logout"><a href="${reverse('colaraz_features:auth_logout_redirect')}" role="menuitem"><span class="fa fa-sign-out"></span>${_("Logout")}</a></div>
   </div>
 </div>
