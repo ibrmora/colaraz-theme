@@ -78,9 +78,20 @@ from openedx.features.colaraz_features.models import ColarazUserProfile
     <div class="mobile-menu hidden" aria-label=${_("More Options")} role="menu" id="mobile-menu"></div>
     % if user.is_authenticated:
         <% 
-            site_identifier = user.colaraz_profile.site_identifier 
-            role_based_urls = user.colaraz_profile.role_based_urls
             protocol = getattr(settings, 'COLARAZ_DOMAIN_PROTOCOL', 'http')
+            identifier = user.colaraz_profile.site_identifier 
+            domain = settings.COLARAZ_SUB_DOMAIN
+            user_urls = user.colaraz_profile.role_based_urls
+
+            colaraz_ecosystem_url = '{}://{}.{}/cvsocial/activity?{}'.format(protocol, identifier, domain, user_urls.get('ecosystem')) if user_urls.has_key('ecosystem') else '#'
+            colaraz_recruiting_url = '{}://{}.{}/{}'.format(protocol, identifier, domain, user_urls.get('recruiting')) if user_urls.has_key('recruiting') else '#'
+            colaraz_management_url = '{}://{}.{}/{}'.format(protocol, identifier, domain, user_urls.get('management')) if user_urls.has_key('management') else '#'
+            colaraz_performance_url = '{}://{}.{}/{}'.format(protocol, identifier, domain, user_urls.get('performance')) if user_urls.has_key('performance') else '#'
+            colaraz_development_url = '{}://{}.{}/{}'.format(protocol, identifier, domain, user_urls.get('development')) if user_urls.has_key('development') else '#'
+            colaraz_settings_url = '{}://{}.{}/{}'.format(protocol, identifier, domain, user_urls.get('settings')) if user_urls.has_key('settings') else '#'
+            colaraz_recommendations_url = '{}://{}.{}/{}'.format(protocol, identifier, domain, user_urls.get('recommendations')) if user_urls.has_key('recommendations') else '#'
+            colaraz_mentoring_url = '{}://{}.{}/{}'.format(protocol, identifier, domain, user_urls.get('mentoring')) if user_urls.has_key('mentoring') else '#'
+            colaraz_scholarship_url = '{}://{}.{}/{}'.format(protocol, identifier, domain, user_urls.get('scholarship')) if user_urls.has_key('scholarship') else '#'
         %>
     <div class="header-navigations">
         <nav class="primary-navigation">
@@ -95,14 +106,14 @@ from openedx.features.colaraz_features.models import ColarazUserProfile
                     <span class="icon-bar bottom-bar"></span>
                 </button>
                 <ul>
-                    <li><a href="${'{}://{}.{}/cvsocial/activity?{}'.format(protocol, site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('ecosystem'))}"><span class="ecosystem-link"></span>Ecosystem</a></li>
-                    <li><a href="${'{}://{}.{}/{}'.format(protocol, site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('recruiting'))}"><span class="recruiting-link"></span>Recruiting</a></li>
-                    <li><a href="${'{}://{}.{}/{}'.format(protocol, site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('management'))}"><span class="projects-link"></span>Management</a></li>
+                    <li><a href="${colaraz_ecosystem_url}"><span class="ecosystem-link"></span>Ecosystem</a></li>
+                    <li><a href="${colaraz_recruiting_url}"><span class="recruiting-link"></span>Recruiting</a></li>
+                    <li><a href="${colaraz_management_url}"><span class="projects-link"></span>Management</a></li>
                     
                     % if configuration_helpers.get_value('COMPANY_TYPE') == 'enterprise plus':
-                        <li><a href="${'{}://{}.{}/{}'.format(protocol, site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('performance'))}"><span class="talent-link"></span>Performance</a></li>
+                    <li><a href="${colaraz_performance_url}"><span class="talent-link"></span>Performance</a></li>
                     % endif
-                    <li class="active"><a href="${'{}://{}.{}/{}'.format(protocol, site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('development'))}"><span class="development-link"></span>Development</a></li>
+                    <li class="active"><a href="${colaraz_development_url}"><span class="development-link"></span>Development</a></li>
                 </ul>
             </div>
         </nav>
@@ -115,9 +126,9 @@ from openedx.features.colaraz_features.models import ColarazUserProfile
                     <span class="icon-bar bottom-bar"></span>
                 </button>
                 <ul>
-                    <li><a href="${'{}://{}.{}'.format(protocol, site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('RECOMMENDATIONS_URL'))}">Recommendations</a></li>
-                    <li><a href="${'{}://{}.{}'.format(protocol, site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('MENTORING_URL'))}">Mentoring</a></li>
-                    <li><a href="${'{}://{}.{}'.format(protocol, site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('SCHOLARSHIP_URL'))}">Scholarship</a></li>
+                    <li><a href="${colaraz_recommendations_url}">Recommendations</a></li>
+                    <li><a href="${colaraz_mentoring_url}">Mentoring</a></li>
+                    <li><a href="${colaraz_scholarship_url}">Scholarship</a></li>
                     <li class="active"><a href="//${'{}'.format(configuration_helpers.get_value('LMS_BASE'))}">e-Learning</a></li>
                 </ul>
             </div>

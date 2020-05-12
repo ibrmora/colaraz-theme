@@ -33,6 +33,15 @@
     help_link = doc_link
 %>
 
+<% 
+  protocol = getattr(settings, 'COLARAZ_DOMAIN_PROTOCOL', 'http')
+  identifier = user.colaraz_profile.site_identifier 
+  domain = settings.COLARAZ_SUB_DOMAIN
+  user_urls = user.colaraz_profile.role_based_urls
+
+  colaraz_settings_url = '{}://{}.{}/{}'.format(protocol, identifier, domain, user_urls.get('settings')) if user_urls.has_key('settings') else '#'
+%>
+
 <div class="nav-item hidden-mobile nav-item-dropdown" tabindex="-1">
   <div class="toggle-user-dropdown" role="button" aria-label=${_("Options Menu")} aria-expanded="false" tabindex="0" aria-controls="user-menu">
   <div class="profile-block">
@@ -50,7 +59,7 @@
     <div class="mobile-nav-item dropdown-item dropdown-nav-item hidden"><a href="${reverse('learner_profile', kwargs={'username': username})}" role="menuitem">${_("Profile")}</a></div>
     <div class="mobile-nav-item dropdown-item dropdown-nav-item hidden"><a href="${reverse('account_settings')}" role="menuitem">${_("Account")}</a></div>
     <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="${help_link}">${_("Help")}</a></div>
-    <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="${'{}://{}.{}/{}'.format(protocol, colaraz_profile.site_identifier, settings.COLARAZ_SUB_DOMAIN, colaraz_profile.role_based_urls.get('settings'))}">${_("Settings")}</a></div>
+    <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="${colaraz_settings_url}">${_("Settings")}</a></div>
     <div class="mobile-nav-item dropdown-item dropdown-nav-item nav-item-logout"><a href="${reverse('colaraz_features:auth_logout_redirect')}" role="menuitem"><span class="fa fa-sign-out"></span>${_("Logout")}</a></div>
   </div>
 </div>
