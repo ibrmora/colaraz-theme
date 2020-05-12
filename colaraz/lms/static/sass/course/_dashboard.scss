@@ -14,6 +14,9 @@
         .view-in-course & {
             padding-top: 28px;
             max-width: $container-default; // Override mehtod couldn't find to update through bootstrap for discussion
+            padding-left: $baseline*.75;
+            padding-right: $baseline*.75;
+            flex-grow: 1;
         }
     }
 
@@ -40,6 +43,10 @@
     margin-bottom: $baseline*0.5;
     background: $gray-darker;
     border-radius: $baseline*0.5;
+
+    .progress-bar-striped {
+        background-size: 40px 40px;
+    }
 
     &.side-nav {
         padding: 0;

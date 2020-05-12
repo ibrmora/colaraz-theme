@@ -46,96 +46,6 @@
         </a>
       </h2>
 
-      <nav class="nav-course nav-dd ui-left" aria-label="${_('Course')}">
-        <h2 class="sr">${_("Course Navigation")}</h2>
-        <ol>
-          <li class="nav-item nav-course-courseware">
-            <h3 class="title"><span class="label"><span class="label-prefix sr">${_("Course")} </span>${_("Content")}</span> <span class="icon fa fa-caret-down ui-toggle-dd" aria-hidden="true"></span></h3>
-
-            <div class="wrapper wrapper-nav-sub">
-              <div class="nav-sub">
-                <ul>
-                  <li class="nav-item nav-course-courseware-outline">
-                    <a href="${index_url}">${_("Outline")}</a>
-                  </li>
-                  <li class="nav-item nav-course-courseware-updates">
-                    <a href="${course_info_url}">${_("Updates")}</a>
-                  </li>
-                  <li class="nav-item nav-course-courseware-pages">
-                    <a href="${tabs_url}">${_("Pages")}</a>
-                  </li>
-                  <li class="nav-item nav-course-courseware-uploads">
-                    <a href="${assets_url}">${_("Files & Uploads")}</a>
-                  </li>
-                  <li class="nav-item nav-course-courseware-textbooks">
-                    <a href="${textbooks_url}">${_("Textbooks")}</a>
-                  </li>
-                  % if context_course.video_pipeline_configured:
-                  <li class="nav-item nav-course-courseware-videos">
-                    <a href="${videos_url}">${_("Video Uploads")}</a>
-                  </li>
-                  % endif
-                </ul>
-              </div>
-            </div>
-          </li>
-
-          <li class="nav-item nav-course-settings">
-            <h3 class="title"><span class="label"><span class="label-prefix sr">${_("Course")} </span>${_("Settings")}</span> <span class="icon fa fa-caret-down ui-toggle-dd" aria-hidden="true"></span></h3>
-
-            <div class="wrapper wrapper-nav-sub">
-              <div class="nav-sub">
-                <ul>
-                  <li class="nav-item nav-course-settings-schedule">
-                    <a href="${settings_url}">${_("Schedule & Details")}</a>
-                  </li>
-                  <li class="nav-item nav-course-settings-grading">
-                    <a href="${grading_url}">${_("Grading")}</a>
-                  </li>
-                  <li class="nav-item nav-course-settings-team">
-                    <a href="${course_team_url}">${_("Course Team")}</a>
-                  </li>
-                  <li class="nav-item nav-course-settings-group-configurations">
-                    <a href="${reverse('group_configurations_list_handler', kwargs={'course_key_string': unicode(course_key)})}">${_("Group Configurations")}</a>
-                  </li>
-                  <li class="nav-item nav-course-settings-advanced">
-                    <a href="${advanced_settings_url}">${_("Advanced Settings")}</a>
-                  </li>
-                  % if certificates_url:
-                  <li class="nav-item nav-course-settings-certificates">
-                    <a href="${certificates_url}">${_("Certificates")}</a>
-                  </li>
-                  % endif
-                </ul>
-              </div>
-            </div>
-          </li>
-
-          <li class="nav-item nav-course-tools">
-            <h3 class="title"><span class="label">${_("Tools")}</span> <span class="icon fa fa-caret-down ui-toggle-dd" aria-hidden="true"></span></h3>
-            <div class="wrapper wrapper-nav-sub">
-              <div class="nav-sub">
-                <ul>
-                  <li class="nav-item nav-course-tools-import">
-                    <a href="${import_url}">${_("Import")}</a>
-                  </li>
-                  <li class="nav-item nav-course-tools-export">
-                    <a href="${export_url}">${_("Export")}</a>
-                  </li>
-                  % if settings.FEATURES.get('ENABLE_EXPORT_GIT') and context_course.giturl:
-                  <li class="nav-item nav-course-tools-export-git">
-                    <a href="${reverse('export_git', kwargs=dict(course_key_string=unicode(course_key)))}">${_("Export to Git")}</a>
-                  </li>
-                  % endif
-                  <li class="nav-item nav-course-tools-checklists">
-                    <a href="${checklists_url}">${_("Checklists")}</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </li>
-        </ol>
-      </nav>
       % elif context_library:
        <%
             library_key = context_library.location.course_key
@@ -288,7 +198,10 @@
     </div>
   </header>
     % if user.is_authenticated:
-    <% site_identifier = user.colaraz_profile.site_identifier %>
+      <% 
+        site_identifier = user.colaraz_profile.site_identifier 
+        role_based_urls = user.colaraz_profile.role_based_urls
+      %>
     <div class="header-navigations">
         <nav class="primary-navigation">
             <div class="container">
@@ -302,12 +215,14 @@
                     <span class="icon-bar bottom-bar"></span>
                 </button>
                 <ul>
-                    <li><a href="#"><span class="ecosystem-link"></span>Ecosystem</a></li>
-                    <li><a href="//${'{}.{}'.format(site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('RECRUITMENT_URL'))}"><span class="recruiting-link"></span>Recruiting</a></li>
-                    <li><a href="//${'{}.{}'.format(site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('MANAGEMENT_URL'))}"><span class="projects-link"></span>Management</a></li>
-                    <li><a href="#"><span class="talent-link"></span>Performance</a></li>
-                    <li class="active"><a href="//${'{}.{}'.format(site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('DEVELOPMENT_URL'))}"><span class="development-link"></span>Development</a></li>
-                    <li><a href="//${'{}.{}'.format(site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('SETTINGS_URL'))}"><span class="settings-link"></span>Settings</a></li>
+                  <li><a href="//${'{}.{}/cvsocial/activity?{}'.format(site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('ecosystem'))}"><span class="ecosystem-link"></span>Ecosystem</a></li>
+                    <li><a href="//${'{}.{}/{}'.format(site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('recruiting'))}"><span class="recruiting-link"></span>Recruiting</a></li>
+                    <li><a href="//${'{}.{}/{}'.format(site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('management'))}"><span class="projects-link"></span>Management</a></li>
+                    
+                    % if configuration_helpers.get_value('COMPANY_TYPE') == 'enterprise plus':
+                        <li><a href="//${'{}.{}/{}'.format(site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('performance'))}"><span class="talent-link"></span>Performance</a></li>
+                    % endif
+                    <li class="active"><a href="//${'{}.{}/{}'.format(site_identifier, settings.COLARAZ_SUB_DOMAIN, role_based_urls.get('development'))}"><span class="development-link"></span>Development</a></li>
                 </ul>
             </div>
         </nav>
@@ -319,6 +234,99 @@
                     <span class="icon-bar middle-bar"></span>
                     <span class="icon-bar bottom-bar"></span>
                 </button>
+                % if context_course:
+                  <nav class="nav-course nav-dd ui-left" aria-label="${_('Course')}">
+                    <h2 class="sr">${_("Course Navigation")}</h2>
+                    <ol>
+                      <li class="nav-item nav-course-courseware">
+                        <h3 class="title"><span class="label"><span class="label-prefix sr">${_("Course")} </span>${_("Content")}</span> <span class="icon fa fa-caret-down ui-toggle-dd" aria-hidden="true"></span></h3>
+
+                        <div class="wrapper wrapper-nav-sub">
+                          <div class="nav-sub">
+                            <ul>
+                              <li class="nav-item nav-course-courseware-outline">
+                                <a href="${index_url}">${_("Outline")}</a>
+                              </li>
+                              <li class="nav-item nav-course-courseware-updates">
+                                <a href="${course_info_url}">${_("Updates")}</a>
+                              </li>
+                              <li class="nav-item nav-course-courseware-pages">
+                                <a href="${tabs_url}">${_("Pages")}</a>
+                              </li>
+                              <li class="nav-item nav-course-courseware-uploads">
+                                <a href="${assets_url}">${_("Files & Uploads")}</a>
+                              </li>
+                              <li class="nav-item nav-course-courseware-textbooks">
+                                <a href="${textbooks_url}">${_("Textbooks")}</a>
+                              </li>
+                              % if context_course.video_pipeline_configured:
+                              <li class="nav-item nav-course-courseware-videos">
+                                <a href="${videos_url}">${_("Video Uploads")}</a>
+                              </li>
+                              % endif
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li class="nav-item nav-course-settings">
+                        <h3 class="title"><span class="label"><span class="label-prefix sr">${_("Course")} </span>${_("Settings")}</span> <span class="icon fa fa-caret-down ui-toggle-dd" aria-hidden="true"></span></h3>
+
+                        <div class="wrapper wrapper-nav-sub">
+                          <div class="nav-sub">
+                            <ul>
+                              <li class="nav-item nav-course-settings-schedule">
+                                <a href="${settings_url}">${_("Schedule & Details")}</a>
+                              </li>
+                              <li class="nav-item nav-course-settings-grading">
+                                <a href="${grading_url}">${_("Grading")}</a>
+                              </li>
+                              <li class="nav-item nav-course-settings-team">
+                                <a href="${course_team_url}">${_("Course Team")}</a>
+                              </li>
+                              <li class="nav-item nav-course-settings-group-configurations">
+                                <a href="${reverse('group_configurations_list_handler', kwargs={'course_key_string': unicode(course_key)})}">${_("Group Configurations")}</a>
+                              </li>
+                              <li class="nav-item nav-course-settings-advanced">
+                                <a href="${advanced_settings_url}">${_("Advanced Settings")}</a>
+                              </li>
+                              % if certificates_url:
+                              <li class="nav-item nav-course-settings-certificates">
+                                <a href="${certificates_url}">${_("Certificates")}</a>
+                              </li>
+                              % endif
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li class="nav-item nav-course-tools">
+                        <h3 class="title"><span class="label">${_("Tools")}</span> <span class="icon fa fa-caret-down ui-toggle-dd" aria-hidden="true"></span></h3>
+                        <div class="wrapper wrapper-nav-sub">
+                          <div class="nav-sub">
+                            <ul>
+                              <li class="nav-item nav-course-tools-import">
+                                <a href="${import_url}">${_("Import")}</a>
+                              </li>
+                              <li class="nav-item nav-course-tools-export">
+                                <a href="${export_url}">${_("Export")}</a>
+                              </li>
+                              % if settings.FEATURES.get('ENABLE_EXPORT_GIT') and context_course.giturl:
+                              <li class="nav-item nav-course-tools-export-git">
+                                <a href="${reverse('export_git', kwargs=dict(course_key_string=unicode(course_key)))}">${_("Export to Git")}</a>
+                              </li>
+                              % endif
+                              <li class="nav-item nav-course-tools-checklists">
+                                <a href="${checklists_url}">${_("Checklists")}</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                    </ol>
+                  </nav>
+                  % endif
+
                 <ul>
                     <li><a href="//${'{}.{}'.format(site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('RECOMMENDATIONS_URL'))}">Recommendations</a></li>
                     <li><a href="//${'{}.{}'.format(site_identifier, settings.COLARAZ_NAVIGATION_URLS.get('MENTORING_URL'))}">Mentoring</a></li>

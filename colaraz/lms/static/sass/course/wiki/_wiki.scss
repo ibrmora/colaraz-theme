@@ -45,7 +45,7 @@
                     @include margin-right(0);
                     background: $btn-bg;
                     border-radius: $baseline;
-                    padding: 7px 10px 3px !important;
+                    padding: 6px 10px 4px !important;
                     box-shadow: none;
                     font-weight: 400 !important;
                     text-shadow: none;
@@ -229,7 +229,7 @@
 
         a {
             &.btn {
-                padding: 7px 10px 3px !important;
+                padding: 6px 10px 4px !important;
             }
         }
 
@@ -239,7 +239,7 @@
             border-radius: $baseline !important;
             font-size: 13px !important;
             font-weight: 400 !important;
-            padding: 7px 10px 3px !important;
+            padding: 6px 10px 4px !important;
             color: $black;
             text-shadow: none !important;
 

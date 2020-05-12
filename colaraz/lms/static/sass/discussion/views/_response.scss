@@ -282,6 +282,16 @@
         &.active {
             z-index: 1;
 
+            .search-opener {
+
+                .fa-search {
+
+                    &:before {
+                        content: '\f00d';
+                    }
+                }
+            }
+
             .forum-search {
                 display: block;
             }
