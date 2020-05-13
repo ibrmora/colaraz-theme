@@ -91,7 +91,7 @@
             a {
                 color: $white;
                 display: block;
-                padding: 9px 12px 7px;
+                padding: 9px 10px 7px;
 
                 &:hover,
                 &:focus {
@@ -160,6 +160,10 @@
 
         &.fa-globe {
             font-size: 20px;
+        }
+
+        &.fa-bell {
+            vertical-align: bottom;
         }
     }
 
