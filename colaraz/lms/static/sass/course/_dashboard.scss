@@ -490,7 +490,7 @@
                                             border-radius: $border-radius*5;
                                             color: $black;
                                             font-size: 14px;
-                                            padding: 7px 15px 2px;
+                                            padding: 5px 15px 3px;
                                             line-height: $baseline;
                                             @include float(left);
                                             @include media-down(xs) {
