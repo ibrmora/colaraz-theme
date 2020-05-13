@@ -1,5 +1,5 @@
 .course-privileges {
-	padding: 0 $baseline*.75;
+	padding: 0 $baseline;
 
 	.dashboard-header {
 		padding: $baseline 0;
@@ -13,6 +13,13 @@
 		font-size: 13px;
 		width: 100%;
 
+		a {
+
+			&:hover {
+				color: $black;
+			}
+		}
+
 		tr {
 
 			td,
@@ -21,10 +28,15 @@
 				border-color: $gray-lighter;
 			}
 
+			th {
+				border-top: 1px solid $gray-lighter;
+				background: $gray-lightest;
+			}
+
 			&:hover {
 
 				td {
-					background: $gray-lightest;
+					background: rgba($primary, 0.05);
 				}
 			}
 		}
@@ -56,6 +68,7 @@
 	}
 
 	p {
+		margin: 0 0 15px;
 
 		label {
 			float: left;
