@@ -672,6 +672,9 @@
         @include float(right);
         width: 120px;
         padding-top: 8px;
+        @include media-down(md) {
+            display: none;
+        }
 
         img {
             max-width: 100%;
