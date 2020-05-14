@@ -14,6 +14,14 @@
         }
     }
 
+    .wrapper-l {
+        width: 80% !important;
+    }
+
+    .wrapper-r {
+        width: 20% !important;
+    }
+
     .branding {
         padding-top: 16px;
         display: none;
@@ -49,7 +57,7 @@
     }
 
     .company-name {
-        @include ellipsis(calc(100% - 220px));
+        @include ellipsis(100%);
         font-size: 30px;
         vertical-align: top;
         line-height: 1;
@@ -83,7 +91,7 @@
             a {
                 color: $white;
                 display: block;
-                padding: 9px 12px 7px;
+                padding: 9px 10px 7px;
 
                 &:hover,
                 &:focus {
@@ -152,6 +160,10 @@
 
         &.fa-globe {
             font-size: 20px;
+        }
+
+        &.fa-bell {
+            vertical-align: bottom;
         }
     }
 
