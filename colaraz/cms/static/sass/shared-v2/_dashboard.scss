@@ -1,0 +1,137 @@
+#main {
+    @include clearfix;
+
+    .side-container {
+        float: left;
+        width: 25%;
+    }
+
+    #content {
+        float: right;
+        width: 72.369%;
+    }
+}
+
+.side-widget {
+    $link-color: $primary;
+    @import './bootstrap/scss/functions';
+    @import './bootstrap/scss/variables';
+    @import './bootstrap/scss/mixins';
+    @import './bootstrap/scss/progress';
+    padding: $baseline*.75 $baseline;
+    margin-bottom: $baseline*0.5;
+    background: $gray-darker;
+    border-radius: $baseline*0.5;
+
+    .progress-bar-striped {
+        background-size: 40px 40px;
+    }
+
+    &.side-nav {
+        padding: 0;
+    }
+}
+
+.side-profile {
+    font-size: 12px;
+
+    .side-profile-row {
+        @include clearfix;
+
+        span {
+            display: block;
+        }
+    }
+
+    .user-name {
+        color: $white;
+        font-size: 16px;
+        padding: $baseline*.15 0;
+    }
+
+    .progress-result,
+    .designation {
+        color: $secondary;
+    }
+
+    .avatar {
+        border-radius: $border-radius*2;
+        border: 1px solid #EBEBEB;
+        overflow: hidden;
+        @include box(42px);
+        @include float(left);
+        @include margin(0, 15px, 10px, 0);
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    .progress {
+        height: 20px;
+        margin: 0 0 $baseline*.2;
+    }
+}
+
+.side-nav {
+    font-size: 16px;
+    padding-top: 30px;
+
+    ul {
+        @extend %list;
+        margin: 0;
+
+        li {
+            color: $gray;
+            border-bottom: 1px solid #282729;
+
+            &:first-child {
+                border-top: 1px solid #282729;
+            }
+
+            a {
+                display: block;
+                padding: $baseline*.5 $baseline*.5 $baseline*.5 1px;
+
+                &:not(.btn),
+                &:visited:not(.btn) {
+                    color: $gray;
+                    text-decoration: none;
+
+                    &:hover {
+                        color: $primary;
+                    }
+                }
+            }
+
+            &.active {
+
+                a {
+                    cursor: default;
+                    position: relative;
+
+                    &:after {
+                        content: '\f0da';
+                        font-family: FontAwesome;
+                        font-size: 16px;
+                        color: #a6c854;
+                        width: 10px;
+                        height: 14px;
+                        line-height: 14px;
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        bottom: 1px;
+                        margin: auto;
+                    }
+
+                    &:not(.btn),
+                    &:visited:not(.btn) {
+                        color: $primary;
+                    }
+                }
+            }
+        }
+    }
+}

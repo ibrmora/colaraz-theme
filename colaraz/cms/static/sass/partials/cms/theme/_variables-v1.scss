@@ -41,12 +41,16 @@ $transparent: rgba(0, 0, 0, 0) !default; // used when color value is needed for 
 
 // +Colors - UXPL new pattern library colors
 // ====================
-$uxpl-blue-hover-active: rgb(6, 86, 131) !default; // wcag2a compliant
+$theme-green:           #BCCB5A;
+$btn-bg:                $theme-green;
+$btn-hover-bg:          #A6C854;
+
+$uxpl-blue-hover-active: $btn-hover-bg;
 $uxpl-light-blue-base: rgb(242, 248, 251) !default;
 
-$uxpl-green-base: rgb(0, 129, 0) !default; // wcag2a compliant
-$uxpl-green-hover-active: rgb(0, 155, 0) !default; // wcag2a compliant
-$uxpl-green-dark-hover-active: rgb(0, 88, 0) !default;
+$uxpl-green-base: $btn-bg; // wcag2a compliant
+$uxpl-green-hover-active: $btn-hover-bg; // wcag2a compliant
+$uxpl-green-dark-hover-active: $btn-hover-bg;
 
 $uxpl-pink-base: rgb(194, 56, 125) !default; // wcag2a compliant
 $uxpl-pink-hover-active: lighten($uxpl-pink-base, 7%) !default; // wcag2a compliant
@@ -213,7 +217,7 @@ $shadow-d2: rgba($black, 0.6) !default;
 // +Colors - Application
 // ====================
 $color-draft: $gray-l3 !default;
-$color-live: $blue !default;
+$color-live: $btn-bg;
 $color-ready: $green !default;
 $color-warning: $orange-l2 !default;
 $color-error: $red-l2 !default;
@@ -240,8 +244,8 @@ $tmg-f3: 0.125s;
 $ui-action-primary-color: $blue-u2 !default;
 $ui-action-primary-color-focus: $blue-s1 !default;
 
-$ui-link-color: $blue-u2 !default;
-$ui-link-color-focus: $blue-s1 !default;
+$ui-link-color: $theme-green;
+$ui-link-color-focus: #000;
 $link-color: $ui-link-color;
 
 // +Specific UI

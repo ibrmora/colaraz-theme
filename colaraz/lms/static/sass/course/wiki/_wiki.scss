@@ -53,6 +53,10 @@
                         @include margin-left(0);
                     }
 
+                    .fa {
+                        display: none;
+                    }
+
                     &:hover {
                         background: $btn-hover-bg;
                     }

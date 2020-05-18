@@ -1,5 +1,9 @@
 // Default bootstrap theming
 
-$body-bg: red;
+// Define your theme's base color
+$theme-green:           #BCCB5A;
+
+// Make your theme's base color as primary color
+$primary:               $theme-green;
 
 @import 'edx-bootstrap/sass/open-edx/theme';

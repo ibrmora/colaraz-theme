@@ -3,7 +3,7 @@ function makeAnimatedHeader() {
      * Dynamically add scrolling effect on header of the pages.
      */
     'use strict';
-    let documentWindow = $('body');
+    let documentWindow = $(window);
     let headerHeight = $('.wrapper-header .primary').outerHeight();
     let headerNavigationHeight = $('.header-navigations').outerHeight();
 
@@ -20,18 +20,6 @@ function makeAnimatedHeader() {
     });
 }
 
-function headerToggleDropdown() {
-    /**
-     * Dynamically toggle dropdown show hide.
-     */
-    'use strict';
-    $('.nav-link').on('click', function (e) {
-        e.preventDefault();
-        $(this).siblings('.header-dropdown').toggleClass('show');
-    });
-}
-
 $(document).ready(function (){
     makeAnimatedHeader();
-    headerToggleDropdown();
 });

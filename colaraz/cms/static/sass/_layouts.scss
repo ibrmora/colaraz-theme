@@ -1,6 +1,6 @@
 .wrapper {
 
-    #content,
+    #main,
     .primary,
     .header-navigations .container {
         max-width: $container-default;
@@ -13,8 +13,8 @@
         background: $white;
     }
 
-    #content {
-        padding: 0 $baseline*.75;
+    #main {
+        padding: $baseline*2 $baseline*0.75;
     }
 
     &-mast {
@@ -26,5 +26,98 @@
     &-content {
         padding-bottom: $baseline;
         border-radius: 0 0 $baseline*.5 $baseline*.5;
+
+        .content {
+            min-width: 0;
+        }
+    }
+}
+
+.btn,
+.button {
+    box-shadow: none !important;
+}
+
+.wrapper-mast {
+
+    .mast,
+    .metadata {
+        min-width: 0;
+    }
+}
+
+#root {
+
+    &.SFE {
+
+        .col-1 {
+            min-width: 80px;
+        }
+
+        a.status-link {
+            color: $primary;
+            text-decoration: none;
+
+            &:hover {
+                color: darken($primary, 10%);
+            }
+        }
+
+        a.btn-primary {
+            background: $btn-bg;
+            border-color: $btn-bg;
+            color: $black;
+            font-size: 13px;
+            border-radius: $baseline;
+
+            &:hover,
+            &:focus {
+                background: $btn-hover-bg;
+                border-color: $btn-hover-bg;
+                color: $black;
+            }
+        }
+
+        div.checklist-item-complete,
+        div.checklist-item-incomplete {
+
+            &:hover {
+                box-shadow: -5px 0 0 0 $primary;
+            }
+        }
+
+        div.checklist-item-incomplete {
+
+            &:hover {
+
+                .checklist-icon-incomplete {
+                    color: $primary;
+                }
+            }
+        }
+    }
+}
+
+.view-updates{
+
+    .main-wrapper {
+        margin: 0;
+        border-radius: 0 0 $baseline $baseline;
+
+        .window {
+            border-left: 0;
+            border-bottom: 0;
+            border-radius: 0 0 0 $baseline/2;
+        }
+
+        .course-handouts {
+            border-bottom: 0;
+            border-right: 0;
+            border-radius: 0 0 $baseline/2 0;
+        }
+    }
+
+    .wrapper-content {
+        border-radius: 0;
     }
 }

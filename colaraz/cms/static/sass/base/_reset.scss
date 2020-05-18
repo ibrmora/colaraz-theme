@@ -34,8 +34,7 @@
 
 html,
 body {
-    overflow: auto;
-    height: 100%;
+    min-height: 100%;
     background: $body-bg;
     -webkit-font-smoothing: unset;
     -moz-osx-font-smoothing: unset;

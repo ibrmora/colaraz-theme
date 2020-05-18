@@ -4,10 +4,11 @@
 // Note: define colors needed by your theme first
 
 // Define your theme's base color
-$theme-green:           #91B845;
+$theme-green:           #BCCB5A;
 
 // Make your theme's base color as primary color
 $primary:               $theme-green;
+$secondary:             #A6C854;
 
 // Overrides variables
 $body-bg:               transparent;
@@ -22,12 +23,13 @@ $font-family-sans-serif: Candara, 'Open Sans', sans-serif;
 // ------------------------------
 // THEME's variables
 // ------------------------------
-$gray-darker:           #2D3235;
-$gray-dark:             #333A3F;
+$gray-darker:           #151515;
+$gray-dark:             #333333;
 $gray-dark2:            #222;
 $gray-dark3:            #121212;
 $gray-mid:              #454545;
 $gray-mid-border:       #E4E4E4;
+$gray:                  #717171;
 $gray-light:            #CCC;
 $gray-lighter:          #CCC;
 $gray-lightest:         #F2F2F2;
@@ -50,11 +52,16 @@ $footer-bg:             $gray-dark3;
 $btn-bg:                #BCCB5A;
 $btn-hover-bg:          #A6C854;
 
+$btn-bg:                #BCCB5A;
+$btn-hover-bg:          #A6C854;
+
+$uxpl-green-base:       $btn-bg;
+
 // Fonts
 $heading-font:          $font-family-serif;
 
 // Make your theme's base color as primary color
 $baseline:              20px;
 $border-radius:         3px;
-$container-default:     1200px;
+$container-default:     1170px;
 $dropdown-shadow:       0 1px 5px -1px rgba(0, 0, 0, 0.3);

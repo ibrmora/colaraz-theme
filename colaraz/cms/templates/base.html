@@ -102,6 +102,10 @@ from openedx.core.release import RELEASE_LINE
     <%include file="widgets/segment-io.html" />
 
     <%block name="header_extras"></%block>
+
+    <script src="${static.url("js/jquery-3.2.1.slim.min.js")}"></script>
+    <script src="${static.url("js/popper.min.js")}"></script>
+    <script src="${static.url("js/bootstrap.min.js")}"></script>
   </head>
 
   <body class="${static.dir_rtl()} <%block name='bodyclass'></%block> lang_${LANGUAGE_CODE}">
@@ -149,6 +153,33 @@ from openedx.core.release import RELEASE_LINE
       </div>
 
       <main id="main" aria-label="Content" tabindex="-1">
+        <div class="side-container">
+          <div class="side-widget side-profile">
+            <div class="side-profile-row">
+              <div class="avatar">
+                <img src="${static.url('images/instructor.jpg')}" alt="User Name" title="User Name">
+              </div>
+              <span class="user-name">User Name</span>
+                <span class="designation">Designation</span>
+            </div>
+            <div id="progress" class="profile-progress-bar">
+              <div class="progress progress-striped">
+              <div class="progress-bar progress-bar-striped" style="width:30%;background-color: #eb7d3c" id="progressbar">
+                  <span class="sr-only">Beginner</span>
+                </div>
+              </div>
+              <span class="progress-result">Beginner</span>
+            </div>
+            <div class="side-nav">
+              <ul>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Discover New</a></li>
+                <li class="active"><a href="#">Studio</a></li>
+                <li><a href="#">Course Privileges</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
         <div id="content">
         <%block name="content"></%block>
         </div>
