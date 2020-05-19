@@ -21,16 +21,17 @@
     from django.utils.http import urlquote_plus
     from django.utils.translation import ugettext as _
     from django.utils.translation import get_language_bidi
+    from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
     from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
     from openedx.core.djangolib.js_utils import dump_js_escaped_json, js_escaped_string
     from openedx.core.release import RELEASE_LINE
-    from openedx.features.colaraz_features.models import ColarazUserProfile
     from pipeline_mako import render_require_js_path_overrides
+    from student.models import CourseEnrollment
 %>
 
 <%
     if user.is_authenticated:
-        colaraz_profile = ColarazUserProfile.objects.get(user=user)
+        colaraz_profile = user.colaraz_profile
         job_title = colaraz_profile.job_title
         profile_image_url = colaraz_profile.profile_image_url or "http://polymath.colaraz.net/cvsocial/_graphics/icons/user/defaultsmall.gif"
         profile_strength_color = colaraz_profile.profile_strength_color
@@ -362,14 +363,39 @@
             </div>
             <div class="side-nav">
                 <ul>
-                  <li ${'class="active"' if request.path == reverse('dashboard') else ''}><a href="${reverse('dashboard')}">Courses</a></li>
-                  <li  ${'class="active"' if request.path == marketing_link('COURSES') else ''}><a href="${marketing_link('COURSES')}">Discover New</a></li>
+                  <%
+                    user_enrolled = None
+                    if user.is_authenticated and hasattr(course, 'id'):
+                        course_overview = CourseOverview.objects.get(id=course.id)
+                        user_enrolled = CourseEnrollment.objects.filter(user=user,course=course_overview, is_active=True).exists()
+                    endif
+
+                    is_dashboard = None
+                    if request.path == reverse('dashboard') or user_enrolled:
+                        is_dashboard = True
+                    endif
+
+                    is_discover_new = None
+                    if request.path == marketing_link('COURSES') or not is_dashboard:
+                        is_discover_new = True
+                    endif
+
+                    is_course_privileges = None
+                    if 'course-access-roles' in request.path:
+                        is_course_privileges = True
+                    endif
+
+                    is_dashboard = is_dashboard and not is_discover_new and not is_course_privileges
+                    is_discover_new = is_discover_new and not is_course_privileges
+                  %>
+                  <li ${'class="active"' if is_dashboard else ''}><a href="${reverse('dashboard')}">Courses</a></li>
+                  <li  ${'class="active"' if is_discover_new  else ''}><a href="${marketing_link('COURSES')}">Discover New</a></li>
                   % if user.is_staff or user.courseaccessrole_set.filter(role='course_creator_group').exists():
                     <li><a href="//${configuration_helpers.get_value('CMS_BASE')}">Studio</a></li>
                   % endif
 
                   % if user.is_staff or user.courseaccessrole_set.filter(role='role_manager').exists():
-                    <li><a href="${reverse('colaraz_features:course-access-roles-list')}">Course Privileges</a></li>
+                    <li ${'class="active"' if is_course_privileges  else ''}><a href="${reverse('colaraz_features:course-access-roles-list')}">Course Privileges</a></li>
                   % endif
                 </ul>
             </div>
