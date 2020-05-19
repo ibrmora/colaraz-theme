@@ -127,6 +127,13 @@
       % endif
       % endif
       % if user.is_authenticated:
+      <%
+        invite_friend_url = '{}://{}.{}/Home/InviteFriends.aspx'.format(
+          getattr(settings, 'COLARAZ_DOMAIN_PROTOCOL', 'http'),
+          user.colaraz_profile.site_identifier,
+          settings.COLARAZ_SUB_DOMAIN
+        )
+      %>
       <nav class="nav-account nav-is-signedin nav-dd ui-right" aria-label="${_('Account')}">
         <h2 class="sr-only">${_("Account Navigation")}</h2>
         <ol>
@@ -166,7 +173,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><img src="${static.url('images/friend-request-icon.png')}" alt=""></a>
+            <a class="nav-link" href="#" onclick="openInviteFriendPopup('${invite_friend_url}')"><img src="${static.url('images/friend-request-icon.png')}" alt=""></a>
           </li>
           <li class="nav-item nav-account-user">
             <%include file="user_dropdown.html" args="online_help_token=online_help_token" />

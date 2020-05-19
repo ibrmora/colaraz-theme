@@ -379,3 +379,17 @@ $('.mobile-menu, .global-header').on('keydown', function(e) {
         nextLink.focus();
     }
 });
+
+function openInviteFriendPopup(inviteFriendUrl) {
+    let width = 802;
+    let height = 554;
+    let screenWidth = this.window.screen.width;
+    let screenHeight = this.window.screen.height;
+    let windowSize = `width=${width}, height=${height}`;
+    if (screenWidth < width || screenHeight < height) {
+        windowSize = `width=${screenWidth}, height=${screenHeight}`;
+    }
+    let windowTitle = 'Colaraz - Invite Friends';
+    let newWindow = window.open(inviteFriendUrl, 'Invite Friend', windowSize);
+    setTimeout(() => newWindow.document.title = windowTitle, 0);
+}

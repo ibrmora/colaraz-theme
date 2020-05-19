@@ -13,6 +13,14 @@
   show_explore_courses = settings.FEATURES.get('COURSES_ARE_BROWSABLE') and not show_program_listing
   show_sysadmin_dashboard = settings.FEATURES.get('ENABLE_SYSADMIN_DASHBOARD','') and user.is_staff
   self.real_user = getattr(user, 'real_user', user)
+
+  if user.is_authenticated:
+    invite_friend_url = '{}://{}.{}/Home/InviteFriends.aspx'.format(
+      getattr(settings, 'COLARAZ_DOMAIN_PROTOCOL', 'http'),
+      user.colaraz_profile.site_identifier,
+      settings.COLARAZ_SUB_DOMAIN
+    )
+  endif
 %>
 
 <div class="nav-links">
@@ -88,7 +96,7 @@
         </div>
       </li>
       <li>
-        <a class="nav-item" href="#"><img src="${static.url('images/friend-request-icon.png')}" alt=""></a>
+        <a class="nav-item" href="#" onclick="openInviteFriendPopup('${invite_friend_url}')"><img src="${static.url('images/friend-request-icon.png')}" alt=""></a>
       </li>
       % if should_display_shopping_cart_func() and not (course and static.is_request_in_themed_site()): # see shoppingcart.context_processor.user_has_cart_context_processor
       <li>
