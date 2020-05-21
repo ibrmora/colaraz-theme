@@ -5,17 +5,17 @@ function makeAnimatedHeader() {
     'use strict';
     let documentWindow = $(window);
     let headerHeight = $('.wrapper-header .primary').outerHeight();
-    let headerNavigationHeight = $('.header-navigations').outerHeight();
+    let headerNavigationHeight = $('#view-top').outerHeight();
 
     documentWindow.on('scroll', function() {
         let scrolled = documentWindow.scrollTop();
 
         if (scrolled > headerHeight) {
-            $('#view-top').addClass('fixed');
-            $('#view-top').css('padding-bottom', headerNavigationHeight);
+            $('#view-top').addClass('fixed').css('top',-headerHeight);
+            $('.wrapper.wrapper-view').css('padding-top', headerNavigationHeight);
         } else {
-            $('#view-top').removeClass('fixed');
-            $('#view-top').css('padding-bottom', '');
+            $('#view-top').removeClass('fixed').css('top','');
+            $('.wrapper.wrapper-view').css('padding-top', '');
         }
     });
 }

@@ -109,17 +109,17 @@ function makeAnimatedHeader() {
     'use strict';
     let documentWindow = $(window);
     let headerHeight = $('.main-header').outerHeight();
-    let headerNavigationHeight = $('.header-navigations').outerHeight();
+    let headerNavigationHeight = $('.global-header').outerHeight();
 
     documentWindow.scroll(function() {
         let scrolled = documentWindow.scrollTop();
 
         if (scrolled > headerHeight) {
-            $('.global-header').addClass('fixed');
-            $('.global-header').css('padding-bottom', headerNavigationHeight);
+            $('.global-header').addClass('fixed').css('top', -headerHeight);
+            $('#window-wrap').css('padding-top', headerNavigationHeight);
         } else {
-            $('.global-header').removeClass('fixed');
-            $('.global-header').css('padding-bottom', '');
+            $('.global-header').removeClass('fixed').css('top', '');
+            $('#window-wrap').css('padding-top', '');
         }
     });
 }

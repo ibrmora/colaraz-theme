@@ -43,6 +43,18 @@
     .mast,
     .metadata {
         min-width: 0;
+
+        &.has-actions {
+
+            .page-header {
+                width: 38%;
+                @include margin-right(2%);
+            }
+
+            .nav-actions {
+                width: 60%;
+            }
+        }
     }
 }
 
@@ -119,5 +131,62 @@
 
     .wrapper-content {
         border-radius: 0;
+    }
+}
+
+.view-dashboard {
+
+    .course-item {
+
+        .course-actions {
+            width: 35%;
+        }
+
+        .course-link {
+            width: 65%;
+            @include margin-right(2%);
+        }
+    }
+}
+
+.wrapper-xblock {
+
+    &.level-element {
+
+        &:hover {
+            border-color: $primary;
+        }
+    }
+
+    .container-paging-footer {
+
+        .pagination-full {
+
+            &.pagination {
+                width: auto;
+                text-align: center;
+            }
+        }
+    }
+}
+
+.add-xblock-component {
+
+    .new-component-template {
+
+        .button-component {
+            color: $black !important;
+        }
+    }
+}
+
+.view-outline {
+
+    .course-status {
+
+        .status-studio-frontend {
+            display: block !important;
+            width: auto !important;
+        }
     }
 }

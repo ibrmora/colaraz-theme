@@ -35,6 +35,28 @@
             }
         }
 
+        .submit-file-button {
+            background: $btn-bg;
+            border-color: $btn-bg;
+            color: $black;
+            border-radius: $baseline;
+            padding: 6px 10px 4px;
+            font-weight: 400;
+            box-shadow: none;
+            text-shadow: none;
+
+            &:hover {
+                background: $btn-hover-bg;
+                border-color: $btn-hover-bg;
+            }
+
+            &:active,
+            &:focus {
+                outline: none;
+                box-shadow: none;
+            }
+        }
+
         .idash-section {
 
             h3 {
@@ -78,6 +100,10 @@
                     table {
                         @include media-up(sm) {
                             min-width: 400px;
+                        }
+
+                        .total {
+                            color: $primary;
                         }
 
                         caption {
@@ -145,6 +171,7 @@
             font-weight: 400;
             box-shadow: none;
             text-shadow: none;
+            margin-bottom: 10px;
 
             &:hover,
             &:focus {
@@ -152,5 +179,14 @@
                 border-color: $btn-hover-bg;
             }
         }
+    }
+}
+
+.tip {
+
+    &.tip-stacked {
+        display: block;
+        font-size: 13px;
+        padding: $baseline*0.5 0;
     }
 }

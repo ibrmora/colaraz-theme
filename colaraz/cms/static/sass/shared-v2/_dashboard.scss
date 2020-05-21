@@ -61,9 +61,10 @@
         @include box(42px);
         @include float(left);
         @include margin(0, 15px, 10px, 0);
+        box-sizing: border-box;
 
         img {
-            max-width: 100%;
+            width: 100%;
             height: auto;
         }
     }
