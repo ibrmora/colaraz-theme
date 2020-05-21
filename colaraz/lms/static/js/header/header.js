@@ -271,6 +271,9 @@ $(document).ready(function() {
     createMobileMenu();
     makeAnimatedHeader();
     edlySetupNavMenu();
+
+    getAndPopulateNotifications();
+    setInterval(getAndPopulateNotifications, 30000);
 });
 
 // Accessibility keyboard controls for user dropdown and mobile menu
@@ -392,4 +395,74 @@ function openInviteFriendPopup(inviteFriendUrl) {
     let windowTitle = 'Colaraz - Invite Friends';
     let newWindow = window.open(inviteFriendUrl, 'Invite Friend', windowSize);
     setTimeout(() => newWindow.document.title = windowTitle, 0);
+}
+
+function getAndPopulateNotifications() {
+    $.ajax({
+        type: "GET",
+        url: colarazNotificationsFetchingUrl,
+        success: function (resp) {
+            let notifications = "";
+            let unreadNotificationsCount = 0;
+
+            resp.result.forEach(element => {
+                if (element.read == 0) newNotificationsCount += 1;
+                notifications += createNotification(element.image, element.description, element.time, element.read);
+            });
+
+            handleNotificationsListing(notifications);
+            handleNotificationsCount(unreadNotificationsCount);
+            
+        }, 
+        error: function (errorMsg) {
+            console.error(`Notifications API gave following error: ${errorMsg}`);
+        },
+    });
+
+    function handleNotificationsListing(notifications){
+        $("#notifications-list").html(notifications);
+    }
+    function handleNotificationsCount(count){
+        if (count == 0) {
+            let countSpan = $("#unread-notifications-count");
+            countSpan.removeClass("count");
+            countSpan.html("");
+        } else {
+            let countSpan = $("#unread-notifications-count");
+            countSpan.addClass("count");
+            countSpan.html(count);
+        }
+    }
+
+    function createNotification(img_src, description, days_count, read){
+        return `<li class="${read ? 'read' : 'unread'}" >` +
+                    `<div class="media">` +
+                        `<a href="#"><img src="${img_src}" alt=""></a>` +
+                    `</div>` +
+                    `<div class="description">` +
+                        `${description}` +
+                        `<p>${days_count}</p>` +
+                    `</div>` +
+                `</li>`;
+    }
+}
+
+function markNotificationsAsRead(){
+    $.ajax({
+        type: "GET",
+        url: colarazNotificationsMarkingUrl,
+        success: function (resp) {
+        },
+        error: function (errorMsg) {
+        },
+    });
+}
+
+function removeNotificationsCount(){
+    let countSpan = $("#unread-notifications-count");
+    if (countSpan.html() !== "" || countSpan.hasClass("count")){
+        countSpan.removeClass("count");
+        countSpan.html("");
+        markNotificationsAsRead();
+    }
 }

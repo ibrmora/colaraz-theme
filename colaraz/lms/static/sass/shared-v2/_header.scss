@@ -160,7 +160,8 @@
 
             .notifications-list {
                 font-size: 11px;
-
+                overflow: scroll; 
+                max-height: 400px;
                 li {
                     padding: $baseline*.5;
                     font-size: 11px;
@@ -171,10 +172,16 @@
                         @include box(40px);
                         margin: 0 $baseline*0.5 $baseline*0.5 0;
                         border: 1px solid $gray-mid-border;
+                    
+                        img {
+                            width: 40px;
+                            height: 40px;
+                        }
                     }
 
                     .description {
                         overflow: hidden;
+                        color:black;
                     }
 
                     .title {
@@ -185,6 +192,7 @@
 
                     p {
                         margin: 0;
+                        color:#777;
                     }
 
                     a {
