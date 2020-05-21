@@ -48,7 +48,7 @@ function openInviteFriendPopup(inviteFriendUrl) {
 $(document).ready(function (){
     makeAnimatedHeader();
     getAndPopulateNotifications();
-    setInterval(getAndPopulateNotifications, 30000);
+    setInterval(getAndPopulateNotifications, notificationsRefreshTime);
 });
 
 function getAndPopulateNotifications() {
@@ -60,7 +60,7 @@ function getAndPopulateNotifications() {
             let unreadNotificationsCount = 0;
 
             resp.result.forEach(element => {
-                if (element.read == 0) newNotificationsCount += 1;
+                if (element.read == 0) unreadNotificationsCount += 1;
                 notifications += createNotification(element.image, element.description, element.time, element.read);
             });
 
@@ -68,8 +68,8 @@ function getAndPopulateNotifications() {
             handleNotificationsCount(unreadNotificationsCount);
 
         },
-        error: function (errorMsg) {
-            console.error(`Notifications API gave following error: ${errorMsg}`);
+        error: function (resp) {
+            console.error(`Notifications API gave following error: ${resp.message}`);
         },
     });
 
@@ -104,11 +104,7 @@ function getAndPopulateNotifications() {
 function markNotificationsAsRead() {
     $.ajax({
         type: "GET",
-        url: colarazNotificationsMarkingUrl,
-        success: function (resp) {
-        },
-        error: function (errorMsg) {
-        },
+        url: colarazNotificationsMarkingUrl
     });
 }
 
