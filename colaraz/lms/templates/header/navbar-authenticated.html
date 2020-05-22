@@ -14,12 +14,16 @@
   show_sysadmin_dashboard = settings.FEATURES.get('ENABLE_SYSADMIN_DASHBOARD','') and user.is_staff
   self.real_user = getattr(user, 'real_user', user)
 
+  protocol = getattr(settings, 'COLARAZ_DOMAIN_PROTOCOL', 'http')
+  identifier = user.colaraz_profile.site_identifier
+  sub_domain = settings.COLARAZ_SUB_DOMAIN
+  user_urls = user.colaraz_profile.role_based_urls
+
+  colaraz_notifications_url = user_urls.get('viewNotifications') if user_urls.has_key('viewNotifications') else '#'
+
   if user.is_authenticated:
-    invite_friend_url = '{}://{}.{}/Home/InviteFriends.aspx'.format(
-      getattr(settings, 'COLARAZ_DOMAIN_PROTOCOL', 'http'),
-      user.colaraz_profile.site_identifier,
-      settings.COLARAZ_SUB_DOMAIN
-    )
+    invite_friend_url = '{}://{}.{}/Home/InviteFriends.aspx'.format( protocol, identifier, sub_domain)
+    see_all_notifications_url = '{}://{}.{}/{}'.format( protocol, identifier, sub_domain, colaraz_notifications_url)
   endif
 %>
 
@@ -61,24 +65,15 @@
   <div id="edly-nav-menu" class="main-navigation">
     <ul class="custom-nav mobile-nav-item">
       <li class="dropdown">
-        <a class="nav-item" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="fa fa-globe" aria-hidden="true"></span>
+        <a class="nav-item" href="#" onclick="removeNotificationsCount();" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="fa fa-globe" aria-hidden="true"></span><span id="unread-notifications-count" class=""></span>
         </a>
         <div class="header-dropdown dropdown-menu dropdown-menu-right all-notifications">
           <h4 class="notifications-heading">Notifications</h4>
-          <ul class="notifications-list">
-            <li>
-              <div class="media">
-                <a href="#"><img src="" alt=""></a>
-              </div>
-              <div class="description">
-                <strong class="title">has sent you a <a href="#">contact request</a>.</strong>
-                <p>10 days ago</p>
-              </div>
-            </li>
+          <ul id="notifications-list" class="notifications-list">
           </ul>
           <div class="button-box">
-            <a href="#" class="btn btn-primary btn-see-all">See All</a>
+            <a href="${see_all_notifications_url}" class="btn btn-primary btn-see-all">See All</a>
           </div>
         </div>
       </li>

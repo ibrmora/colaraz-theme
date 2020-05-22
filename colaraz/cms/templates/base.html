@@ -241,6 +241,11 @@ from openedx.core.release import RELEASE_LINE
       });
       </script>
     </%block>
+      <script type="text/javascript">
+        var colarazNotificationsFetchingUrl = "${reverse('colaraz_features:notifications_handler', kwargs={'api_method': 'fetch'})}";
+        var colarazNotificationsMarkingUrl = "${reverse('colaraz_features:notifications_handler', kwargs={'api_method': 'mark'})}";
+        var notificationsRefreshTime = ${getattr(settings, 'COLARAZ_NOTIFICATIONS', {}).get('REFRESH_RATE_MILLISECONDS', 30000)};
+      </script>
     <%include file="widgets/segment-io-footer.html" />
     <script type="text/javascript" src="${static.url('js/header.js')}"></script>
     <div class="modal-cover"></div>
