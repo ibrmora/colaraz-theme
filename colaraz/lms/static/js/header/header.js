@@ -115,7 +115,7 @@ function makeAnimatedHeader() {
         let scrolled = documentWindow.scrollTop();
 
         if (scrolled > headerHeight) {
-            $('.global-header').addClass('fixed').css('top', -headerHeight);
+            $('.global-header').addClass('fixed').css('top', -(headerHeight+1));
             $('#window-wrap').css('padding-top', headerNavigationHeight);
         } else {
             $('.global-header').removeClass('fixed').css('top', '');

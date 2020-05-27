@@ -247,19 +247,7 @@
     }
 
     .btn-primary {
-        background: $btn-bg !important;
-        border-color: $btn-bg !important;
-        border-radius: $baseline;
-        color: $black !important;
-        font-size: 13px;
-        font-weight: 400;
-        height: auto;
-        padding: 6px 15px 4px;
-
-        &:hover {
-            background: $btn-hover-bg !important;
-            border-color: $btn-hover-bg !important;
-        }
+        @include cz-btn;
     }
 }
 

@@ -178,6 +178,12 @@
     }
 }
 
+.btn-blue,
+.view-teams .action-primary,
+.instructor-dashboard-wrapper-2 .btn-blue {
+    @include cz-btn;
+}
+
 .dashboard-header {
     padding-top: 20px;
     @include clearfix;

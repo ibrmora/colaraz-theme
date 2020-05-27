@@ -21,6 +21,44 @@
     list-style: none;
 }
 
+// Default Colaraz Button
+@mixin cz-btn {
+    background: $btn-bg !important;
+    border-color: $btn-bg !important;
+    border-radius: $baseline !important;
+    color: $black !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    padding: 6px 15px 4px !important;
+    text-decoration: none;
+    text-transform: none;
+    box-shadow: none;
+    text-shadow: none;
+
+    &:hover {
+        background: $btn-hover-bg !important;
+        border-color: $btn-hover-bg !important;
+        color: $black !important;
+        box-shadow: none;
+    }
+}
+
+// Default Colaraz Input Field
+@mixin cz-input {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: $baseline;
+    background: #f8f8f8;
+    color: $black;
+    box-shadow: none;
+
+    &:focus {
+        background: $white;
+        box-shadow: none;
+        border-color: $btn-hover-bg;
+    }
+}
+
 // example: @include ellipsis(300px);
 @mixin ellipsis($max-width: 100%) {
     display: inline-block;
