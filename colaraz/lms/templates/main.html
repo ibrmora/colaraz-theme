@@ -446,9 +446,14 @@
 
     <%include file="widgets/segment-io-footer.html" />
     <script type="text/javascript">
+        // Colaraz Notifications API variables
         var colarazNotificationsFetchingUrl = "${reverse('colaraz_features:notifications_handler', kwargs={'api_method': 'fetch'})}";
         var colarazNotificationsMarkingUrl = "${reverse('colaraz_features:notifications_handler', kwargs={'api_method': 'mark'})}";
-        var notificationsRefreshTime = ${ getattr(settings, 'COLARAZ_NOTIFICATIONS', {}).get('REFRESH_TIME_MILLISECONDS', 30000)};
+        var colarazNotificationsRefreshTime = ${ getattr(settings, 'COLARAZ_NOTIFICATIONS', {}).get('REFRESH_TIME_MILLISECONDS', 30000)};
+        // Colaraz Job Alerts API variables
+        var colarazJobAlertsFetchingUrl = "${reverse('colaraz_features:job_alerts_handler', kwargs={'api_method': 'fetch'})}";
+        var colarazJobAlertsMarkingUrl = "${reverse('colaraz_features:job_alerts_handler', kwargs={'api_method': 'mark'})}";
+        var colarazJobAlertsRefreshTime = ${ getattr(settings, 'COLARAZ_JOB_ALERTS', {}).get('REFRESH_TIME_MILLISECONDS', 30000)};
     </script>
     <script type="text/javascript" src="${static.url('js/vendor/noreferrer.js')}" charset="utf-8"></script>
     <script type="text/javascript" src="${static.url('js/utils/navigation.js')}" charset="utf-8"></script>

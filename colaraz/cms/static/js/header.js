@@ -47,8 +47,12 @@ function openInviteFriendPopup(inviteFriendUrl) {
 
 $(document).ready(function (){
     makeAnimatedHeader();
+
     getAndPopulateNotifications();
-    setInterval(getAndPopulateNotifications, notificationsRefreshTime);
+    setInterval(getAndPopulateNotifications, colarazNotificationsRefreshTime);
+
+    getAndPopulateJobAlerts();
+    setInterval(getAndPopulateJobAlerts(), colarazJobAlertsRefreshTime);
 });
 
 function getAndPopulateNotifications() {
@@ -114,5 +118,74 @@ function removeNotificationsCount() {
         countSpan.removeClass("count");
         countSpan.html("");
         markNotificationsAsRead();
+    }
+}
+
+function getAndPopulateJobAlerts() {
+    $.ajax({
+        type: "GET",
+        url: colarazJobAlertsFetchingUrl,
+        success: function (resp) {
+            let job_alerts = "";
+            if (resp.d.length) {
+                resp.d.forEach(element => {
+                    job_alerts += createJobAlert(element.Image, element.Heading, element.Message, element.RelativeTime);
+                });
+            } else {
+                job_alerts = "<li><p>No new job alerts</p></li>";
+            }
+
+            handleJobAlertsListing(job_alerts);
+            handleJobAlertsCount(resp.d.length);
+
+        },
+        error: function (resp) {
+            console.error(`Job Alerts API gave following error: ${resp.Message}`);
+        },
+    });
+
+    function handleJobAlertsListing(job_alerts) {
+        $("#job-alerts-list").html(job_alerts);
+    }
+    function handleJobAlertsCount(count) {
+        if (count == 0) {
+            let countSpan = $("#unread-job-alerts-count");
+            countSpan.removeClass("count");
+            countSpan.html("");
+        } else {
+            let countSpan = $("#unread-job-alerts-count");
+            countSpan.addClass("count");
+            countSpan.html(count);
+        }
+    }
+
+    function createJobAlert(img_src, heading, message, relativeTime) {
+        return `<li>
+                    <div class="media">
+                        <a href="#">
+                            <img src="${img_src ? img_src : "https://placehold.it/34x34"}" alt="">
+                        </a>
+                    </div>
+                    <div style="font-size: 12px;padding: 0;color: #333;" class="description">
+                        ${heading} <span style="color: #aaaaaa;font-family: sans-serif;"> at </span> ${message}
+                        <p><i class="fa fa-share-square-o"></i> ${relativeTime}</p>
+                    </div>
+                </li>`;
+    }
+}
+
+function markJobAlertsAsRead() {
+    $.ajax({
+        type: "GET",
+        url: colarazJobAlertsMarkingUrl
+    });
+}
+
+function removeJobAlertsCount() {
+    let countSpan = $("#unread-job-alerts-count");
+    if (countSpan.html() !== "" || countSpan.hasClass("count")) {
+        countSpan.removeClass("count");
+        countSpan.html("");
+        markJobAlertsAsRead();
     }
 }
