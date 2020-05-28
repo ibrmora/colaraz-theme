@@ -211,11 +211,12 @@
 
             li {
                 padding: $baseline*.5;
-                font-size: 11px;
+                font-size: 12px;
                 display: block;
 
                 a {
                     padding: 0;
+                    font-size: 14px;
                 }
 
                 .media {
@@ -223,16 +224,16 @@
                     @include box(40px);
                     margin: 0 $baseline*0.5 $baseline*0.5 0;
                     border: 1px solid $gray-mid-border;
+                }
 
-                    img {
-                        width: 40px;
-                        height: 40px;
-                    }
+                img {
+                    @include box(40px);
                 }
 
                 .description {
                     overflow: hidden;
                     color:black;
+                    font-size: 11px;
                 }
 
                 .title {

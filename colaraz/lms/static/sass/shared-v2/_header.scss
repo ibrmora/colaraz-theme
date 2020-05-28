@@ -165,7 +165,7 @@
 
                 li {
                     padding: $baseline*.5;
-                    font-size: 11px;
+                    font-size: 12px;
                     display: block;
                     border-bottom: 1px solid $gray-mid-border;
                     @include clearfix;
@@ -185,6 +185,15 @@
                     .description {
                         overflow: hidden;
                         color:black;
+                        font-size: 11px;
+                    }
+
+                    &.read {
+                        background: $white;
+                    }
+
+                    &.unread {
+                        background: #F4F1C7;
                     }
 
                     .title {
@@ -200,6 +209,7 @@
 
                     a {
                         color: $primary;
+                        font-size: 14px;
                     }
                 }
             }

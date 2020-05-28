@@ -8,20 +8,21 @@
   line-height: 14px;
   display: inline-block;
   position: absolute;
-  left: 0;
+  left: 50%;
+  margin-left: -6.5em;
   top: -($baseline*30);
   overflow: hidden;
-  background: $white;
+  background: $black;
+  color: $white;
+  opacity: 0.8;
   border-bottom: 1px solid $gray-500;
   padding: ($baseline*0.75) ($baseline/2);
+  z-index: 1050;
+  display: none;
 
   &:focus,
   &:active {
-    position: relative;
-    top: auto;
-    width: auto;
-    height: auto;
-    margin: 0;
+    display: block;
   }
 }
 

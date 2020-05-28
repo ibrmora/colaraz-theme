@@ -29,20 +29,10 @@
     text-align: center;
 
     .cta-show-sock {
-      @extend %ui-btn-rounded;
-
-      background: $uxpl-grayscale-x-back;
-      font-size: font-size(x-small);
-      padding: ($baseline/2) $baseline;
-      color: $gray-d3;
+      @include cz-btn;
 
       .icon {
-        @include margin-right($baseline/4);
-      }
-
-      &:hover {
-        background: $blue;
-        color: $white;
+        display: none;
       }
     }
   }

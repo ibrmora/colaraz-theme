@@ -1,0 +1,27 @@
+// Skip nav
+.nav-skip,
+.transcript-skip {
+    font-size: 16px;
+    line-height: 20px;
+    position: absolute;
+    left: 50%;
+    top: -($baseline*30);
+    overflow: hidden;
+    background: $black;
+    opacity: 0.8;
+    color: $white;
+    border-bottom: 1px solid $gray-lighter;
+    padding: ($baseline*0.4) 0;
+    z-index: 1050;
+    text-align: center;
+    display: none;
+
+    &:focus,
+    &:active {
+        display: block;
+        position: absolute;
+        margin-left: -6.5em;
+        width: 12em;
+        top: 0;
+    }
+}

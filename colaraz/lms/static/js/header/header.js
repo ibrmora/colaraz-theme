@@ -116,10 +116,10 @@ function makeAnimatedHeader() {
 
         if (scrolled > headerHeight) {
             $('.global-header').addClass('fixed').css('top', -(headerHeight+1));
-            $('#window-wrap').css('padding-top', headerNavigationHeight);
+            $('.window-wrap').css('padding-top', headerNavigationHeight);
         } else {
             $('.global-header').removeClass('fixed').css('top', '');
-            $('#window-wrap').css('padding-top', '');
+            $('.window-wrap').css('padding-top', '');
         }
     });
 }
