@@ -55,11 +55,22 @@ username = student.profile.name or get_enterprise_learner_generic_name(request)
                 lang="${course.language}"
               % endif
               >
-                % if staff_access and studio_url is not None:
-                <div class="wrap-instructor-info">
-                    <a class="instructor-info-action studio-view" href="${studio_url}">${_("View grading in studio")}</a>
-                </div>
-                % endif
+                <header class="page-info-header">
+                    <div class="image-frame">
+                        <img src="${static.url('images/course.jpg')}" alt="Autodesk Maya">
+                    </div>
+                    <div class="content-area">
+                        <div class="form-actions">
+                            % if staff_access and studio_url is not None:
+                            <div class="wrap-instructor-info">
+                                <a class="instructor-info-action studio-view" href="${studio_url}">${_("View grading in studio")}</a>
+                            </div>
+                            % endif
+                        </div>
+                        <h2>Course title</h2>
+                        <h3>Course organization</h3>
+                    </div>
+                </header>
                 <h2 class="hd hd-2 progress-certificates-title">
                     ${_("Course Progress for Student '{username}' ({email})").format(username=username, email=student.email)}
                 </h2>

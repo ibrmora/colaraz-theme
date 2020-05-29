@@ -1,6 +1,23 @@
 // ====================
 // Course About Page
 // ====================
+.profile-wrapper {
+    background: none !important;
+    border: 0 !important;
+
+    .course-info {
+
+        body & {
+            padding: $baseline;
+
+            .page-info-header {
+                margin: 0;
+                border: 0;
+            }
+        }
+    }
+}
+
 .content-wrapper {
     color: $text-color;
 
