@@ -57,10 +57,10 @@ $(document).ready(function (){
 
 function getAndPopulateNotifications() {
     $.ajax({
-        type: "GET",
+        type: 'GET',
         url: colarazNotificationsFetchingUrl,
         success: function (resp) {
-            let notifications = "";
+            let notifications = '';
             let unreadNotificationsCount = 0;
 
             resp.result.forEach(element => {
@@ -78,64 +78,66 @@ function getAndPopulateNotifications() {
     });
 
     function handleNotificationsListing(notifications) {
-        $("#notifications-list").html(notifications);
+        $('#notifications-list').html(notifications);
     }
     function handleNotificationsCount(count) {
-        if (count == 0) {
-            let countSpan = $("#unread-notifications-count");
-            countSpan.removeClass("count");
-            countSpan.html("");
+        if (count === 0) {
+            let countSpan = $('#unread-notifications-count');
+            countSpan.removeClass('count');
+            countSpan.html('');
         } else {
-            let countSpan = $("#unread-notifications-count");
-            countSpan.addClass("count");
+            let countSpan = $('#unread-notifications-count');
+            countSpan.addClass('count');
             countSpan.html(count);
         }
     }
 
-    function createNotification(img_src, description, days_count, read) {
-        return `<li class="${read ? 'read' : 'unread'}" >` +
-            `<div class="media">` +
-            `<a href="#"><img src="${img_src}" alt=""></a>` +
-            `</div>` +
-            `<div class="description">` +
-            `${description}` +
-            `<p>${days_count}</p>` +
-            `</div>` +
-            `</li>`;
+    function createNotification(imgSrc, description, daysCount, read) {
+        return `<li class='${read ? 'read' : 'unread'}' >
+                    <div class='media'>
+                        <a href='#'>
+                            <img src='${imgSrc}' alt=''>
+                        </a>
+                    </div>
+                    <div class='description'>
+                        ${description}
+                        <p>${daysCount}</p>
+                    </div>
+                </li>`;
     }
 }
 
 function markNotificationsAsRead() {
     $.ajax({
-        type: "GET",
+        type: 'GET',
         url: colarazNotificationsMarkingUrl
     });
 }
 
 function removeNotificationsCount() {
-    let countSpan = $("#unread-notifications-count");
-    if (countSpan.html() !== "" || countSpan.hasClass("count")) {
-        countSpan.removeClass("count");
-        countSpan.html("");
+    let countSpan = $('#unread-notifications-count');
+    if (countSpan.html() !== '' || countSpan.hasClass('count')) {
+        countSpan.removeClass('count');
+        countSpan.html('');
         markNotificationsAsRead();
     }
 }
 
 function getAndPopulateJobAlerts() {
     $.ajax({
-        type: "GET",
+        type: 'GET',
         url: colarazJobAlertsFetchingUrl,
         success: function (resp) {
-            let job_alerts = "";
+            let jobAlerts = '';
             if (resp.d.length) {
                 resp.d.forEach(element => {
-                    job_alerts += createJobAlert(element.Image, element.Heading, element.Message, element.RelativeTime);
+                    jobAlerts += createJobAlert(element.Image, element.Heading, element.Message, element.RelativeTime);
                 });
             } else {
-                job_alerts = "<li><p>No new job alerts</p></li>";
+                jobAlerts = '<li><p>No new job alerts</p></li>';
             }
 
-            handleJobAlertsListing(job_alerts);
+            handleJobAlertsListing(jobAlerts);
             handleJobAlertsCount(resp.d.length);
 
         },
@@ -144,31 +146,31 @@ function getAndPopulateJobAlerts() {
         },
     });
 
-    function handleJobAlertsListing(job_alerts) {
-        $("#job-alerts-list").html(job_alerts);
+    function handleJobAlertsListing(jobAlerts) {
+        $('#job-alerts-list').html(jobAlerts);
     }
     function handleJobAlertsCount(count) {
-        if (count == 0) {
-            let countSpan = $("#unread-job-alerts-count");
-            countSpan.removeClass("count");
-            countSpan.html("");
+        if (count === 0) {
+            let countSpan = $('#unread-job-alerts-count');
+            countSpan.removeClass('count');
+            countSpan.html('');
         } else {
-            let countSpan = $("#unread-job-alerts-count");
-            countSpan.addClass("count");
+            let countSpan = $('#unread-job-alerts-count');
+            countSpan.addClass('count');
             countSpan.html(count);
         }
     }
 
-    function createJobAlert(img_src, heading, message, relativeTime) {
+    function createJobAlert(imgSrc, heading, message, relativeTime) {
         return `<li>
-                    <div class="media">
-                        <a href="#">
-                            <img src="${img_src ? img_src : "https://placehold.it/34x34"}" alt="">
+                    <div class='media'>
+                        <a href='#'>
+                            <img src='${imgSrc ? imgSrc : "https://placehold.it/34x34"}' alt=''>
                         </a>
                     </div>
-                    <div style="font-size: 12px;padding: 0;color: #333;" class="description">
-                        ${heading} <span style="color: #aaaaaa;font-family: sans-serif;"> at </span> ${message}
-                        <p><i class="fa fa-share-square-o"></i> ${relativeTime}</p>
+                    <div style='font-size: 12px;padding: 0;color: #333;' class='description'>
+                        ${heading} <span style='color: #aaaaaa;font-family: sans-serif;'> at </span> ${message}
+                        <p><i class='fa fa-share-square-o'></i> ${relativeTime}</p>
                     </div>
                 </li>`;
     }
@@ -176,16 +178,19 @@ function getAndPopulateJobAlerts() {
 
 function markJobAlertsAsRead() {
     $.ajax({
-        type: "GET",
-        url: colarazJobAlertsMarkingUrl
+        type: 'GET',
+        url: colarazJobAlertsMarkingUrl,
+        error: function (resp) {
+            console.error(resp.message);
+        }
     });
 }
 
 function removeJobAlertsCount() {
-    let countSpan = $("#unread-job-alerts-count");
-    if (countSpan.html() !== "" || countSpan.hasClass("count")) {
-        countSpan.removeClass("count");
-        countSpan.html("");
+    let countSpan = $('#unread-job-alerts-count');
+    if (countSpan.html() !== '' || countSpan.hasClass('count')) {
+        countSpan.removeClass('count');
+        countSpan.html('');
         markJobAlertsAsRead();
     }
 }
