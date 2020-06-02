@@ -65,6 +65,14 @@
             .page-header {
                 width: 38%;
                 @include margin-right(2%);
+
+                .text {
+                    display: block;
+                    font-weight: 400;
+                    font-size: $baseline;
+                    line-height: $baseline*1.25;
+                    padding-top: $baseline*0.5;
+                }
             }
 
             .nav-actions {
@@ -84,6 +92,15 @@
 
         .col-1 {
             min-width: 80px;
+        }
+
+        #table-contents {
+            flex: 0 0 100%;
+            max-width: 100%;
+
+            .table {
+                font-size: 13px;
+            }
         }
 
         a.status-link {
@@ -126,6 +143,43 @@
                     color: $primary;
                 }
             }
+        }
+
+        .SFE-wrapper {
+            background: none !important;
+        }
+
+        .pagination {
+            font-size: 13px;
+
+            .page-item {
+
+                .page-link {
+                    color: $black;
+                }
+
+                &.disabled {
+
+                    .page-link {
+                        color: #767676;
+                    }
+                }
+
+                &.active {
+
+                    .page-link {
+                        background: $btn-hover-bg;
+                    }
+                }
+            }
+        }
+    }
+
+    td,
+    .drop-zone {
+
+        .btn {
+                @include cz-btn;
         }
     }
 }
