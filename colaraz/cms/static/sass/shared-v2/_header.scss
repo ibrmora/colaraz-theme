@@ -56,10 +56,12 @@
         vertical-align: top;
         background: $white;
         border-radius: $baseline;
+        margin: 4px -3px 0 3px;
 
         img {
             max-width: 100%;
-            height: auto;
+            height: 20px;
+            width: 20px;
             vertical-align: top;
         }
     }
@@ -106,7 +108,7 @@
                 color: $white;
                 display: block;
                 position: relative;
-                padding: 9px 10px 7px;
+                padding: 10px 12px 5px 4px;
 
                 &:hover,
                 &:focus {
@@ -165,8 +167,8 @@
         line-height: 12px;
         background: $alert-color;
         position: absolute;
-        right: 20px;
-        top: -2px;
+        right: 21px;
+        top: -1px;
         border-radius: 50%;
     }
 
@@ -178,7 +180,8 @@
         }
 
         &.fa-bell {
-            vertical-align: middle;
+            vertical-align: top;
+            margin: 3px -1px 0 1px;
         }
     }
 
@@ -206,7 +209,7 @@
 
         .notifications-list {
             font-size: 11px;
-            overflow: scroll;
+            overflow-y: auto;
             max-height: 350px;
 
             li {
@@ -374,6 +377,17 @@
             }
         }
 
+        &.cz-nav-course {
+
+            &:hover {
+
+                .nav-course-courseware h3.title,
+                .title {
+                    opacity: 1;
+                }
+            }
+        }
+
         &.ui-right {
 
             .wrapper-nav-sub {
@@ -445,7 +459,8 @@
 
         img {
             max-width: 100%;
-            height: auto;
+            height: 20px;
+            width: 20px;
             vertical-align: top;
         }
     }

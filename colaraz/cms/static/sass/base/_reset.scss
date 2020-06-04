@@ -40,6 +40,13 @@ body {
     -moz-osx-font-smoothing: unset;
 }
 
+a {
+
+    &:focus {
+        outline: none;
+    }
+}
+
 #main {
     padding: $baseline * 2 0;
 }

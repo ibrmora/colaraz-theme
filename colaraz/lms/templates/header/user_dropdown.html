@@ -41,12 +41,12 @@
 
   colaraz_settings_url = '{}://{}.{}/{}'.format(protocol, identifier, domain, user_urls.get('settings')) if user_urls.has_key('settings') else '#'
 %>
-
 <div class="nav-item hidden-mobile nav-item-dropdown" tabindex="-1">
   <div class="toggle-user-dropdown" role="button" aria-label=${_("Options Menu")} aria-expanded="false" tabindex="0" aria-controls="user-menu">
   <div class="profile-block">
     <div class="img-frame">
-      <img src="${profile_image_url}" alt="${user.profile.name}" title="${user.profile.name}">
+      <%namespace name='static' file='../static_content.html'/>
+      <img src="${static.url('images/user-icon.png')}" alt="${ user.username }" title="${user.profile.name}">
     </div>
     <strong class="username">${displayname}</strong>
   </div>
@@ -58,7 +58,7 @@
     <div class="mobile-nav-item dropdown-item dropdown-nav-item hidden"><a href="${reverse('dashboard')}" role="menuitem">${_("Dashboard")}</a></div>
     <div class="mobile-nav-item dropdown-item dropdown-nav-item hidden"><a href="${reverse('learner_profile', kwargs={'username': username})}" role="menuitem">${_("Profile")}</a></div>
     <div class="mobile-nav-item dropdown-item dropdown-nav-item hidden"><a href="${reverse('account_settings')}" role="menuitem">${_("Account")}</a></div>
-    <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="${help_link}">${_("Help")}</a></div>
+    <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="${help_link}"><strong>${_("Help")}</strong></a></div>
     <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="${colaraz_settings_url}">${_("Settings")}</a></div>
     <div class="mobile-nav-item dropdown-item dropdown-nav-item nav-item-logout"><a href="${reverse('colaraz_features:auth_logout_redirect')}" role="menuitem"><span class="fa fa-sign-out"></span>${_("Logout")}</a></div>
   </div>

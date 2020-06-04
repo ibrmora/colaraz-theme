@@ -160,7 +160,7 @@
 
             .notifications-list {
                 font-size: 11px;
-                overflow: scroll;
+                overflow-y: auto;
                 max-height: 350px;
 
                 li {
@@ -335,6 +335,10 @@
 
         &.fa-globe {
             font-size: 20px;
+        }
+
+        &.fa-sign-out {
+            font-size: 14px;
         }
 
         &.fa-bell {
@@ -618,8 +622,7 @@
         overflow: hidden;
 
         img {
-            max-width: 100%;
-            height: auto;
+            @include box(20px);
             vertical-align: top;
         }
     }
