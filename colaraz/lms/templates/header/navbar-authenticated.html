@@ -19,11 +19,9 @@
   sub_domain = settings.COLARAZ_SUB_DOMAIN
   user_urls = user.colaraz_profile.role_based_urls
 
-  colaraz_notifications_url = user_urls.get('viewNotifications') if user_urls.has_key('viewNotifications') else '#'
-
   if user.is_authenticated:
-    invite_friend_url = '{}://{}.{}/Home/InviteFriends.aspx'.format( protocol, identifier, sub_domain)
-    see_all_notifications_url = '{}://{}.{}/{}'.format( protocol, identifier, sub_domain, colaraz_notifications_url)
+    invite_friend_url = '{}://{}.{}/{}'.format(protocol, identifier, sub_domain, user_urls.get('inviteFriend', '#'))
+    see_all_notifications_url = '{}://{}.{}/{}'.format(protocol, identifier, sub_domain, user_urls.get('viewNotifications', '#'))
   endif
 %>
 
