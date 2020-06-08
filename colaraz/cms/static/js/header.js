@@ -52,7 +52,7 @@ $(document).ready(function (){
     setInterval(getAndPopulateNotifications, colarazNotificationsRefreshTime);
 
     getAndPopulateJobAlerts();
-    setInterval(getAndPopulateJobAlerts(), colarazJobAlertsRefreshTime);
+    setInterval(getAndPopulateJobAlerts, colarazJobAlertsRefreshTime);
 });
 
 function getAndPopulateNotifications() {
