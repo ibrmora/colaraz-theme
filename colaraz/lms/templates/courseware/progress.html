@@ -12,6 +12,7 @@ from django.conf import settings
 from django.utils.http import urlquote_plus
 from six import text_type
 
+from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 from openedx.features.enterprise_support.utils import get_enterprise_learner_generic_name
 %>
 
@@ -56,8 +57,12 @@ username = student.profile.name or get_enterprise_learner_generic_name(request)
               % endif
               >
                 <header class="page-info-header">
+                    <%
+                        course_overview = CourseOverview.get_from_id(course.id)
+                        course_image_url = course_overview.course_image_url
+                    %>
                     <div class="image-frame">
-                        <img src="${static.url('images/course.jpg')}" alt="Autodesk Maya">
+                        <img src="${course_image_url if not '/static/studio/images/pencils.jpg' in course_image_url else static.url('images/course.jpg')}" alt="${course_overview.display_name_with_default}">
                     </div>
                     <div class="content-area">
                         <div class="form-actions">
@@ -67,8 +72,8 @@ username = student.profile.name or get_enterprise_learner_generic_name(request)
                             </div>
                             % endif
                         </div>
-                        <h2>Course title</h2>
-                        <h3>Course organization</h3>
+                        <h2>${course_overview.display_name_with_default}</h2>
+                        <h3>${course_overview.display_org_with_default}</h3>
                     </div>
                 </header>
                 <h2 class="hd hd-2 progress-certificates-title">
