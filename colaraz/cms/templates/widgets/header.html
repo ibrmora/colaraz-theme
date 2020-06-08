@@ -155,12 +155,12 @@
             </div>
           </li>
           <li class="dropdown">
-            <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="fa fa-bell" aria-hidden="true"></span><span class="count">13</span>
+            <a class="nav-link" href="#" onclick="removeJobAlertsCount();" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="fa fa-bell" aria-hidden="true"></span><span id="unread-job-alerts-count"></span>
             </a>
             <div class="header-dropdown dropdown-menu dropdown-menu-right all-notifications">
               <h4 class="notifications-heading">Job Alerts</h4>
-              <ul class="notifications-list">
+              <ul id="job-alerts-list" class="notifications-list">
                 <li>
                   <p>No new job alerts</p>
                 </li>
