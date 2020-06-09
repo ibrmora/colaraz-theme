@@ -188,10 +188,18 @@ from openedx.core.release import RELEASE_LINE
             </div>
             <div class="side-nav">
               <ul>
+                <%
+                  is_course_privileges = None
+                  if 'course-access-roles' in request.path:
+                       is_course_privileges = True
+                  endif
+                 %>
                 <li><a href="//${lms_dashboard_url}">Courses</a></li>
                 <li><a href="//${lms_new_courses_url}">Discover New</a></li>
                 <li class="active"><a href="#">Studio</a></li>
-                <li><a href="//${lms_course_privileges_url}">Course Privileges</a></li>
+                 % if user.is_staff or user.courseaccessrole_set.filter(role='role_manager').exists():
+                    <li ${'class="active"' if is_course_privileges  else ''}><a href="${reverse('colaraz_features:course-access-roles-list')}">Course Privileges</a></li>
+                  % endif
               </ul>
             </div>
           </div>
