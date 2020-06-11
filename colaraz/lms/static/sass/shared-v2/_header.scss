@@ -84,9 +84,10 @@
             }
 
             .custom-nav {
-                margin: 0;
+                margin: 0 0 0 2px;
                 padding: 0;
                 list-style: none;
+                position: relative;
                 font-size: 0; //to remove white space between inline HTML elements, and child must have font-size
 
                 .login-register-view & {
@@ -107,12 +108,16 @@
                 }
 
                 li {
-                    margin: 0;
+                    margin: 0 0 0 2px;
                     padding: 0;
                     font-size: 14px;
                     position: relative;
                     display: inline-block;
                     vertical-align: top;
+
+                    &.notification-li {
+                        position: static;
+                    }
 
                     a {
                         &.nav-item {
@@ -128,7 +133,7 @@
                     display: inline-block;
                     text-decoration: none;
                     color: $white;
-                    padding: 9px 10px 7px;
+                    padding: 9px 10px 6px;
                     margin: 0;
 
                     &:hover {
@@ -148,44 +153,63 @@
             background: $white;
             top: 100%;
             left: 0;
-            width: 320px;
+            width: 300px;
             border-radius: 0;
             border: 0;
             padding: 0;
             box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+
+            &.jobs-menu {
+                margin: 4px 0 0;
+            }
+
+            &.all-notifications {
+                transform: none !important;
+                left: auto !important;
+                right: 0;
+                top: 100% !important;
+                @include media-up(sm) {
+                    width: 350px;
+                }
+                @include media-up(xl) {
+                    margin: -3px -26px 0 0;
+                }
+            }
 
             &.show {
                 display: block;
             }
 
             .notifications-list {
-                font-size: 11px;
+                font-size: 14px;
                 overflow-y: auto;
                 max-height: 350px;
 
                 li {
-                    padding: $baseline*.5;
-                    font-size: 12px;
+                    padding: $baseline*.25;
+                    font-size: 14px;
                     display: block;
                     border-bottom: 1px solid $gray-mid-border;
+                    margin: 0 !important;
                     @include clearfix;
 
                     .media {
                         @include float(left);
                         @include box(40px);
                         margin: 0 $baseline*0.5 0 0;
-                        border: 1px solid $gray-mid-border;
 
                         img {
                             width: 40px;
                             height: 40px;
+                            border-radius: 4px;
                         }
                     }
 
                     .description {
                         overflow: hidden;
-                        color:black;
-                        font-size: 11px;
+                        color: $gray-light;
+                        white-space: normal;
+                        line-height: 1.6;
                     }
 
                     &.read {
@@ -204,7 +228,16 @@
 
                     p {
                         margin: 0;
-                        color:#777;
+                        line-height: 1;
+                        color: #A2A2A2;
+                        font-size: 9px;
+
+                        &.no-record {
+                            font-size: 11px;
+                            color: $gray-dark;
+                            padding: 7px 5px 6px;
+                            font-family: $font-family-pt-sans;;
+                        }
                     }
 
                     a {
@@ -217,7 +250,7 @@
 
         .notifications-heading {
             margin: 0;
-            font: italic 700 12px/1 $heading-font;
+            font: italic 700 12px/1 $font-family-pt-sans;
             padding: $baseline*.5;
             border-bottom: 1px solid $gray-mid-border;
         }
@@ -231,12 +264,13 @@
             border-color: $btn-bg;
             border-radius: $baseline;
             color: $black;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 400;
             height: 29px;
             padding: 5px 10px 3px;
             display: block;
             text-align: center;
+            text-transform: none;
 
             &:hover {
                 background: $btn-hover-bg;
@@ -342,7 +376,7 @@
         }
 
         &.fa-bell {
-            vertical-align: bottom;
+            vertical-align: top;
         }
     }
 
@@ -611,6 +645,7 @@
 .profile-block {
     float: right;
     font-size: 14px;
+    margin-right: 3px;
 
     .img-frame {
         display: inline-block;
@@ -690,7 +725,7 @@
     .cz-logo {
         @include float(right);
         width: 120px;
-        padding-top: 8px;
+        padding-top: 9px;
         @include media-down(md) {
             display: none;
         }

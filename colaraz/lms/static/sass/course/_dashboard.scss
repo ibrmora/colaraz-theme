@@ -422,8 +422,8 @@
                                             margin-bottom: 0;
                                         }
                                         @include media-up(md) {
-                                            @include padding-left($baseline*0.9);
-                                            @include margin-left($baseline*0.75);
+                                            @include padding-left($baseline*0.5);
+                                            @include margin-left($baseline*0.5);
                                         }
 
                                         .fa {

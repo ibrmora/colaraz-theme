@@ -57,19 +57,14 @@
   <div class="wrapper wrapper-nav-sub">
     <div class="nav-sub">
       <ul>
-        <li class="nav-item nav-account-dashboard">
-          <a href="/">${_("{studio_name} Home").format(studio_name=settings.STUDIO_SHORT_NAME)}</a>
+        <li class="nav-item nav-help">
+          <a href="/"><strong>Help</strong></a>
         </li>
-        % if GlobalStaff().has_user(user):
-        <li class="nav-item">
-          <a href="${reverse('maintenance:maintenance_index')}">${_("Maintenance")}</a>
-        </li>
-        % endif
         <li class="nav-item item has-block-link">
           <a class="action" href="${colaraz_settings_url}">${_("Settings")}</a>
         </li>
         <li class="nav-item nav-account-signout">
-          <a class="action action-signout" href="//${lms_logout_url}">${_("Sign Out")}</a>
+          <a class="action action-signout" href="//${lms_logout_url}"><span class="fa fa-sign-out"></span>${_("Logout")}</a>
         </li>
       </ul>
     </div>
