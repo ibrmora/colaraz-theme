@@ -5,9 +5,9 @@
 
 // Define your theme's base color
 $theme-green:           #BCCB5A;
+$primary:               #91B845;
 
 // Make your theme's base color as primary color
-$primary:               $theme-green;
 $secondary:             #A6C854;
 
 // Overrides variables
@@ -17,6 +17,7 @@ $white:                 #FFF;
 $text-color:            #4C4C4C;
 
 // Font family
+$font-family-pt-sans: 'PT Sans', 'Open Sans', sans-serif;
 $font-family-serif: Candara, 'Open Sans', sans-serif;
 $font-family-sans-serif: Candara, 'Open Sans', sans-serif;
 
