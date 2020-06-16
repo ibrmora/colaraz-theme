@@ -109,7 +109,7 @@ from openedx.core.djangoapps.content.course_overviews.models import CourseOvervi
                 course_image_url = course_overview.course_image_url
               %>
               <div class="image-frame">
-                <img src="${course_image_url if not '/static/studio/images/pencils.jpg' in course_image_url else static.url('images/course.jpg')}" alt="${course_overview.display_name_with_default}">
+                <img src="${course_image_url}" alt="${course_overview.display_name_with_default}">
               </div>
               <div class="content-area">
                   <div class="form-actions wrap-instructor-info studio-view">
