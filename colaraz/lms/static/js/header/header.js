@@ -480,7 +480,7 @@ function getAndPopulateJobAlerts() {
                     jobAlerts += createJobAlert(element.Image, element.Heading, element.Message, element.RelativeTime);
                 });
             } else {
-                jobAlerts = '<li><p>No new job alerts</p></li>';
+                jobAlerts = '<li><p class="no-record">No new job alerts</p></li>';
             }
 
             handleJobAlertsListing(jobAlerts);
