@@ -239,7 +239,7 @@
             }
         }
 
-        .loading {
+        div.loading {
             overflow: hidden;
             height: 100%;
             position: relative;
@@ -313,17 +313,10 @@
     <%static:optional_include_mako file="body-initial.html" is_theming_enabled="True" />
 <div id="page-prompt"></div>
 
-<div id="preload" class="loading">
-    <ul class="loading-dots">
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-</div>
-
     % if not disable_window_wrap:
         <div id="window-wrap" class="window-wrap" dir="${static.dir_rtl()}">
     % endif
+
     <a class="nav-skip sr-only sr-only-focusable" href="#main">${_("Skip to main content")}</a>
 
     % if not disable_header:
@@ -339,6 +332,15 @@
     % else:
         <div class="container">
     % endif
+
+        <div id="preload" class="loading">
+            <ul class="loading-dots">
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+
         % if user.is_authenticated:
         <div class="side-container">
           %if display_sidebar_account_activation_message:
