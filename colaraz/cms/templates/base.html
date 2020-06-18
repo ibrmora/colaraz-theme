@@ -199,7 +199,7 @@ from openedx.core.release import RELEASE_LINE
                 <li><a href="//${lms_new_courses_url}">Discover New</a></li>
                 <li class="active"><a href="//${configuration_helpers.get_value('CMS_BASE', '#')}">Studio</a></li>
                  % if user.is_staff or user.courseaccessrole_set.filter(role='role_manager').exists():
-                    <li ${'class="active"' if is_course_privileges  else ''}><a href="${reverse('colaraz_features:course-access-roles-list')}">Course Privileges</a></li>
+                    <li ${'class="active"' if is_course_privileges  else ''}><a href="//${lms_course_privileges_url}">Course Privileges</a></li>
                   % endif
               </ul>
             </div>
