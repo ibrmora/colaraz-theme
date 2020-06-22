@@ -141,6 +141,8 @@
 
 .cz-discussion-container {
     padding: 0 30px;
+    position: relative;
+    @include clearfix;
 
     .course-about-content {
 

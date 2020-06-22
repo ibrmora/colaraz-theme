@@ -138,12 +138,18 @@
 
 .courseware {
 
-    .wrapper-course-material {
+    .wrapper-course-material,
+    &.wrapper-course-material {
         margin-top: 0 !important;
+
+        .course-tabs {
+            padding-top: 0;
+        }
     }
 }
 
 .course-view {
+    position: relative;
     padding: 0 !important;
     margin-bottom: $baseline*3 !important;
 
