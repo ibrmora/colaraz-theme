@@ -86,6 +86,44 @@
     }
 }
 
+.unit-id-value {
+    word-break: break-all;
+}
+
+.view-textbooks {
+
+    .textbook {
+
+        .field {
+
+            .action-upload {
+                font-size: 11px;
+                background: $btn-bg !important;
+                border-color: $btn-bg !important;
+                color: $black !important;
+
+                &:hover {
+                    background: $btn-hover-bg !important;
+                    border-color: $btn-hover-bg !important;
+                }
+            }
+        }
+
+        .chapters-fields {
+
+            .field-group {
+                position: relative;
+            }
+        }
+
+        .action-close {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    }
+}
+
 #root {
 
     &.SFE {
