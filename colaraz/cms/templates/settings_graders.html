@@ -7,6 +7,7 @@
 <%!
   import json
   from contentstore import utils
+  from django.core.urlresolvers import reverse
   from django.utils.translation import ugettext as _
   from models.settings.encoder import CourseSettingsEncoder
   from openedx.core.djangolib.js_utils import (
@@ -38,10 +39,13 @@
 <%block name="content">
 <div class="wrapper-mast wrapper">
   <header class="mast has-subtitle">
+    <%
+      index_url = reverse('course_handler', kwargs={'course_key_string': unicode(context_course.id)})
+    %>
     <h1 class="page-header">
       <small class="subtitle">${_("Settings")} - ${_("Grading")}</small>
       <span class="sr">&gt; </span>
-      <span class="text">${context_course.display_name_with_default}</span>
+      <a href="${index_url}"><span class="text">${context_course.display_name_with_default}</span></a>
     </h1>
   </header>
 </div>
