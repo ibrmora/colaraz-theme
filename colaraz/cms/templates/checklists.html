@@ -26,10 +26,13 @@
 
 <div class="wrapper-mast wrapper">
     <header class="mast has-actions has-subtitle">
+        <%
+          index_url = reverse('course_handler', kwargs={'course_key_string': unicode(context_course.id)})
+        %>
         <h2 class="page-header">
             <small class="subtitle">${_("Tools")} - ${_("Checklists")}</small>
             <span class="sr">- </span>
-            <span class="text">${context_course.display_name_with_default}</span>
+            <a href="${index_url}"><span class="text">${context_course.display_name_with_default}</span></a>
         </h2>
     </header>
 </div>

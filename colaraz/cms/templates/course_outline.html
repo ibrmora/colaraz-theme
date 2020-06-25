@@ -121,9 +121,8 @@ from django.core.urlresolvers import reverse
         <h1 class="page-header">
             <small class="subtitle">${_("Content")} - ${_("Course Outline")}</small>
             <span class="sr">&gt; </span>
-            <span class="text">${context_course.display_name_with_default}</span>
+            <a href="#"><span class="text">${context_course.display_name_with_default}</span></a>
         </h1>
-
         <nav class="nav-actions" aria-label="${_('Page Actions')}">
             <h3 class="sr">${_("Page Actions")}</h3>
             <ul>
@@ -165,7 +164,7 @@ from django.core.urlresolvers import reverse
                     <div style="width: 50%" class="status-studio-frontend">
                 % endif
                     <%static:studiofrontend entry="courseOutlineHealthCheck">
-                        <% 
+                        <%
                             course_key = context_course.id
                         %>
                         {
@@ -189,7 +188,7 @@ from django.core.urlresolvers import reverse
                                 "settings": ${reverse('settings_handler', kwargs={'course_key_string': unicode(course_key)})| n, dump_js_escaped_json}
                             }
                         }
-                    </%static:studiofrontend> 
+                    </%static:studiofrontend>
                 </div>
                 <div class="status-highlights-enabled"></div>
             </div>

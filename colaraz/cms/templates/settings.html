@@ -7,6 +7,7 @@
 <%namespace name='static' file='static_content.html'/>
 <%!
   import urllib
+  from django.core.urlresolvers import reverse
   from django.utils.translation import ugettext as _
   from contentstore import utils
   from openedx.core.djangoapps.certificates.api import can_show_certificate_available_date_field
@@ -47,10 +48,13 @@ CMS.URL.UPLOAD_ASSET = '${upload_asset_url | n, js_escaped_string}'
 <%block name="content">
 <div class="wrapper-mast wrapper">
   <header class="mast has-subtitle">
+    <%
+      index_url = reverse('course_handler', kwargs={'course_key_string': unicode(context_course.id)})
+    %>
     <h1 class="page-header">
       <small class="subtitle">${_("Settings")} - ${_("Schedule & Details")}</small>
       <span class="sr">&gt; </span>
-      <span class="text">${context_course.display_name_with_default}</span>
+      <a href="${index_url}"><span class="text">${context_course.display_name_with_default}</span></a>
     </h1>
   </header>
 </div>
