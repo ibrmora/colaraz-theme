@@ -1,5 +1,9 @@
 .instructor-dashboard-wrapper-2 {
 
+    .request-response-error {
+        word-break: break-all;
+    }
+
     .instructor-dashboard-content-2 {
         padding: $baseline;
 
@@ -191,6 +195,21 @@
 
     textarea {
         min-height: 70px;
+    }
+
+    .open-response-assessment-summary,
+    .open-response-assessment-main-table {
+        overflow-x: auto;
+        width: 100%;
+
+        table {
+            table-layout: auto;
+        }
+    }
+
+    .slick-cell,
+    .slick-header-column {
+        box-sizing: content-box;
     }
 }
 

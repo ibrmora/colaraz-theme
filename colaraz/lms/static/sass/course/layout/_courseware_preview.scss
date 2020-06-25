@@ -153,6 +153,10 @@
     padding: 0 !important;
     margin-bottom: $baseline*3 !important;
 
+    .course-sidebar {
+        @include padding-right(15px);
+    }
+
     .page-header {
         background: $gray-lightest;
         border: none;
@@ -162,6 +166,13 @@
 
         .page-title {
             margin: 0;
+        }
+    }
+
+    .section {
+
+        img {
+            max-width: 100%;
         }
     }
 

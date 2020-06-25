@@ -59,6 +59,17 @@
     }
 }
 
+.bookmark-button {
+    color: $primary;
+
+    &:focus,
+    &:hover {
+        text-decoration: none !important;
+        outline-color: darken($primary, 10%);
+        color: darken($primary, 10%) !important;
+    }
+}
+
 .side-widget {
     @import './bootstrap/scss/progress';
     padding: $baseline*.75 $baseline;
