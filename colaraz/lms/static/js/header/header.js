@@ -272,11 +272,14 @@ $(document).ready(function() {
     makeAnimatedHeader();
     edlySetupNavMenu();
 
-    getAndPopulateNotifications();
-    setInterval(getAndPopulateNotifications, colarazNotificationsRefreshTime);
-
-    getAndPopulateJobAlerts();
-    setInterval(getAndPopulateJobAlerts, colarazJobAlertsRefreshTime);
+    if (isColarazNotificationsApiEnabled) {
+        getAndPopulateNotifications();
+        setInterval(getAndPopulateNotifications, colarazNotificationsRefreshTime);
+    }
+    if (isColarazJobAlertsApiEnabled) {
+        getAndPopulateJobAlerts();
+        setInterval(getAndPopulateJobAlerts, colarazJobAlertsRefreshTime);
+    }
 });
 
 // Accessibility keyboard controls for user dropdown and mobile menu
