@@ -17,6 +17,7 @@
 <% online_help_token = self.online_help_token() if hasattr(self, 'online_help_token') else None %>
 <%!
     from branding import api as branding_api
+    from django.db.models import Q
     from django.urls import reverse
     from django.utils.http import urlquote_plus
     from django.utils.translation import ugettext as _
@@ -394,7 +395,7 @@
                   %>
                   <li ${'class="active"' if is_dashboard else ''}><a href="${reverse('dashboard')}">Courses</a></li>
                   <li  ${'class="active"' if is_discover_new  else ''}><a href="${marketing_link('COURSES')}">Discover New</a></li>
-                  % if user.is_staff or user.courseaccessrole_set.filter(role='course_creator_group').exists():
+                  % if user.is_staff or user.courseaccessrole_set.filter(Q(role='course_creator_group') | Q(role='instructor') | Q(role='staff')).exists():
                     <li><a href="//${configuration_helpers.get_value('CMS_BASE')}">Studio</a></li>
                   % endif
 
