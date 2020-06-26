@@ -47,12 +47,14 @@ function openInviteFriendPopup(inviteFriendUrl) {
 
 $(document).ready(function (){
     makeAnimatedHeader();
-
-    getAndPopulateNotifications();
-    setInterval(getAndPopulateNotifications, colarazNotificationsRefreshTime);
-
-    getAndPopulateJobAlerts();
-    setInterval(getAndPopulateJobAlerts, colarazJobAlertsRefreshTime);
+    if (isColarazNotificationsApiEnabled){
+        getAndPopulateNotifications();
+        setInterval(getAndPopulateNotifications, colarazNotificationsRefreshTime);
+    }
+    if (isColarazJobAlertsApiEnabled){
+        getAndPopulateJobAlerts();
+        setInterval(getAndPopulateJobAlerts, colarazJobAlertsRefreshTime);
+    }
 });
 
 function getAndPopulateNotifications() {

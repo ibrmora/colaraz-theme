@@ -454,11 +454,13 @@
         // Colaraz Notifications API variables
         var colarazNotificationsFetchingUrl = "${reverse('colaraz_features:notifications_handler', kwargs={'api_method': 'fetch'})}";
         var colarazNotificationsMarkingUrl = "${reverse('colaraz_features:notifications_handler', kwargs={'api_method': 'mark'})}";
-        var colarazNotificationsRefreshTime = ${ getattr(settings, 'COLARAZ_NOTIFICATIONS', {}).get('REFRESH_TIME_MILLISECONDS', 30000)};
+        var isColarazNotificationsApiEnabled = ${getattr(settings, 'COLARAZ_NOTIFICATIONS', {}).get('ENABLE', False) | n, dump_js_escaped_json};
+        var colarazNotificationsRefreshTime = ${getattr(settings, 'COLARAZ_NOTIFICATIONS', {}).get('REFRESH_TIME_MILLISECONDS', 30000)};
         // Colaraz Job Alerts API variables
         var colarazJobAlertsFetchingUrl = "${reverse('colaraz_features:job_alerts_handler', kwargs={'api_method': 'fetch'})}";
         var colarazJobAlertsMarkingUrl = "${reverse('colaraz_features:job_alerts_handler', kwargs={'api_method': 'mark'})}";
-        var colarazJobAlertsRefreshTime = ${ getattr(settings, 'COLARAZ_JOB_ALERTS', {}).get('REFRESH_TIME_MILLISECONDS', 30000)};
+        var isColarazJobAlertsApiEnabled = ${getattr(settings, 'COLARAZ_JOB_ALERTS', {}).get('ENABLE', False) | n, dump_js_escaped_json};
+        var colarazJobAlertsRefreshTime = ${getattr(settings, 'COLARAZ_JOB_ALERTS', {}).get('REFRESH_TIME_MILLISECONDS', 30000)};
     </script>
     <script type="text/javascript" src="${static.url('js/vendor/noreferrer.js')}" charset="utf-8"></script>
     <script type="text/javascript" src="${static.url('js/utils/navigation.js')}" charset="utf-8"></script>
