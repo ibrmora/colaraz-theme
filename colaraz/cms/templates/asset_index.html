@@ -59,5 +59,15 @@
         </%static:studiofrontend>
     </div>
 </div>
-
+<script>
+    $('div.alert-dialog').bind('DOMSubtreeModified', function () {
+        $('div.alert.fade.alert-dismissible').wrap('<div hidden></div>');
+        var updatedErrorMessage = $(this).text();
+        if (updatedErrorMessage) {
+            updatedErrorMessage = updatedErrorMessage.replace(',000,000 ', ' ');
+            alert(updatedErrorMessage);
+        }
+        setTimeout(function() { $('button.close').click(); }, 1);
+    });
+</script>
 </%block>
