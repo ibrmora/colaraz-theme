@@ -11,6 +11,7 @@
 ## Standard imports
 <%namespace name='static' file='static_content.html'/>
 <%!
+from django.urls import reverse
 from django.utils.translation import ugettext as _
 
 from openedx.core.djangoapps.util.user_messages import PageLevelMessages
@@ -18,6 +19,7 @@ from openedx.core.djangolib.js_utils import (
     dump_js_escaped_json, js_escaped_string
 )
 from openedx.core.djangolib.markup import HTML
+from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
 from openedx.core.release import RELEASE_LINE
 %>
 
@@ -99,9 +101,14 @@ from openedx.core.release import RELEASE_LINE
     % else:
         <%static:css group='${self.attr.main_css_v2}'/>
     % endif
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
     <%include file="widgets/segment-io.html" />
 
     <%block name="header_extras"></%block>
+
+    <script src="${static.url("js/jquery-3.2.1.slim.min.js")}"></script>
+    <script src="${static.url("js/popper.min.js")}"></script>
+    <script src="${static.url("js/bootstrap.min.js")}"></script>
   </head>
 
   <body class="${static.dir_rtl()} <%block name='bodyclass'></%block> lang_${LANGUAGE_CODE}">
@@ -148,11 +155,61 @@ from openedx.core.release import RELEASE_LINE
       <%block name="page_alert"></%block>
       </div>
 
+      % if user.is_authenticated:
       <main id="main" aria-label="Content" tabindex="-1">
+        <%
+          lms_base = configuration_helpers.get_value('LMS_BASE')
+          lms_dashboard_url = '{}{}'.format(lms_base, '/dashboard')
+          lms_new_courses_url = '{}{}'.format(lms_base, '/courses')
+          lms_course_privileges_url = '{}{}'.format(lms_base, reverse('colaraz_features:course-access-roles-list'))
+
+          colaraz_profile = user.colaraz_profile
+          job_title = colaraz_profile.job_title
+          profile_image_url = colaraz_profile.profile_image_url or "http://polymath.colaraz.net/cvsocial/_graphics/icons/user/defaultsmall.gif"
+          profile_strength_color = colaraz_profile.profile_strength_color
+          profile_strength_title = colaraz_profile.profile_strength_title
+          profile_strength_width = colaraz_profile.profile_strength_width
+        %>
+        <div class="side-container">
+          <div class="side-widget side-profile">
+            <div class="side-profile-row">
+              <div class="avatar">
+                <img src="${profile_image_url}" alt="${user.profile.name}" title="${user.profile.name}">
+              </div>
+              <span class="user-name">${user.profile.name}</span>
+                <span class="designation">${job_title}</span>
+            </div>
+            <div id="progress" class="profile-progress-bar">
+              <div class="progress progress-striped">
+                  <div class="progress-bar progress-bar-striped" style="width:${profile_strength_width};background-color:${profile_strength_color}" id="progressbar">
+                  <span class="sr-only">${profile_strength_title}</span>
+                </div>
+              </div>
+              <span class="progress-result">${profile_strength_title}</span>
+            </div>
+            <div class="side-nav">
+              <ul>
+                <%
+                  is_course_privileges = None
+                  if 'course-access-roles' in request.path:
+                       is_course_privileges = True
+                  endif
+                 %>
+                <li><a href="//${lms_dashboard_url}">Courses</a></li>
+                <li><a href="//${lms_new_courses_url}">Discover New</a></li>
+                <li class="active"><a href="//${configuration_helpers.get_value('CMS_BASE', '#')}">Studio</a></li>
+                 % if user.is_staff or user.courseaccessrole_set.filter(role='role_manager').exists():
+                    <li ${'class="active"' if is_course_privileges  else ''}><a href="//${lms_course_privileges_url}">Course Privileges</a></li>
+                  % endif
+              </ul>
+            </div>
+          </div>
+        </div>
         <div id="content">
         <%block name="content"></%block>
         </div>
       </main>
+      % endif
 
       % if user.is_authenticated:
         <%include file="widgets/sock.html" args="online_help_token=online_help_token" />
@@ -193,6 +250,18 @@ from openedx.core.release import RELEASE_LINE
       });
       </script>
     </%block>
+      <script type="text/javascript">
+        // Colaraz Notifications API variables
+        var colarazNotificationsFetchingUrl = "${reverse('colaraz_features:notifications_handler', kwargs={'api_method': 'fetch'})}";
+        var colarazNotificationsMarkingUrl = "${reverse('colaraz_features:notifications_handler', kwargs={'api_method': 'mark'})}";
+        var isColarazNotificationsApiEnabled = ${getattr(settings, 'COLARAZ_NOTIFICATIONS', {}).get('ENABLE', False) | n, dump_js_escaped_json};
+        var colarazNotificationsRefreshTime = ${getattr(settings, 'COLARAZ_NOTIFICATIONS', {}).get('REFRESH_TIME_MILLISECONDS', 30000)};
+        // Colaraz Job Alerts API variables
+        var colarazJobAlertsFetchingUrl = "${reverse('colaraz_features:job_alerts_handler', kwargs={'api_method': 'fetch'})}";
+        var colarazJobAlertsMarkingUrl = "${reverse('colaraz_features:job_alerts_handler', kwargs={'api_method': 'mark'})}";
+        var isColarazJobAlertsApiEnabled = ${getattr(settings, 'COLARAZ_JOB_ALERTS', {}).get('ENABLE', False) | n, dump_js_escaped_json};
+        var colarazJobAlertsRefreshTime = ${getattr(settings, 'COLARAZ_JOB_ALERTS', {}).get('REFRESH_TIME_MILLISECONDS', 30000)};
+      </script>
     <%include file="widgets/segment-io-footer.html" />
     <script type="text/javascript" src="${static.url('js/header.js')}"></script>
     <div class="modal-cover"></div>

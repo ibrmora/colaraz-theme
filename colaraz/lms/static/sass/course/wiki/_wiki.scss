@@ -11,6 +11,15 @@
             @include float(right);
         }
 
+        input {
+            @include cz-input;
+        }
+
+        textarea {
+            @include cz-input;
+            min-height: 70px;
+        }
+
         .breadcrumbs-header {
             border: none;
             height: auto;
@@ -51,6 +60,10 @@
                     text-shadow: none;
                     @include media-down(xs) {
                         @include margin-left(0);
+                    }
+
+                    .fa {
+                        display: none;
                     }
 
                     &:hover {
@@ -166,6 +179,8 @@
         .page-header {
             background: $gray-lightest;
             font-weight: 600;
+            @include padding-left($baseline*.75);
+            @include padding-right($baseline*.75);
         }
 
         #hint_id_content {

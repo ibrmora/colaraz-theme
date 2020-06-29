@@ -37,6 +37,39 @@
     }
 }
 
+.main-container {
+
+    .wrapper-course-material {
+
+        .course-tabs {
+            padding: 0;
+        }
+    }
+}
+
+.book-wrapper {
+    padding: $baseline 0;
+
+    .book {
+        width: 80% !important;
+
+        iframe {
+            width: 100%;
+        }
+    }
+}
+
+.bookmark-button {
+    color: $primary;
+
+    &:focus,
+    &:hover {
+        text-decoration: none !important;
+        outline-color: darken($primary, 10%);
+        color: darken($primary, 10%) !important;
+    }
+}
+
 .side-widget {
     @import './bootstrap/scss/progress';
     padding: $baseline*.75 $baseline;
@@ -84,7 +117,7 @@
         @include margin(0, 15px, 10px, 0);
 
         img {
-            max-width: 100%;
+            width: 100%;
             height: auto;
         }
     }
@@ -178,6 +211,12 @@
     }
 }
 
+.btn-blue,
+.view-teams .action-primary,
+.instructor-dashboard-wrapper-2 .btn-blue {
+    @include cz-btn;
+}
+
 .dashboard-header {
     padding-top: 20px;
     @include clearfix;
@@ -190,7 +229,10 @@
 }
 
 .main-wrapper {
-    padding-bottom: 40px;
+
+    .window-wrap & {
+        padding-bottom: 40px;
+    }
 
     .side-container {
         margin: 0;
@@ -416,8 +458,8 @@
                                             margin-bottom: 0;
                                         }
                                         @include media-up(md) {
-                                            @include padding-left($baseline*0.9);
-                                            @include margin-left($baseline*0.75);
+                                            @include padding-left($baseline*0.5);
+                                            @include margin-left($baseline*0.5);
                                         }
 
                                         .fa {

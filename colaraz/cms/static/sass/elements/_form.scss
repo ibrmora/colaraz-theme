@@ -1,0 +1,98 @@
+.form-create {
+
+  .list-input {
+
+    .field {
+
+      input,
+      textarea {
+        @include cz-input;
+      }
+
+      textarea {
+        min-height: 70px;
+      }
+    }
+  }
+}
+
+.view-group-configurations {
+
+  .content-primary {
+
+    .wrapper-collection {
+
+      .collection-header {
+
+        .title {
+
+          .toggle {
+
+            &:hover {
+              color: $primary;
+            }
+          }
+        }
+      }
+
+      .collection-edit {
+
+        .field {
+
+          input {
+            @include cz-input;
+          }
+        }
+      }
+    }
+  }
+}
+
+.view-settings {
+
+  .group-settings {
+
+    #field-course-image {
+
+      .wrapper-input {
+
+        .input,
+        .action-upload-image {
+          float: none;
+          width: 100%;
+          font-size: 13px;
+          margin-right: 0;
+        }
+      }
+    }
+
+    .list-input {
+
+      .field {
+
+        input,
+        textarea {
+          @include cz-input;
+        }
+
+        textarea {
+          min-height: 70px;
+        }
+      }
+    }
+  }
+}
+
+// JQUI calendar
+.ui-datepicker {
+
+  .ui-state-default {
+    color: $black;
+  }
+
+  .ui-state-highlight {
+    background: $btn-hover-bg;
+    border-color: $btn-hover-bg;
+    color: $black;
+  }
+}

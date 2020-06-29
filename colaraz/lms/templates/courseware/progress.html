@@ -12,6 +12,7 @@ from django.conf import settings
 from django.utils.http import urlquote_plus
 from six import text_type
 
+from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 from openedx.features.enterprise_support.utils import get_enterprise_learner_generic_name
 %>
 
@@ -55,11 +56,26 @@ username = student.profile.name or get_enterprise_learner_generic_name(request)
                 lang="${course.language}"
               % endif
               >
-                % if staff_access and studio_url is not None:
-                <div class="wrap-instructor-info">
-                    <a class="instructor-info-action studio-view" href="${studio_url}">${_("View grading in studio")}</a>
-                </div>
-                % endif
+                <header class="page-info-header">
+                    <%
+                        course_overview = CourseOverview.get_from_id(course.id)
+                        course_image_url = course_overview.course_image_url
+                    %>
+                    <div class="image-frame">
+                        <img src="${course_image_url}" alt="${course_overview.display_name_with_default}">
+                    </div>
+                    <div class="content-area">
+                        <div class="form-actions">
+                            % if staff_access and studio_url is not None:
+                            <div class="wrap-instructor-info">
+                                <a class="instructor-info-action studio-view" href="${studio_url}">${_("View grading in studio")}</a>
+                            </div>
+                            % endif
+                        </div>
+                        <h2>${course_overview.display_name_with_default}</h2>
+                        <h3>${course_overview.display_org_with_default}</h3>
+                    </div>
+                </header>
                 <h2 class="hd hd-2 progress-certificates-title">
                     ${_("Course Progress for Student '{username}' ({email})").format(username=username, email=student.email)}
                 </h2>

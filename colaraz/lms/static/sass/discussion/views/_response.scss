@@ -264,12 +264,35 @@
 }
 
 .discussion,
+.course-view,
 .dashboard-header {
 
     .search-box {
-        float: right;
+        margin: 0;
         position: relative;
-        @include margin-left(10px);
+
+        .cz-discussion-container & {
+            @include media-down(sm) {
+                margin: 0 (-$baseline*1.5);
+            }
+        }
+
+        @include media-up(sm) {
+            float: right;
+            @include margin-left(10px);
+        }
+
+        &.main-search {
+            @include media-up(sm) {
+                position: absolute;
+                top: -$baseline*2;
+                right: $baseline;
+            }
+        }
+
+        .forum-search {
+            margin: 0;
+        }
 
         .search-opener {
             background: none !important;
@@ -277,6 +300,21 @@
             padding: 6px 2px 0;
             box-shadow: none;
             text-shadow: none;
+            width: 28px;
+            position: relative;
+            z-index: 1;
+            display: none;
+            @include media-up(sm) {
+                display: block;
+            }
+
+            &:hover {
+                color: $primary;
+            }
+
+            &:focus {
+                outline: none;
+            }
         }
 
         &.active {
@@ -298,13 +336,17 @@
         }
 
         .forum-search {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 100%;
-            padding: 10px;
+            padding: $baseline*.5;
             border-radius: $border-radius 0 $border-radius $border-radius;
             background: $gray-lightest;
+
+            @include media-up(sm) {
+                box-shadow: 0 0 5px rgba($black, .1);
+                display: none;
+                position: absolute;
+                right: 0;
+                top: 100%;
+            }
         }
     }
 
@@ -317,9 +359,12 @@
         .search-input {
             border-radius: $baseline;
             color: $text-color;
-            @include box(21px, 200px);
+            border-color: $gray-lighter;
+            min-width: 250px;
+            @include box(29px, 100%);
             @include padding(3px, 35px, 3px, 9px);
             @include placeholder($text-color);
+            box-sizing: border-box;
         }
 
         .search-button {
@@ -327,13 +372,14 @@
             min-width: 0;
             padding: 0;
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: $baseline*.5;
+            right: $baseline*.5;
             background: none;
             border: 0;
             box-shadow: none;
             text-shadow: none;
             @include box(29px);
+            border-radius: $baseline;
 
             &:before {
                 content: '\f002';

@@ -1,0 +1,37 @@
+// studio - views - course pages
+// ====================
+
+.view-static-pages {
+
+  .wrapper-actions-list {
+
+    .actions-list {
+
+      .action-item {
+
+        .action-button,
+        .toggle-actions-view {
+
+          &:hover {
+            background-color: $btn-hover-bg;
+            color: $black;
+          }
+        }
+
+        &.action-visible label {
+
+          &:hover {
+            background-color: $btn-hover-bg;
+          }
+        }
+
+        &.action-visible .toggle-checkbox:hover ~ .action-button,
+        &.action-visible .toggle-checkbox:checked:hover ~ .action-button {
+          background-color: $btn-hover-bg;
+          color: $black;
+        }
+      }
+    }
+  }
+}
+

@@ -1,6 +1,18 @@
 .instructor-dashboard-wrapper-2 {
 
+    .request-response-error {
+        word-break: break-all;
+    }
+
     .instructor-dashboard-content-2 {
+        padding: $baseline;
+
+        .idash-section {
+
+            .subsection-title {
+                font-weight: 400;
+            }
+        }
 
         .instructor-nav {
             border-bottom: 2px solid $gray-lightest;
@@ -35,6 +47,27 @@
             }
         }
 
+        .customBrowseBtn {
+
+            .file-browse {
+
+                .file_field {
+                    background: none;
+                    margin-top: 1px;
+                }
+            }
+        }
+
+        .submit-file-button {
+            @include cz-btn;
+
+            &:active,
+            &:focus {
+                outline: none;
+                box-shadow: none;
+            }
+        }
+
         .idash-section {
 
             h3 {
@@ -50,19 +83,7 @@
 
             .action-primary,
             input[type="button"] {
-                background: $btn-bg !important;
-                border-color: $btn-bg !important;
-                color: $black !important;
-                border-radius: $baseline !important;
-                padding: 6px 10px 4px !important;
-                font-weight: 400 !important;
-                box-shadow: none !important;
-                text-shadow: none;
-
-                &:hover {
-                    background: $btn-hover-bg !important;
-                    border-color: $btn-hover-bg !important;
-                }
+                @include cz-btn;
 
                 &:active,
                 &:focus {
@@ -78,6 +99,10 @@
                     table {
                         @include media-up(sm) {
                             min-width: 400px;
+                        }
+
+                        .total {
+                            color: $primary;
                         }
 
                         caption {
@@ -138,19 +163,66 @@
     .problem-browser {
 
         .btn {
-            border-color: $btn-bg;
-            color: $black;
-            border-radius: $baseline;
-            padding: 7px 10px 3px;
-            font-weight: 400;
-            box-shadow: none;
-            text-shadow: none;
+            @include cz-btn;
+            margin-bottom: 10px;
+        }
+    }
 
-            &:hover,
-            &:focus {
-                background: $btn-hover-bg;
-                border-color: $btn-hover-bg;
+    .customBrowseBtn {
+
+        span.enhanced-input-file {
+            border-radius: $baseline;
+            padding-top: 21px;
+        }
+
+        .file-browse {
+
+            .file_field {
+                top: 0;
+            }
+
+            span.browse {
+                @include cz-btn;
+                margin-left: $baseline*14;
             }
         }
+    }
+
+    textarea,
+    input[type="text"] {
+        @include cz-input;
+    }
+
+    textarea {
+        min-height: 70px;
+    }
+
+    .open-response-assessment-summary,
+    .open-response-assessment-main-table {
+        overflow-x: auto;
+        width: 100%;
+
+        table {
+            table-layout: auto;
+        }
+    }
+
+    .slick-cell,
+    .slick-header-column {
+        box-sizing: content-box;
+    }
+}
+
+#generate-exception-certificates {
+    margin-top: $baseline*.5;
+    margin-bottom: $baseline*.75;
+}
+
+.tip {
+
+    &.tip-stacked {
+        display: block;
+        font-size: 13px;
+        padding: $baseline*0.5 0;
     }
 }

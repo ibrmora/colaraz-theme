@@ -7,16 +7,17 @@
   from student.roles import GlobalStaff
 
   from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
-  lms_logout_url = configuration_helpers.get_value('LMS_BASE') + reverse('colaraz_features:auth_logout_redirect')
-%>
-
-<% 
+  %>
+  
+  <% 
   protocol = getattr(settings, 'COLARAZ_DOMAIN_PROTOCOL', 'http')
   identifier = user.colaraz_profile.site_identifier 
   domain = settings.COLARAZ_SUB_DOMAIN
   user_urls = user.colaraz_profile.role_based_urls
-
+  
   colaraz_settings_url = '{}://{}.{}/{}'.format(protocol, identifier, domain, user_urls.get('settings')) if user_urls.has_key('settings') else '#'
+  lms_base = configuration_helpers.get_value('LMS_BASE')
+  lms_logout_url = (lms_base + reverse('colaraz_features:auth_logout_redirect')) if lms_base else '#'
 %>
 
 % if uses_pattern_library:
@@ -49,7 +50,7 @@
 
 % else:
   <h3 class="title">
-    <span class="label">
+    <span>
       <span class="label-prefix sr-only">${_("Currently signed in as:")}</span>
       <span class="account-username" title="${ user.username }"><img src="${static.url('images/user-icon.png')}" alt="${ user.username }"></span>
     </span>
@@ -57,19 +58,14 @@
   <div class="wrapper wrapper-nav-sub">
     <div class="nav-sub">
       <ul>
-        <li class="nav-item nav-account-dashboard">
-          <a href="/">${_("{studio_name} Home").format(studio_name=settings.STUDIO_SHORT_NAME)}</a>
+        <li class="nav-item nav-help">
+          <a href="/"><strong>Help</strong></a>
         </li>
-        % if GlobalStaff().has_user(user):
-        <li class="nav-item">
-          <a href="${reverse('maintenance:maintenance_index')}">${_("Maintenance")}</a>
-        </li>
-        % endif
         <li class="nav-item item has-block-link">
           <a class="action" href="${colaraz_settings_url}">${_("Settings")}</a>
         </li>
         <li class="nav-item nav-account-signout">
-          <a class="action action-signout" href="//${lms_logout_url}">${_("Sign Out")}</a>
+          <a class="action action-signout" href="//${lms_logout_url}"><span class="fa fa-sign-out"></span>${_("Logout")}</a>
         </li>
       </ul>
     </div>

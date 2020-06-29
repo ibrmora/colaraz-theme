@@ -34,6 +34,7 @@ button {
 .btn-link {
 
      &:hover {
+        color: darken($primary,10%) !important;
         border-color: transparent;
     }
 }

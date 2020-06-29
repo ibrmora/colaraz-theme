@@ -107,3 +107,42 @@
     background: -o-linear-gradient($direction, $list);
     background: linear-gradient($direction, $list);  
 }
+
+// Default Colaraz Button
+@mixin cz-btn {
+    background: $btn-bg !important;
+    border-radius: $baseline !important;
+    color: $black !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    padding: 5px 15px !important;
+    text-decoration: none;
+    text-transform: none;
+    box-shadow: none;
+    text-shadow: none;
+    border: 0 !important;
+    line-height: 20px;
+
+    &:hover {
+        background: $btn-hover-bg !important;
+        border-color: $btn-hover-bg !important;
+        color: $black !important;
+        box-shadow: none;
+    }
+}
+
+// Default Colaraz Input Field
+@mixin cz-input {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: $baseline;
+    background: #f8f8f8;
+    color: $black;
+    box-shadow: none;
+
+    &:focus {
+        background: $white;
+        box-shadow: none;
+        border-color: $btn-hover-bg;
+    }
+}

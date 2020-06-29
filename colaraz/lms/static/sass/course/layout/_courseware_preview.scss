@@ -17,7 +17,10 @@
         padding-left: 0;
         padding-right: 0;
     }
-    .staff-modal {
+
+    .xqa-modal,
+    .staff-modal,
+    .history-modal {
         margin-left: -40% !important;
     }
 }
@@ -135,14 +138,24 @@
 
 .courseware {
 
-    .wrapper-course-material {
+    .wrapper-course-material,
+    &.wrapper-course-material {
         margin-top: 0 !important;
+
+        .course-tabs {
+            padding-top: 0;
+        }
     }
 }
 
 .course-view {
+    position: relative;
     padding: 0 !important;
     margin-bottom: $baseline*3 !important;
+
+    .course-sidebar {
+        @include padding-right(15px);
+    }
 
     .page-header {
         background: $gray-lightest;
@@ -153,6 +166,13 @@
 
         .page-title {
             margin: 0;
+        }
+    }
+
+    .section {
+
+        img {
+            max-width: 100%;
         }
     }
 
@@ -247,19 +267,7 @@
     }
 
     .btn-primary {
-        background: $btn-bg !important;
-        border-color: $btn-bg !important;
-        border-radius: $baseline;
-        color: $black !important;
-        font-size: 13px;
-        font-weight: 400;
-        height: auto;
-        padding: 6px 15px 4px;
-
-        &:hover {
-            background: $btn-hover-bg !important;
-            border-color: $btn-hover-bg !important;
-        }
+        @include cz-btn;
     }
 }
 

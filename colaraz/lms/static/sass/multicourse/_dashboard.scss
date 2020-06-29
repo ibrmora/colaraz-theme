@@ -1,0 +1,28 @@
+// lms - views - user/student dashboard
+// ====================
+
+// ====================
+// UI: messages
+
+.wrapper-messages-primary {
+
+  .message {
+
+    &.message-status {
+
+      &.course-status-certavailable{
+
+        .actions-primary{
+
+          .action-certificate {
+
+            .btn {
+              @include cz-btn;
+              letter-spacing: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
