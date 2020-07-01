@@ -265,5 +265,11 @@ from openedx.core.release import RELEASE_LINE
     <%include file="widgets/segment-io-footer.html" />
     <script type="text/javascript" src="${static.url('js/header.js')}"></script>
     <div class="modal-cover"></div>
+    <script>
+      $('#page-notification').bind('DOMSubtreeModified', function () {
+        if ($(this).text().includes('exceeds maximum size of')) {
+          setTimeout(function() { $('#page-notification').empty(); }, 3000);
+        }});
+    </script>
   </body>
 </html>
