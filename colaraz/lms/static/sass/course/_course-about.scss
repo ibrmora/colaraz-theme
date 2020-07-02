@@ -182,6 +182,7 @@
                         }
 
                         a.register,
+                        .add-to-cart,
                         .view-course {
                             background: $btn-bg;
                             border-color: $btn-bg;
@@ -198,6 +199,12 @@
                                 color: $black;
                                 background: $btn-hover-bg;
                                 border-color: $btn-hover-bg;
+
+                                &:not(:disabled) {
+                                    color: $black;
+                                    background: $btn-hover-bg;
+                                    border-color: $btn-hover-bg;
+                                }
                             }
                         }
                     }
