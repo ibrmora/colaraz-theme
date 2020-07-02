@@ -1,5 +1,6 @@
 var nextUrlAllDiscussions = colarazDiscussionAllThreadsUrl;
 var nextUrlAllPostsFollowing = colarazFollowingPostsUrl;
+var nextUrlSearchPosts = '';
 
 // All Topics
 // fetch the topics segregation created by the author
@@ -59,13 +60,13 @@ function getAndPopulateCertainTopic(topicId, topicName, url, reLoad) {
     });
 
     function createSingleTopicElement(id, name) {
-        return `<li class="dropdown-submenu" style="position: relative; padding: 5px;">
-                   <a href="#" class="cz-submenu-title"> ${name} <span class="caret"></span></a>
+        return `<li class="dropdown-submenu" style="position: relative; padding: 5px; margin-left: 5px;">
+                   <span class="cz-submenu-title"> ${name} <span class="caret"></span></span>
                 </li>`;
     }
 
     function createMultipleTopicElement(id, name) {
-        return `<li class="dropdown-submenu" style="position: relative; padding: 5px;">
+        return `<li class="dropdown-submenu" style="position: relative; padding: 5px; margin-left: 5px;">
                    <a class="cz-submenu-title dropdown-toggle" href="#"> ${name} </a>
                    <ul id="cz-${id}" class="dropdown-menu" style="top: 0; left: 100%; margin-top: -1px; width: 300px; max-height: 310px; overflow: auto;">
                    </ul>
@@ -305,3 +306,62 @@ function reLoadDropDowns() {
 $(document).on('click', '.forum-new-post-form .submit', function () {
     reLoadDropDowns();
 });
+
+// search all topics code down here
+// on click of search button
+$(document).on('click', '#cz-search-posts', function (e) {
+    nextUrlSearchPosts = colarazSearchPosts + '&text_search=' + $('#all-discussions-filter').val();
+    $.ajax({
+        type: 'GET',
+        url: nextUrlSearchPosts,
+        success: function (resp) {
+            var parentId = '#all-discussions-main';
+            var loadMoreClassName = 'all-discussions-loadmore';
+            var allDiscussionDropDown = '';
+            nextUrlSearchPosts = resp['pagination']['next'];
+
+            resp['results'].forEach(element => {
+                allDiscussionDropDown += createDiscussionElement(element);
+            });
+
+            if (allDiscussionDropDown) {
+                delNoPostsElement();
+                $('li .' + loadMoreClassName).remove();
+                $(parentId).html(allDiscussionDropDown);
+            } else {
+                 $(parentId).html(NoPostsElementAdd());
+            }
+
+
+            if (resp['pagination']['next'] != null) {
+                $(parentId).append(loadMoreButtonElement(loadMoreClassName));
+            }
+        },
+        error: function (resp) {
+            console.error(`All Discussions in Discussion API gives error: ${resp.Message}`);
+        },
+    });
+
+    e.stopPropagation();
+    e.preventDefault();
+
+});
+
+//reload all dicussions again
+$(document).on('click', '#cz-search-cancel', function (e) {
+    $('#all-discussions-filter').val('');
+    nextUrlAllDiscussions = colarazDiscussionAllThreadsUrl;
+    getAndPopulateAllDiscussions(true);
+    e.stopPropagation();
+    e.preventDefault();
+});
+
+function NoPostsElementAdd() {
+    return `<li id="ca-no-posts" class="forum-nav-thread" style="user-select: auto;">
+                <a href="#" class="forum-nav-thread-link" style="user-select: auto;">
+                   <div class="forum-nav-thread-wrapper-1" style="user-select: auto;">
+                         <span class="forum-nav-thread-title" style="user-select: auto;">No Posts to show</span>
+                    </div>
+                 </a>
+             </li>`;
+}
