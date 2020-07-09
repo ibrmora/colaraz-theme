@@ -16,6 +16,8 @@
 <%namespace name='static' file='static_content.html'/>
 <% online_help_token = self.online_help_token() if hasattr(self, 'online_help_token') else None %>
 <%!
+    import urllib
+
     from branding import api as branding_api
     from django.db.models import Q
     from django.urls import reverse
@@ -100,6 +102,9 @@
     % endif
     <script type="text/javascript" src="${static.url(jsi18n_path)}"></script>
     <script type="text/javascript" src="${static.url(ie11_fix_path)}"></script>
+    <script type="text/javascript">
+        window.user_full_name = "${user.profile.name}";
+    </script>
 
     <link rel="icon" type="image/x-icon" href="${static.url(static.get_value('favicon_path', settings.FAVICON_PATH))}"/>
 
@@ -461,11 +466,21 @@
         var colarazJobAlertsMarkingUrl = "${reverse('colaraz_features:job_alerts_handler', kwargs={'api_method': 'mark'})}";
         var isColarazJobAlertsApiEnabled = ${getattr(settings, 'COLARAZ_JOB_ALERTS', {}).get('ENABLE', False) | n, dump_js_escaped_json};
         var colarazJobAlertsRefreshTime = ${getattr(settings, 'COLARAZ_JOB_ALERTS', {}).get('REFRESH_TIME_MILLISECONDS', 30000)};
+
+        // Colaraz Discussion Forum API variables
+        % if user.is_authenticated and hasattr(course, 'id'):
+        var colarazDiscussionAllThreadsUrl = "${reverse('thread-list')}?${urllib.urlencode({'course_id': course.id})}";
+        var colarazFollowingPostsUrl = colarazDiscussionAllThreadsUrl + "&following=True"
+        var colarazAllTopicsUrl =  "${reverse('course_topics', kwargs={'course_id': course.id})}";
+        var colarazSearchPosts =  colarazDiscussionAllThreadsUrl;
+        % endif
+
     </script>
     <script type="text/javascript" src="${static.url('js/vendor/noreferrer.js')}" charset="utf-8"></script>
     <script type="text/javascript" src="${static.url('js/utils/navigation.js')}" charset="utf-8"></script>
     <script type="text/javascript" src="${static.url('js/common-scripts.js')}"></script>
     <script type="text/javascript" src="${static.url('js/header/header.js')}"></script>
+    <script type="text/javascript" src="${static.url('js/discussion/colaraz_discussion_filters.js')}"></script>
     <%static:optional_include_mako file="body-extra.html" is_theming_enabled="True" />
 </body>
 </html>
