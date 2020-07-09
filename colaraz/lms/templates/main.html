@@ -473,6 +473,7 @@
         var colarazFollowingPostsUrl = colarazDiscussionAllThreadsUrl + "&following=True"
         var colarazAllTopicsUrl =  "${reverse('course_topics', kwargs={'course_id': course.id})}";
         var colarazSearchPosts =  colarazDiscussionAllThreadsUrl;
+        var colarazSinglePostUrl = "${reverse('thread-detail', kwargs={'thread_id':'WILL_BE_POPULATED'})}";
         % endif
 
     </script>
