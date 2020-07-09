@@ -102,9 +102,12 @@
     % endif
     <script type="text/javascript" src="${static.url(jsi18n_path)}"></script>
     <script type="text/javascript" src="${static.url(ie11_fix_path)}"></script>
-    <script type="text/javascript">
-        window.user_full_name = "${user.profile.name}";
-    </script>
+
+    % if user.is_authenticated:
+        <script type="text/javascript">
+            window.user_full_name = "${user.profile.name}";
+        </script>
+    % endif
 
     <link rel="icon" type="image/x-icon" href="${static.url(static.get_value('favicon_path', settings.FAVICON_PATH))}"/>
 
