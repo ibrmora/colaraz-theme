@@ -242,6 +242,8 @@
         // specific button styles
         &.action-follow {
 
+            outline: none;
+
             &.is-checked,
             &:hover,
             &:focus {

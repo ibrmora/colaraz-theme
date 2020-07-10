@@ -305,6 +305,7 @@ function reLoadDropDowns() {
 
 $(document).on('click', '.forum-new-post-form .submit', function () {
     reLoadDropDowns();
+    window.IS_POST_SUBSCRIBED = $('#follow').prop('checked')
 });
 
 // search all topics code down here

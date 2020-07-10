@@ -20,6 +20,7 @@ $(document).on('click', 'button.action-vote', function(event) {
     castVote(this, voteType);
 });
 
+
 function castVote(currentElement, voteType) {
     let threadID = $(currentElement).closest('article.discussion-article').attr('data-id')
     let threadVoteUrl = 'courses/${course.id}/discussion/threads/' + threadID + '/' + voteType + '?ajax=1';
@@ -47,6 +48,69 @@ function castVote(currentElement, voteType) {
         },
 
         error: function (error) {
+            console.error(error);
+        }
+    });
+}
+
+
+$(document).on('click', 'button.action-follow', function(event) {
+    let subscriptionStatus = $(this).attr('aria-checked') == 'true' ? 'unfollow' : 'follow';
+    togglePostFollowing(this, subscriptionStatus);
+});
+
+
+function togglePostFollowing(currentElement, subscriptionStatus) {
+    let threadID = $(currentElement).closest('article.discussion-article').attr('data-id');
+    let threadVoteUrl = 'courses/${course.id}/discussion/threads/' + threadID + '/' + subscriptionStatus + '?ajax=1';
+
+    $.ajax({
+        type: 'POST',
+        url: threadVoteUrl,
+        success: function () {
+            if (subscriptionStatus == 'follow') {
+                $(currentElement).attr('aria-checked', 'true');
+            } else {
+                $(currentElement).attr('aria-checked', 'false');
+            }
+            $(currentElement).toggleClass('is-checked');
+            rePopulatePostsFollowingList(threadID, subscriptionStatus);
+        },
+
+        error: function (error) {
+            console.error(error);
+        }
+    });
+}
+
+
+function rePopulatePostsFollowingList(threadID, subscriptionStatus) {
+    let selector = '#posts-following-main li[data-id="' + threadID + '"]';
+
+    // Don't fetch data from API, if it is already present in the list.
+    if ($(selector).length == 1) {
+        if (subscriptionStatus == 'follow') {
+            $(selector).css('display', 'block');
+        } else {
+            $(selector).css('display', 'none');
+        }
+    } else {
+        getSingleThread(threadID);
+    }
+}
+
+
+function getSingleThread(threadID) {
+    let singleThreadUrl = colarazSinglePostUrl;
+    singleThreadUrl = singleThreadUrl.replace('WILL_BE_POPULATED', threadID);
+    $.ajax({
+        type: 'GET',
+        url: singleThreadUrl,
+        success: function(data) {
+            let element = createDiscussionElement(data);
+            $('#posts-following-main').prepend(element);
+        },
+        error: function(error) {
             console.error(error);
         }
     });
