@@ -1,17 +1,24 @@
 var nextUrlAllDiscussions = colarazDiscussionAllThreadsUrl;
 var nextUrlAllPostsFollowing = colarazFollowingPostsUrl;
 var nextUrlSearchPosts = '';
+var allTopicIdCounter = 0;
 
 // All Topics
 // fetch the topics segregation created by the author
 // for now its only non_course_topics
-function getAllTopics(reLoad = false) {
+function getAllTopics() {
     $.ajax({
         type: 'GET',
         url: colarazAllTopicsUrl,
         success: function (resp) {
+            parentTopicId = '#all-topics-main';
+
             resp['non_courseware_topics'].forEach(element => {
-                getAndPopulateCertainTopic(element['id'], element['name'], element['thread_list_url'], reLoad);
+                getSubTopic(element, parentTopicId);
+            });
+
+            resp['courseware_topics'].forEach(element => {
+                getSubTopic(element, parentTopicId);
             });
         },
         error: function (resp) {
@@ -20,37 +27,45 @@ function getAllTopics(reLoad = false) {
     });
 }
 
+function getSubTopic(subTopicElement, parentTopicId) {
+    if (subTopicElement['children'].length > 0) {
+        nextParentId = subTopicElement['id'];
+        if (nextParentId === null) {
+            nextParentId = allTopicIdCounter++;
+        }
+
+        $(parentTopicId).append(createMultipleTopicElement(nextParentId, subTopicElement['name']));
+        parentTopicId = '#cz-topic-' + nextParentId;
+        subTopicElement['children'].forEach(element => {
+            getSubTopic(element, parentTopicId);
+        });
+    } else {
+        getAndPopulateCertainTopic(parentTopicId, subTopicElement);
+    }
+}
+
 // fetch and populate the custom topics with discussions and questions
-function getAndPopulateCertainTopic(topicId, topicName, url, reLoad) {
+function getAndPopulateCertainTopic(parentTopicId, subTopicElement) {
     $.ajax({
         type: 'GET',
-        url: url,
+        url: subTopicElement['thread_list_url'],
         success: function (resp) {
-            var parentId = '#all-topics-main';
-            var loadMoreClassName = topicId + '-topics-loadmore';
             var subTopicDiscussions = '';
 
-            if (reLoad === false) {
-                if (resp['results'].length > 0) {
-                    $(parentId).append(createMultipleTopicElement(topicId, topicName));
-                } else {
-                    $(parentId).append(createSingleTopicElement(topicId, topicName));
-                }
-
+            if (resp['results'].length > 0) {
+                $(parentTopicId).append(createMultipleTopicElement(subTopicElement['id'], subTopicElement['name']));
+            } else {
+                $(parentTopicId).append(createSingleTopicElement(subTopicElement['name']));
             }
 
             resp['results'].forEach(element => {
                 subTopicDiscussions += createDiscussionElement(element);
             });
 
-            if (reLoad) {
-                $('#cz-' + topicId).html(subTopicDiscussions);
-            } else {
-                $('#cz-' + topicId).append(subTopicDiscussions);
-            }
+            $('#cz-topic-' + subTopicElement['id']).append(subTopicDiscussions);
 
             if (resp['pagination']['next'] !== null) {
-                $('#cz-' + topicId).append(loadMoreButtonAllTopics(resp['pagination']['next']));
+                $('#cz-topic-' + subTopicElement['id']).append(loadMoreButtonAllTopics(resp['pagination']['next']));
             }
 
         },
@@ -59,22 +74,28 @@ function getAndPopulateCertainTopic(topicId, topicName, url, reLoad) {
         },
     });
 
-    function createSingleTopicElement(id, name) {
+    function createSingleTopicElement(name) {
         return `<li class="dropdown-submenu" style="position: relative; padding: 5px; margin-left: 5px;">
                    <span class="cz-submenu-title"> ${name} <span class="caret"></span></span>
                 </li>`;
     }
 
-    function createMultipleTopicElement(id, name) {
+    function createMiddleSubTopicElement(name) {
         return `<li class="dropdown-submenu" style="position: relative; padding: 5px; margin-left: 5px;">
-                   <a class="cz-submenu-title dropdown-toggle" href="#"> ${name} </a>
-                   <ul id="cz-${id}" class="dropdown-menu" style="top: 0; left: 100%; margin-top: -1px; width: 300px; max-height: 310px; overflow: auto;">
-                   </ul>
+                   <span class="cz-submenu-title"> ${name} <span class="caret"></span></span>
                 </li>`;
     }
 
-
 }
+
+function createMultipleTopicElement(id, name) {
+    return `<li class="dropdown-submenu" style="position: relative; padding: 5px; margin-left: 5px;">
+                   <a class="cz-submenu-title dropdown-toggle" href="#"> ${name} </a>
+                   <ul id="cz-topic-${id}" class="dropdown-menu cz-discussions-dropdown" style="top: 0; left: 100%; margin-top: -1px;">
+                   </ul>
+                </li>`;
+}
+
 
 // load more click button functionality
 function loadMoreAllTopics(element) {
@@ -117,16 +138,13 @@ function loadMoreButtonAllTopics(next_url) {
 
 // on click for multi level dropdown
 $(document).on("click", '.dropdown-submenu a.cz-submenu-title', function (e) {
-
-    var allTopicsDropDown = $('#all-topics-main ul');
-    for (var i = 0; i < allTopicsDropDown.length; i++) {
-        if (allTopicsDropDown[i].style.display === 'block') {
-            allTopicsDropDown[i].style.display = 'none';
-        }
-
+    if ($(this).parent().hasClass('open')) {
+        $(this).parent().removeClass('open');
+    } else {
+        $('.dropdown li').removeClass('open');
+        $(this).parents().addClass('open');
     }
 
-    $(this).next('ul').toggle();
     e.stopPropagation();
     e.preventDefault();
 });
@@ -165,16 +183,16 @@ function getAndPopulateAllDiscussions(reLoad = false) {
 
             if (allDiscussionDropDown) {
                 delNoPostsElement();
+                if (reLoad) {
+                    $(parentId).html(allDiscussionDropDown);
+                } else {
+                    $(parentId).append(allDiscussionDropDown);
+                }
+            } else {
+                $(parentId).html(noPostsElementAdd());
             }
 
             $('li .' + loadMoreClassName).remove();
-
-            if (reLoad) {
-                $(parentId).html(allDiscussionDropDown);
-            } else {
-                $(parentId).append(allDiscussionDropDown);
-            }
-
 
             if (resp['pagination']['next'] != null) {
                 $(parentId).append(loadMoreButtonElement(loadMoreClassName));
@@ -299,7 +317,9 @@ function reLoadDropDowns() {
     setTimeout(function () {
         getAndPopulateAllDiscussions(true);
         getAndPopulateFollowingPosts(true);
-        getAllTopics(true);
+
+        $('#all-topics-main li').remove();
+        getAllTopics();
     }, 2000);
 }
 
@@ -309,8 +329,7 @@ $(document).on('click', '.forum-new-post-form .submit', function () {
 });
 
 // search all topics code down here
-// on click of search button
-$(document).on('click', '#cz-search-posts', function (e) {
+function searchInAllPosts() {
     nextUrlSearchPosts = colarazSearchPosts + '&text_search=' + $('#all-discussions-filter').val();
     $.ajax({
         type: 'GET',
@@ -330,7 +349,7 @@ $(document).on('click', '#cz-search-posts', function (e) {
                 $('li .' + loadMoreClassName).remove();
                 $(parentId).html(allDiscussionDropDown);
             } else {
-                 $(parentId).html(NoPostsElementAdd());
+                $(parentId).html(noPostsElementAdd());
             }
 
 
@@ -342,9 +361,21 @@ $(document).on('click', '#cz-search-posts', function (e) {
             console.error(`All Discussions in Discussion API gives error: ${resp.Message}`);
         },
     });
+}
 
+$(document).on('click', '#cz-search-posts', function (e) {
+    searchInAllPosts();
     e.stopPropagation();
     e.preventDefault();
+});
+
+
+$(document).on('keyup', '#all-discussions-filter', function (e) {
+    if (e.keyCode == 13) {
+        searchInAllPosts()
+    } else if ($('#all-discussions-filter').val() == '') {
+        searchInAllPosts();
+    }
 
 });
 
@@ -357,12 +388,12 @@ $(document).on('click', '#cz-search-cancel', function (e) {
     e.preventDefault();
 });
 
-function NoPostsElementAdd() {
-    return `<li id="ca-no-posts" class="forum-nav-thread" style="user-select: auto;">
-                <a href="#" class="forum-nav-thread-link" style="user-select: auto;">
+function noPostsElementAdd() {
+    return `<li id="ca-no-posts">
+                <span style="user-select: auto;">
                    <div class="forum-nav-thread-wrapper-1" style="user-select: auto;">
                          <span class="forum-nav-thread-title" style="user-select: auto;">No Posts to show</span>
                     </div>
-                 </a>
+                 </span>
              </li>`;
 }
