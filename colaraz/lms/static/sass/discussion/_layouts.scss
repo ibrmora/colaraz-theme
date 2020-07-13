@@ -315,3 +315,27 @@
         }
     }
 }
+
+#all-topics-main ul {
+    display: none;
+}
+
+#all-topics-main li.open > ul {
+    display: block;
+}
+
+.cz-discussions-dropdown {
+    width: 310px;
+    margin-top: 5px;
+    border: 0.5px solid #A6C854 !important;
+    margin-top: 5px;
+}
+
+.cz-dropdown-scroll {
+    max-height: 300px !important;
+    overflow-y: auto !important;
+}
+
+a#cz-loadmore:hover {
+    background-color: #A6C854;
+}

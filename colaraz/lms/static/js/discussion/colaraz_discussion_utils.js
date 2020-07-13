@@ -91,9 +91,15 @@ function rePopulatePostsFollowingList(threadID, subscriptionStatus) {
     if ($(selector).length == 1) {
         if (subscriptionStatus == 'follow') {
             $(selector).css('display', 'block');
+            delNoPostsElement();
         } else {
             $(selector).css('display', 'none');
         }
+
+        if ($('#posts-following-main li').length == 1 && $(selector).css('display') == 'none') {
+            $('#posts-following-main').append(noPostsElementAdd());
+        }
+
     } else {
         getSingleThread(threadID);
     }
@@ -109,6 +115,7 @@ function getSingleThread(threadID) {
         success: function(data) {
             let element = createDiscussionElement(data);
             $('#posts-following-main').prepend(element);
+            delNoPostsElement();
         },
         error: function(error) {
             console.error(error);
