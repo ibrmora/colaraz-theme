@@ -22,6 +22,7 @@
   if user.is_authenticated:
     invite_friend_url = '{}://{}.{}/{}'.format(protocol, identifier, sub_domain, user_urls.get('inviteFriend', '#'))
     see_all_notifications_url = '{}://{}.{}/{}'.format(protocol, identifier, sub_domain, user_urls.get('viewNotifications', '#'))
+    colaraz_ecosystem_url = '{}://{}.{}/cvsocial/activity?{}'.format(protocol, identifier, sub_domain, user_urls.get('ecosystem', '#'))
   endif
 %>
 
@@ -63,13 +64,14 @@
   <div id="edly-nav-menu" class="main-navigation">
     <ul class="custom-nav mobile-nav-item">
       <li class="dropdown notification-li">
-        <a class="nav-item" href="#" onclick="removeNotificationsCount();" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-item" href="#" onclick="notificationsIconClick('${colaraz_ecosystem_url}');" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="fa fa-globe" aria-hidden="true"></span><span id="unread-notifications-count" class=""></span>
         </a>
         <div class="header-dropdown dropdown-menu dropdown-menu-right all-notifications" x-placement="bottom-end">
           <h4 class="notifications-heading">Notifications</h4>
           <ul id="notifications-list" class="notifications-list">
           </ul>
+          <div id="ecosystem-iframe" style="display: none;"></div>
           <div class="button-box">
             <a href="${see_all_notifications_url}" class="btn btn-primary btn-see-all">See all</a>
           </div>
