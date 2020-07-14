@@ -305,9 +305,11 @@ function delNoPostsElement() {
 
 
 $(window).on('load', function () {
-    getAndPopulateAllDiscussions();
-    getAndPopulateFollowingPosts();
-    getAllTopics();
+    if (window.location.href.includes('discussion/forum/')) {
+        getAndPopulateAllDiscussions();
+        getAndPopulateFollowingPosts();
+        getAllTopics();
+    }
 });
 
 function reLoadDropDowns() {
