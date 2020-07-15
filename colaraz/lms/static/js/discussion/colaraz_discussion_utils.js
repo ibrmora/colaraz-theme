@@ -22,8 +22,11 @@ $(document).on('click', 'button.action-vote', function(event) {
 
 
 function castVote(currentElement, voteType) {
-    let threadID = $(currentElement).closest('article.discussion-article').attr('data-id')
-    let threadVoteUrl = 'courses/${course.id}/discussion/threads/' + threadID + '/' + voteType + '?ajax=1';
+    let threadID = $(currentElement).closest('article.discussion-article').attr('data-id');
+    let currentHref = window.location.href;
+    let isUnitLevelDiscussion = currentHref.includes('courseware/');
+    let baseUrl = isUnitLevelDiscussion ? currentHref.split('courseware/')[0] : currentHref.split('discussion/forum/')[0]
+    let threadVoteUrl = `${baseUrl}discussion/threads/${threadID}/${voteType}?ajax=1`;
 
     $.ajax({
         type: 'POST',
@@ -62,11 +65,14 @@ $(document).on('click', 'button.action-follow', function(event) {
 
 function togglePostFollowing(currentElement, subscriptionStatus) {
     let threadID = $(currentElement).closest('article.discussion-article').attr('data-id');
-    let threadVoteUrl = 'courses/${course.id}/discussion/threads/' + threadID + '/' + subscriptionStatus + '?ajax=1';
+    let currentHref = window.location.href;
+    let isUnitLevelDiscussion = currentHref.includes('courseware/');
+    let baseUrl = isUnitLevelDiscussion ? currentHref.split('courseware/')[0] : currentHref.split('discussion/forum/')[0]
+    let threadToggleFollowUrl = `${baseUrl}discussion/threads/${threadID}/${subscriptionStatus}?ajax=1`;
 
     $.ajax({
         type: 'POST',
-        url: threadVoteUrl,
+        url: threadToggleFollowUrl,
         success: function () {
             if (subscriptionStatus == 'follow') {
                 $(currentElement).attr('aria-checked', 'true');
@@ -74,7 +80,12 @@ function togglePostFollowing(currentElement, subscriptionStatus) {
                 $(currentElement).attr('aria-checked', 'false');
             }
             $(currentElement).toggleClass('is-checked');
-            rePopulatePostsFollowingList(threadID, subscriptionStatus);
+            if (!isUnitLevelDiscussion) {
+                rePopulatePostsFollowingList(threadID, subscriptionStatus);
+            } else {
+                $(currentElement).attr('disabled', 'true');
+                location.reload(true);
+            }
         },
 
         error: function (error) {
