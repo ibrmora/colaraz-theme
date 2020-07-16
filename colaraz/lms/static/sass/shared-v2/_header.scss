@@ -99,7 +99,7 @@
                     font-weight: 600;
                     text-align: center;
                     @include box(16px);
-                    line-height: 12px;
+                    line-height: 16px;
                     background: $alert-color;
                     position: absolute;
                     right: 20px;
@@ -117,6 +117,10 @@
 
                     &.notification-li {
                         position: static;
+
+                        > a {
+                            position: relative;
+                        }
                     }
 
                     a {
