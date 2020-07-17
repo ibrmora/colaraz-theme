@@ -130,7 +130,7 @@ function loadMoreAllTopics(element) {
 }
 
 function loadMoreButtonAllTopics(next_url) {
-    return `<li class="forum-nav-thread" style="user-select: auto;">
+    return `<li class="forum-nav-thread cz-loadmore-li" style="user-select: auto;">
                 <a id="cz-loadmore" href="#" class="forum-nav-thread-link" next-url="${next_url}" onclick="loadMoreAllTopics(this)">load more</a>
             </li>`;
 
@@ -192,7 +192,7 @@ function getAndPopulateAllDiscussions(reLoad = false) {
                 $(parentId).html(noPostsElementAdd());
             }
 
-            $('li .' + loadMoreClassName).remove();
+            $('li .' + loadMoreClassName).closest('li').remove();
 
             if (resp['pagination']['next'] != null) {
                 $(parentId).append(loadMoreButtonElement(loadMoreClassName));
@@ -234,7 +234,7 @@ function getAndPopulateFollowingPosts(reLoad = false) {
                 delNoPostsElement();
             }
 
-            $('li .' + loadMoreClassName).remove();
+            $('li .' + loadMoreClassName).closest('li').remove();
 
             if (reLoad) {
                 $(parentId).html(followingPostsDropDown);
@@ -285,8 +285,8 @@ function createDiscussionElement(element) {
 
 // generic load more element with className
 function loadMoreButtonElement(className) {
-    return `<li class="forum-nav-thread" style="user-select: auto;">
-                <a id="cz-loadmore" href="#" class="forum-nav-thread-link ${className}">load more</a>
+    return `<li class="forum-nav-thread cz-loadmore-li" style="user-select: auto;">
+                <a id="cz-loadmore" href="#" class="forum-nav-thread-link ${className}">Load more</a>
             </li>`;
 }
 
@@ -348,7 +348,7 @@ function searchInAllPosts() {
 
             if (allDiscussionDropDown) {
                 delNoPostsElement();
-                $('li .' + loadMoreClassName).remove();
+                $('li .' + loadMoreClassName).closest('li').remove();
                 $(parentId).html(allDiscussionDropDown);
             } else {
                 $(parentId).html(noPostsElementAdd());
@@ -373,8 +373,9 @@ $(document).on('click', '#cz-search-posts', function (e) {
 
 
 $(document).on('keyup', '#all-discussions-filter', function (e) {
-    if (e.keyCode == 13) {
-        searchInAllPosts()
+    keyCode = e.keyCode || e.which;
+    if (keyCode == 13) {
+        searchInAllPosts();
     } else if ($('#all-discussions-filter').val() == '') {
         searchInAllPosts();
     }
