@@ -75,13 +75,13 @@ function getAndPopulateCertainTopic(parentTopicId, subTopicElement) {
     });
 
     function createSingleTopicElement(name) {
-        return `<li class="dropdown-submenu" style="position: relative; padding: 5px; margin-left: 5px;">
+        return `<li class="dropdown-submenu">
                    <span class="cz-submenu-title"> ${name} <span class="caret"></span></span>
                 </li>`;
     }
 
     function createMiddleSubTopicElement(name) {
-        return `<li class="dropdown-submenu" style="position: relative; padding: 5px; margin-left: 5px;">
+        return `<li class="dropdown-submenu">
                    <span class="cz-submenu-title"> ${name} <span class="caret"></span></span>
                 </li>`;
     }
@@ -89,9 +89,9 @@ function getAndPopulateCertainTopic(parentTopicId, subTopicElement) {
 }
 
 function createMultipleTopicElement(id, name) {
-    return `<li class="dropdown-submenu" style="position: relative; padding: 5px; margin-left: 5px;">
+    return `<li class="dropdown-submenu">
                    <a class="cz-submenu-title dropdown-toggle" href="#"> ${name} </a>
-                   <ul id="cz-topic-${id}" class="dropdown-menu cz-discussions-dropdown" style="top: 0; left: 100%; margin-top: -1px;">
+                   <ul id="cz-topic-${id}" class="dropdown-menu cz-discussions-dropdown">
                    </ul>
                 </li>`;
 }
@@ -392,7 +392,7 @@ $(document).on('click', '#cz-search-cancel', function (e) {
 
 function noPostsElementAdd() {
     return `<li id="ca-no-posts">
-                <span style="user-select: auto;">
+                <span class="no-post" style="user-select: auto;">
                    <div class="forum-nav-thread-wrapper-1" style="user-select: auto;">
                          <span class="forum-nav-thread-title" style="user-select: auto;">No Posts to show</span>
                     </div>

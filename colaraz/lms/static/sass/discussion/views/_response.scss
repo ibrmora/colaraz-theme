@@ -390,6 +390,81 @@
             }
         }
     }
+
+    .topic-search {
+        background: $gray-lightest;
+        padding: $baseline*.5;
+        border-radius: 3px 3px 0 0;
+        margin-bottom: 10px;
+
+        .search-input {
+            border-radius: $baseline;
+            color: $text-color;
+            border: 1px solid $gray-lighter;
+            font-size: 13px;
+            padding: 3px 9px;
+            line-height: 18px;
+            box-sizing: border-box;
+            @include box(26px, 100%);
+            @include placeholder($text-color);
+        }
+    }
+
+    .discussion-search {
+        background: $gray-lightest;
+        padding: $baseline*.5;
+        border-radius: 3px 3px 0 0;
+        margin-bottom: 10px;
+
+        .field-label {
+            display: none;
+        }
+
+        .search-input {
+            border-radius: $baseline;
+            color: $text-color;
+            border-color: $gray-lighter;
+            font-size: 13px;
+            line-height: 18px;
+            @include box(26px, 100%);
+            @include padding(3px, 50px, 3px, 9px);
+            @include placeholder($text-color);
+            box-sizing: border-box;
+        }
+
+        .search-button {
+            font-size: 0;
+            min-width: 0;
+            padding: 0;
+            position: absolute;
+            top: $baseline*.5;
+            right: $baseline*.5;
+            background: none;
+            border: 0;
+            box-shadow: none;
+            text-shadow: none;
+            @include box(26px);
+            border-radius: $baseline;
+            outline: none;
+
+            &:before {
+                content: '\f002';
+                font-size: 15px;
+                font: normal normal normal 14px/1 FontAwesome;
+            }
+        }
+
+        .cancel-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0;
+            background: none;
+            border: 0;
+            margin: 16px 40px 0 0;
+            outline: none;
+        }
+    }
 }
 
 .discussion {
