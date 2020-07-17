@@ -323,6 +323,11 @@
     display: block;
 }
 
+.forum-nav-thread-list {
+    max-height: none !important;
+    overflow: visible !important;
+}
+
 .discussion-filters {
     padding-right: $baseline*.5;
 
@@ -377,8 +382,9 @@
     }
 
     > ul {
-        max-height: calc(100vh - 100px);
+        max-height: calc(100vh - 300px);
         overflow-y: auto;
+        position: relative;
     }
 
     &.dropdown-menu {
@@ -389,6 +395,10 @@
         .dropdown-menu {
             box-shadow: none;
         }
+    }
+
+    .forum-nav-thread-title {
+        line-height: 1.1;
     }
 
     .dropdown-menu {
@@ -421,10 +431,14 @@
             text-decoration: none;
 
             &.dropdown-toggle {
+                position: relative;
+                padding-right: $baseline;
 
                 &:after {
-                    float: right;
-                    margin: 4px 0 0 10px;
+                    position: absolute;
+                    top: 50%;
+                    right: 5px;
+                    margin: -6px 0 0 10px;
                     border: 5px solid;
                     border-color: transparent transparent transparent var(--primary);
                 }
@@ -443,7 +457,7 @@
                 > .dropdown-toggle {
 
                     &:after {
-                        margin-top: 7px;
+                        margin-top: -3px;
                         border-color: var(--primary) transparent transparent;
                     }
                 }
@@ -464,11 +478,13 @@
     }
 }
 
-.cz-dropdown-scroll {
-    max-height: 300px !important;
-    overflow-y: auto !important;
-}
+.cz-loadmore-li {
+    padding: $baseline*.25 !important;
 
-a#cz-loadmore:hover {
-    background-color: #A6C854;
+    > a {
+        @include cz-btn;
+        text-align: center;
+        display: block !important;
+        text-transform: capitalize;
+    }
 }
