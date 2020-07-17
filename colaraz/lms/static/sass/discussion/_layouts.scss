@@ -464,11 +464,167 @@
     }
 }
 
-.cz-dropdown-scroll {
-    max-height: 300px !important;
-    overflow-y: auto !important;
+.forum-nav-thread-list {
+    max-height: none !important;
+    overflow: visible !important;
 }
 
-a#cz-loadmore:hover {
-    background-color: #A6C854;
+.discussion-filters {
+    padding-right: $baseline*.5;
+
+    @include media-up(xs) {
+        padding-right: 0;
+    }
+
+    .dropdown {
+        width: 100%;
+        float: none;
+        margin-bottom: 10px;
+        @include media-up(xs) {
+            width: auto;
+            float: left;
+            margin-left: $baseline*.25;
+            margin-bottom: 0;
+        }
+
+        .dropdown-toggle {
+
+            &:after {
+                float: right;
+                margin: 4px 0 0 10px;
+            }
+        }
+
+        .btn {
+            outline: none !important;
+            @include media-down(xs) {
+                display: block;
+                text-align: left;
+                width: 100%;
+            }
+        }
+
+        &.show {
+            z-index: 2;
+        }
+
+        &:first-child {
+            @include media-up(xs) {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+.cz-discussions-dropdown {
+    width: 200px;
+    @include media-down(xs) {
+        width: 100%;
+    }
+
+    > ul {
+        max-height: calc(100vh - 300px);
+        overflow-y: auto;
+    }
+
+    &.dropdown-menu {
+        font-size: 13px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        padding: 0;
+
+        .dropdown-menu {
+            box-shadow: none;
+        }
+    }
+
+    .forum-nav-thread-title {
+        line-height: 1.1;
+    }
+
+    .dropdown-menu {
+        position: static;
+        border: 0;
+        width: 100%;
+        float: none;
+    }
+
+    .no-post {
+        display: block;
+
+        .forum-nav-thread-title,
+        .forum-nav-thread-wrapper-1 {
+            display: block;
+        }
+
+        .forum-nav-thread-title {
+            padding: $baseline*.25;
+        }
+    }
+
+    ul {
+        @include list;
+
+        .cz-submenu-title {
+            padding: $baseline*.25;
+            display: block;
+            cursor: pointer;
+            text-decoration: none;
+
+            &.dropdown-toggle {
+                position: relative;
+                padding-right: $baseline;
+
+                &:after {
+                    position: absolute;
+                    top: 50%;
+                    right: 5px;
+                    margin: -6px 0 0 10px;
+                    border: 5px solid;
+                    border-color: transparent transparent transparent var(--primary);
+                }
+            }
+
+            &:hover {
+                background: $gray-lightest;
+            }
+        }
+
+        li {
+            margin: 0;
+
+            &.open {
+
+                > .dropdown-toggle {
+
+                    &:after {
+                        margin-top: -3px;
+                        border-color: var(--primary) transparent transparent;
+                    }
+                }
+            }
+
+            li {
+                .cz-submenu-title {
+                    padding-left: $baseline*.5;
+                }
+
+                li {
+                    .cz-submenu-title {
+                        padding-left: $baseline*.75;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.cz-loadmore-li {
+    padding: $baseline*.25 !important;
+
+    > a {
+        @include cz-btn;
+        text-align: center;
+        display: block !important;
+        text-transform: capitalize;
+    }
 }
