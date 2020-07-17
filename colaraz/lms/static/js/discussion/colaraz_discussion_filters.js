@@ -371,15 +371,13 @@ $(document).on('click', '#cz-search-posts', function (e) {
     e.preventDefault();
 });
 
-
 $(document).on('keyup', '#all-discussions-filter', function (e) {
-    keyCode = e.keyCode || e.which;
+    let keyCode = e.keyCode || e.which;
     if (keyCode == 13) {
         searchInAllPosts();
     } else if ($('#all-discussions-filter').val() == '') {
         searchInAllPosts();
     }
-
 });
 
 //reload all dicussions again
