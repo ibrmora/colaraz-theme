@@ -476,6 +476,7 @@
         var colarazFollowingPostsUrl = colarazDiscussionAllThreadsUrl + "&following=True"
         var colarazAllTopicsUrl =  "${reverse('course_topics', kwargs={'course_id': course.id})}";
         var colarazSearchPosts =  colarazDiscussionAllThreadsUrl;
+        var colarazSinglePostUrl = "${reverse('thread-detail', kwargs={'thread_id':'WILL_BE_POPULATED'})}";
         % endif
 
     </script>
@@ -483,7 +484,10 @@
     <script type="text/javascript" src="${static.url('js/utils/navigation.js')}" charset="utf-8"></script>
     <script type="text/javascript" src="${static.url('js/common-scripts.js')}"></script>
     <script type="text/javascript" src="${static.url('js/header/header.js')}"></script>
-    <script type="text/javascript" src="${static.url('js/discussion/colaraz_discussion_filters.js')}"></script>
+    % if user.is_authenticated and hasattr(course, 'id'):
+        <script type="text/javascript" src="${static.url('js/discussion/colaraz_discussion_filters.js')}"></script>
+        <script type="text/javascript" src="${static.url('js/discussion/colaraz_discussion_utils.js')}"></script>
+    % endif
     <%static:optional_include_mako file="body-extra.html" is_theming_enabled="True" />
 </body>
 </html>

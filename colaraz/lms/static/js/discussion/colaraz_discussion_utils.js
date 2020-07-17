@@ -20,9 +20,13 @@ $(document).on('click', 'button.action-vote', function(event) {
     castVote(this, voteType);
 });
 
+
 function castVote(currentElement, voteType) {
-    let threadID = $(currentElement).closest('article.discussion-article').attr('data-id')
-    let threadVoteUrl = 'courses/${course.id}/discussion/threads/' + threadID + '/' + voteType + '?ajax=1';
+    let threadID = $(currentElement).closest('article.discussion-article').attr('data-id');
+    let currentHref = window.location.href;
+    let isUnitLevelDiscussion = currentHref.includes('courseware/');
+    let baseUrl = isUnitLevelDiscussion ? currentHref.split('courseware/')[0] : currentHref.split('discussion/forum/')[0]
+    let threadVoteUrl = `${baseUrl}discussion/threads/${threadID}/${voteType}?ajax=1`;
 
     $.ajax({
         type: 'POST',
@@ -47,6 +51,84 @@ function castVote(currentElement, voteType) {
         },
 
         error: function (error) {
+            console.error(error);
+        }
+    });
+}
+
+
+$(document).on('click', 'button.action-follow', function(event) {
+    let subscriptionStatus = $(this).attr('aria-checked') == 'true' ? 'unfollow' : 'follow';
+    togglePostFollowing(this, subscriptionStatus);
+});
+
+
+function togglePostFollowing(currentElement, subscriptionStatus) {
+    let threadID = $(currentElement).closest('article.discussion-article').attr('data-id');
+    let currentHref = window.location.href;
+    let isUnitLevelDiscussion = currentHref.includes('courseware/');
+    let baseUrl = isUnitLevelDiscussion ? currentHref.split('courseware/')[0] : currentHref.split('discussion/forum/')[0]
+    let threadToggleFollowUrl = `${baseUrl}discussion/threads/${threadID}/${subscriptionStatus}?ajax=1`;
+
+    $.ajax({
+        type: 'POST',
+        url: threadToggleFollowUrl,
+        success: function () {
+            if (subscriptionStatus == 'follow') {
+                $(currentElement).attr('aria-checked', 'true');
+            } else {
+                $(currentElement).attr('aria-checked', 'false');
+            }
+            $(currentElement).toggleClass('is-checked');
+            if (!isUnitLevelDiscussion) {
+                rePopulatePostsFollowingList(threadID, subscriptionStatus);
+            } else {
+                $(currentElement).attr('disabled', 'true');
+                location.reload(true);
+            }
+        },
+
+        error: function (error) {
+            console.error(error);
+        }
+    });
+}
+
+
+function rePopulatePostsFollowingList(threadID, subscriptionStatus) {
+    let selector = '#posts-following-main li[data-id="' + threadID + '"]';
+
+    // Don't fetch data from API, if it is already present in the list.
+    if ($(selector).length == 1) {
+        if (subscriptionStatus == 'follow') {
+            $(selector).css('display', 'block');
+            delNoPostsElement();
+        } else {
+            $(selector).css('display', 'none');
+        }
+
+        if ($('#posts-following-main li').length == 1 && $(selector).css('display') == 'none') {
+            $('#posts-following-main').append(noPostsElementAdd());
+        }
+
+    } else {
+        getSingleThread(threadID);
+    }
+}
+
+
+function getSingleThread(threadID) {
+    let singleThreadUrl = colarazSinglePostUrl;
+    singleThreadUrl = singleThreadUrl.replace('WILL_BE_POPULATED', threadID);
+    $.ajax({
+        type: 'GET',
+        url: singleThreadUrl,
+        success: function(data) {
+            let element = createDiscussionElement(data);
+            $('#posts-following-main').prepend(element);
+            delNoPostsElement();
+        },
+        error: function(error) {
             console.error(error);
         }
     });

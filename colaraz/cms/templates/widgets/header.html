@@ -134,14 +134,16 @@
         user_urls = user.colaraz_profile.role_based_urls
         colaraz_notifications_url = user_urls.get('viewNotifications') if user_urls.has_key('viewNotifications') else '#'
 
-        invite_friend_url = '{}://{}.{}/Home/InviteFriends.aspx'.format( protocol, identifier, domain)
+        invite_friend_url = '{}://{}.{}/{}'.format(protocol, identifier, domain, user_urls.get('inviteFriend', '#'))
         see_all_notifications_url = '{}://{}.{}/{}'.format( protocol, identifier, domain, colaraz_notifications_url)
+        colaraz_ecosystem_url = '{}://{}.{}/cvsocial/activity?{}'.format(protocol, identifier, domain, user_urls.get('ecosystem', '#'))
+        
       %>
       <nav class="nav-account nav-is-signedin nav-dd ui-right" aria-label="${_('Account')}">
         <h2 class="sr-only">${_("Account Navigation")}</h2>
         <ol>
           <li class="dropdown">
-            <a class="nav-link" href="#" onclick="removeNotificationsCount();" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link" href="#" onclick="notificationsIconClick('${colaraz_ecosystem_url}');" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="fa fa-globe" aria-hidden="true"></span><span id="unread-notifications-count" class=""></span>
             </a>
             <div class="header-dropdown dropdown-menu dropdown-menu-right all-notifications">
@@ -149,6 +151,7 @@
               <ul id="notifications-list" class="notifications-list">
 
               </ul>
+              <div id="ecosystem-iframe" style="display: none;"></div>
               <div class="button-box">
                 <a href="${see_all_notifications_url}" class="btn btn-primary btn-see-all">see all</a>
               </div>

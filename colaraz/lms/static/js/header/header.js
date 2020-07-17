@@ -543,3 +543,16 @@ function removeJobAlertsCount() {
         markJobAlertsAsRead();
     }
 }
+
+function loginToEcosystem(ecosystemUrl){
+    // TODO: It's just a temporary fix, COLARAZ needs to fix this issue on their end.
+    let iframe = $('#ecosystem-iframe');
+    if (iframe.children().length === 0){
+        iframe.append(`<iframe src="${ecosystemUrl}"></iframe>`)
+    }
+}
+
+function notificationsIconClick(ecosystemUrl) {
+    removeNotificationsCount();
+    loginToEcosystem(ecosystemUrl);
+}
