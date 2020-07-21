@@ -488,3 +488,113 @@
         text-transform: capitalize;
     }
 }
+
+body {
+
+    &.login,
+    &.register {
+
+        a {
+            &:hover,
+            &:focus,
+            &:active {
+                border-bottom: 0;
+            }
+        }
+    }
+}
+
+.verification-process {
+
+    .outside-app {
+        background: transparent;
+    }
+
+    &.step-select-track {
+
+        .content-wrapper {
+
+            .title {
+                color: $black;
+            }
+
+            .action {
+
+                &.action-select {
+
+                    input[type=submit] {
+
+                        @include cz-btn;
+                    }
+                }
+            }
+
+            .page-header {
+
+                &.content-main {
+                    border-bottom: 0;
+                }
+            }
+        }
+
+        .container {
+            max-width: $container-default;
+            background: transparent;
+        }
+
+        section {
+
+            &.outside-app {
+                max-width: $container-default;
+            }
+        }
+
+        .view-profile {
+            background: transparent;
+
+            .badge-set-display,
+            .wrapper-profile-sections {
+                max-width: $container-default;
+            }
+
+            .profile-self {
+
+                .wrapper-profile-field-account-privacy {
+
+                    .u-field-account_privacy {
+                        max-width: $container-default;
+                    }
+                }
+            }
+        }
+
+        .view-profile & {
+
+            .badge-set-display,
+            .wrapper-profile-sections {
+                background: transparent;
+                max-width: $container-default;
+            }
+        }
+    }
+
+    .profile-self {
+
+        .wrapper-profile-field-account-privacy {
+
+            .u-field-account_privacy {
+                background: transparent;
+            }
+
+            .verification-process {
+
+                &.step-select-track {
+
+                    .u-field-account_privacy {
+                        max-width: $container-default;
+                    }
+                }
+            }
+        }
+    }
+}
