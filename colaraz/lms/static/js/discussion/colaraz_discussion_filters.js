@@ -182,14 +182,14 @@ function getAndPopulateAllDiscussions(reLoad = false) {
             });
 
             if (allDiscussionDropDown) {
-                delNoPostsElement();
+                $('#ca-no-posts-discussions').remove();
                 if (reLoad) {
                     $(parentId).html(allDiscussionDropDown);
                 } else {
                     $(parentId).append(allDiscussionDropDown);
                 }
             } else {
-                $(parentId).html(noPostsElementAdd());
+                $(parentId).html(noPostsElementAdd(true));
             }
 
             $('li .' + loadMoreClassName).closest('li').remove();
@@ -231,12 +231,12 @@ function getAndPopulateFollowingPosts(reLoad = false) {
             });
 
             if (followingPostsDropDown) {
-                delNoPostsElement();
+                $('#ca-no-posts-following').remove();
             }
 
             $('li .' + loadMoreClassName).closest('li').remove();
 
-            if (reLoad) {
+            if (reLoad && followingPostsDropDown) {
                 $(parentId).html(followingPostsDropDown);
             } else {
                 $(parentId).append(followingPostsDropDown);
@@ -299,11 +299,6 @@ function typeClassName(type) {
     }
 }
 
-function delNoPostsElement() {
-    $('#ca-no-posts').remove();
-}
-
-
 $(window).on('load', function () {
     if (window.location.href.includes('discussion/forum/')) {
         getAndPopulateAllDiscussions();
@@ -347,11 +342,11 @@ function searchInAllPosts() {
             });
 
             if (allDiscussionDropDown) {
-                delNoPostsElement();
+                $('#ca-no-posts-discussions').remove();
                 $('li .' + loadMoreClassName).closest('li').remove();
                 $(parentId).html(allDiscussionDropDown);
             } else {
-                $(parentId).html(noPostsElementAdd());
+                $(parentId).html(noPostsElementAdd(true));
             }
 
 
@@ -389,8 +384,9 @@ $(document).on('click', '#cz-search-cancel', function (e) {
     e.preventDefault();
 });
 
-function noPostsElementAdd() {
-    return `<li id="ca-no-posts">
+function noPostsElementAdd(discussion=false) {
+    let id =  discussion? 'ca-no-posts-discussions' : 'ca-no-posts-following';
+    return `<li id="${id}">
                 <span class="no-post" style="user-select: auto;">
                    <div class="forum-nav-thread-wrapper-1" style="user-select: auto;">
                          <span class="forum-nav-thread-title" style="user-select: auto;">No Posts to show</span>

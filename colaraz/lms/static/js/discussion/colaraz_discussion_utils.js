@@ -102,7 +102,7 @@ function rePopulatePostsFollowingList(threadID, subscriptionStatus) {
     if ($(selector).length == 1) {
         if (subscriptionStatus == 'follow') {
             $(selector).css('display', 'block');
-            delNoPostsElement();
+            $('#ca-no-posts-following').remove();
         } else {
             $(selector).css('display', 'none');
         }
@@ -126,7 +126,7 @@ function getSingleThread(threadID) {
         success: function(data) {
             let element = createDiscussionElement(data);
             $('#posts-following-main').prepend(element);
-            delNoPostsElement();
+            $('#ca-no-posts-following').remove();
         },
         error: function(error) {
             console.error(error);
