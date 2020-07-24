@@ -1,0 +1,57 @@
+// studio - elements - system feedback
+// ====================
+
+// prompts
+// ====================
+.wrapper-prompt {
+
+  .prompt {
+
+    .copy {
+      border-top: 4px solid $primary;
+    }
+
+    .action-primary {
+      @include cz-btn;
+    }
+
+    // types of prompts - error
+    &.error {
+
+      .feedback-symbol,
+      .action-secondary {
+        color: $primary;
+      }
+
+      .copy {
+        border-top-color: $primary;
+      }
+    }
+
+    // types of prompts - confirmation
+    &.confirmation {
+
+      .feedback-symbol,
+      .action-secondary {
+        color: $primary;
+      }
+
+      .copy {
+        border-top-color: $primary;
+      }
+    }
+
+    // types of prompts - error
+    &.warning {
+
+      .feedback-symbol,
+      .action-secondary {
+        color: $primary;
+      }
+
+      .copy {
+        border-top-color: $primary;
+      }
+    }
+  }
+}

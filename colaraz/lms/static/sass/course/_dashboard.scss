@@ -125,6 +125,7 @@
     .progress {
         height: 20px;
         margin: 0 0 $baseline*.2;
+        border-bottom: 0;
     }
 }
 
@@ -613,12 +614,15 @@
                                         .action {
 
                                             &.action-upgrade {
-                                                background: $success-color;
-                                                border-radius: $border-radius;
-                                                box-shadow: none;
+                                                @include cz-btn;
 
-                                                &:hover {
-                                                    background: darken($success-color, 5%);
+                                                span {
+                                                    font-weight: 400;
+                                                    color: $black;
+
+                                                    &.action-upgrade-icon {
+                                                        margin-top: 3px;
+                                                    }
                                                 }
                                             }
                                         }
