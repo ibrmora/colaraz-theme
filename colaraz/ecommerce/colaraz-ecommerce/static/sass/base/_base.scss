@@ -1,0 +1,159 @@
+// base styles
+// --------------------
+
+html {
+    font-size: 16px;
+}
+
+body {
+    min-width: 320px;
+    font-size: 14px;
+}
+
+a,
+.link,
+.btn-link {
+    color: $primary;
+
+    &:hover,
+    &:active,
+    &:focus {
+        color: $primary-dark;
+        text-decoration: none;
+        border-bottom-color: $primary-dark;
+    }
+}
+
+.wrapper {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 150px;
+}
+
+.container {
+    background-color: $container-bg;
+}
+
+.sr {
+    @extend %sr-only;
+}
+
+.page-header {
+
+    .hd-1 {
+        margin: 0;
+    }
+}
+
+.breadcrumb {
+
+    > li {
+
+        + li {
+
+            &:before {
+                content: '#{$breadcrumb-separator}';
+            }
+        }
+    }
+}
+
+.depth {
+    padding: 1.25rem;
+}
+
+.depth-2 {
+    background: #FCFCFC;
+    box-shadow: 0 1px 2px 1px rgba(167, 164, 164, 0.25);
+}
+
+#skip-link {
+    position: absolute;
+    z-index: 1050;
+    left: 50%;
+    width: 12em;
+    padding: 0 0.5em;
+    margin-top: 0;
+    margin-left: -6.5em;
+
+    a {
+        display: block;
+        padding: 0;
+        background: rgba(0, 0, 0, 0.6);
+        color: #FFF;
+        line-height: 2;
+        text-align: center;
+        text-decoration: none;
+
+        &:focus {
+            outline: 0;
+        }
+    }
+}
+
+.element-invisible {
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    border: 0;
+    word-wrap: normal;
+    clip: rect(1px 1px 1px 1px);
+}
+
+#main-content {
+    outline: none;
+    padding-top: 50px;
+
+    .container {
+        border-radius: 10px;
+    }
+}
+
+#app {
+    border-radius: 10px;
+}
+
+.element-invisible.element-focusable {
+
+    &:focus {
+        position: static !important;
+        overflow: visible;
+        width: auto;
+        height: auto;
+        clip: auto;
+    }
+}
+
+.btn {
+
+    &:focus,
+    &.focus {
+        outline-color: $primary;
+    }
+
+    &:active,
+    &.active {
+
+        &:focus,
+        &.focus {
+            outline-color: $primary;
+        }
+    }
+
+    &-primary {
+        background: $btn-bg;
+        border-color: $btn-bg;
+        color: black !important;
+
+        &:hover,
+        &:focus,
+        &.is-hovered,
+        &.is-focused {
+            background: $btn-hover-bg;
+            border-color: $btn-hover-bg;
+            color: black;
+        }
+    }
+}

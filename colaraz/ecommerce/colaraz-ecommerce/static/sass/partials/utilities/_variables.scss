@@ -1,0 +1,22 @@
+@import 'ecommerce/static/sass/partials/utilities/variables';
+
+// ------------------------------
+// THEME's variables
+// ------------------------------
+$white:                         #FFF;
+$black:                         #000;
+
+$color__gray-light:             #AAA;
+$primary:                       #91B845;
+$primary-dark:                  darken($primary, 10%);
+
+$btn-bg:                        #BCCB5A;
+$btn-hover-bg:                  #A6C854;
+
+$padding-footer:                15px;
+
+$body-bg:                       #282828;
+$header-bg:                     $black;
+$footer-bg:                     $black;
+
+$brand-primary:                 $btn-bg;

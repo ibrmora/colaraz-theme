@@ -1,0 +1,149 @@
+// navbar
+// --------------------------------------------------
+
+.nav {
+  .nav-link {
+    &:hover,
+    &:focus {
+      outline: inherit;
+      border-bottom-color: transparent;
+    }
+  }
+}
+
+.navbar {
+  margin-bottom: 0;
+
+  .container {
+    background: $header-bg;
+  }
+
+  // Remove default Bootstrap navbar border styling
+  border: none;
+  border-radius: 0;
+  background: $header-bg;
+  // Add our own border
+  border-bottom: $navbar-border-bottom-width solid $primary;
+
+  // Vertically center the logo
+  .navbar-brand {
+    &:active,
+    &:focus,
+    &:hover {
+      border: none;
+    }
+
+    .navbar-brand-logo {
+      @include center-vertically;
+      width: auto;
+    }
+
+    .navbar-brand-app {
+      @include center-vertically;
+      top: 0;
+      display: inline-block;
+      color: white;
+      font-weight: 600;
+    }
+  }
+
+}
+
+.administration-navbar {
+  padding: 30px 10px 14px;
+  background-color: $body-bg;
+  font-size: 14px;
+  font-weight: 600;
+
+  .container {
+    background-color: $body-bg;
+  }
+
+  div a {
+    padding: 10px;
+    border-bottom: none;
+
+    color: white;
+
+    &.selected,
+    &:active,
+    &:focus {
+      border-bottom: 4px solid $primary;
+      color: $primary;
+    }
+
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
+@media (min-width: $grid-float-breakpoint-max) {
+  .navbar {
+    // Display the user menu as a .navbar-btn when not collapsed to handle vertical centering.
+    .user-menu {
+      @include navbar-vertical-align($input-height-base);
+    }
+  }
+}
+
+.user-menu {
+  > .nav-button {
+    border: 0;
+    color: white;
+    background: transparent;
+
+    &:hover,
+    &:focus {
+      color: palette(grayscale, white-t);
+
+      > .icon {
+        color: palette(grayscale, white-t);
+      }
+    }
+
+    &.dropdown-toggle {
+      border-left: 1px solid white;
+    }
+  }
+
+  .main-btn {
+    font-weight: bold;
+    color: white;
+
+    .icon {
+      display: inline-block;
+      float: left;
+      margin: 2px 6px -3px 3px;
+      font-size: 1.2em;
+      color: white;
+    }
+  }
+
+  &.open {
+
+    > .btn-default {
+
+      &.dropdown-toggle {
+
+        &:hover,
+        &:focus,
+        &.focus {
+          background: $btn-bg;
+        }
+      }
+    }
+  }
+}
+
+.dropdown-menu {
+  .nav-link {
+    // Disables default link behavior of pattern library on menu items
+    transition: none;
+
+    &:hover,
+    &:focus {
+      border-bottom-color: transparent;
+    }
+  }
+}
