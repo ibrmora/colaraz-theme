@@ -4,7 +4,7 @@
 
 <div class="add-certificate-invalidation">
     <div>
-        <label for="certificate-invalidation-user"><%- gettext('Email address') %></label>
+        <label class="certificate-invalidation-user-label" for="certificate-invalidation-user"><%- gettext('Email address') %></label>
         <input class="student-username-or-email" id="certificate-invalidation-user" type="text">
     </div>
     <div>
